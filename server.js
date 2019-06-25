@@ -1,18 +1,28 @@
+require("dotenv").config();
+// const keys = require("./app/config/keys");
 const express = require("express");
-const path = require("path");
-const app = express();
+const exphbs = require("express-handlebars");
+
 const PORT = process.env.PORT || 8080;
+const app = express();
+
 
 //Serve static public folder
 app.use(express.static("./app/public"));
+
+//Handlebars config
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 //Setting up middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.sendfile(path.join(__dirname, "home.html"))
-});
+//Rounting:
+require("./app/routes/userRoutes")(app);
+require("./app/routes/htmlRoutes")(app);
+
+
 
 //Listening
 // This needs to be updated to console log a different URL!!!

@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Routing:
-require("./app/routes/userRoutes")(app);
+// require("./app/routes/userRoutes")(app);
 require("./app/routes/htmlRoutes")(app);
 
 

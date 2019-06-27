@@ -1,28 +1,43 @@
 $(document).ready(() => {
+    //========================================================//
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyBbeo6HDibDSFp3S8s3NFzRiGq63SSJadU",
+        authDomain: "harcam-project2.firebaseapp.com",
+        databaseURL: "https://harcam-project2.firebaseio.com",
+        projectId: "harcam-project2",
+        storageBucket: "",
+        messagingSenderId: "496002682671",
+        appId: "1:496002682671:web:9c2667e92420572a"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            location.href === location.origin + "/" ? location.href = "/home" : console.log("On page " + location.href);
+        }
+        else {
+            location.href !== location.origin + "/" ? location.href = "/" : console.log("Welcome");
+        };
+    });
 
-
-    $("#loginForm").on("submit", e => {
-        e.preventDefault();
+    $("#loginForm").on("submit", event => {
+        event.preventDefault();
         const displayMessage = $("#loginForm .form-message");
         // send post request to server for login
         const email = $("#loginEmail").val();
         const password = $("#loginPassword").val();
-        const body = { email, password };
-        $.post("/login", body, response => {
-            switch (response.code) {
-                case "auth/user-not-found":
-                    displayMessage.removeClass("d-none").text("User not found");
-                    break;
-                default:
-                    displayMessage.removeClass("d-none").text("Something is wrong, please try again later.")
-                    break;
-            }
+
+        const signInPromise = firebase.auth().signInWithEmailAndPassword(email, password);
+        signInPromise.catch(err => {
+            displayMessage.removeClass("d-none").text(err.message);
         });
+
     });
 
-    $("#signupForm").on("submit", e => {
-        e.preventDefault();
+    $("#signupForm").on("submit", event => {
+        event.preventDefault();
         const displayMessage = $("#signupForm .form-message");
 
         const email = $("#signupEmail").val();
@@ -32,9 +47,20 @@ $(document).ready(() => {
             return displayMessage.removeClass("d-none").text("The passwords you have entered do not match.")
         }
         const name = $("#firstName").val();
-        const body = { email, password, name };
-        $.post("/signup", body, response => {
 
+        const signupPromise = firebase.auth().createUserWithEmailAndPassword(email, password);
+
+        signupPromise.catch(err => {
+            displayMessage.removeClass("d-none").text(err.message);
+        }).then(response => {
+            if (response) {
+                $.post("/api/users/create", response => {
+                    console.log(response);
+                })
+            }
         });
+
     });
+
 });
+

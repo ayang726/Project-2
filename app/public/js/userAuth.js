@@ -2,39 +2,61 @@ $(document).ready(() => {
 
 
 
-    $("#loginForm").on("submit", e => {
-        e.preventDefault();
-        const displayMessage = $("#loginForm .form-message");
-        // send post request to server for login
-        const email = $("#loginEmail").val();
-        const password = $("#loginPassword").val();
-        const body = { email, password };
-        $.post("/login", body, response => {
-            switch (response.code) {
-                case "auth/user-not-found":
-                    displayMessage.removeClass("d-none").text("User not found");
-                    break;
-                default:
-                    displayMessage.removeClass("d-none").text("Something is wrong, please try again later.")
-                    break;
-            }
-        });
-    });
+    // $("#loginForm").on("submit", event => {
+    //     event.preventDefault();
+    //     const displayMessage = $("#loginForm .form-message");
+    //     // send post request to server for login
+    //     const email = $("#loginEmail").val();
+    //     const password = $("#loginPassword").val();
+    //     const body = { email, password };
+    //     $.post("/login", body, response => {
+    //         if (response.uid) {
+    //             // navigate to home page
+    //         }
+    //         else {
+    //             displayMessage.removeClass("d-none").text(response.message);
+    //         }
+    //     });
+    // });
 
-    $("#signupForm").on("submit", e => {
-        e.preventDefault();
-        const displayMessage = $("#signupForm .form-message");
+    // $("#signupForm").on("submit", event => {
+    //     event.preventDefault();
+    //     const displayMessage = $("#signupForm .form-message");
 
-        const email = $("#signupEmail").val();
-        const password = $("#signupPassword").val();
-        const confirmPassword = $("#signupConfirmPassword").val();
-        if (password !== confirmPassword) {
-            return displayMessage.removeClass("d-none").text("The passwords you have entered do not match.")
-        }
-        const name = $("#firstName").val();
-        const body = { email, password, name };
-        $.post("/signup", body, response => {
+    //     const email = $("#signupEmail").val();
+    //     const password = $("#signupPassword").val();
+    //     const confirmPassword = $("#signupConfirmPassword").val();
+    //     if (password !== confirmPassword) {
+    //         return displayMessage.removeClass("d-none").text("The passwords you have entered do not match.")
+    //     }
+    //     const name = $("#firstName").val();
+    //     const body = { email, password, name };
+    //     $.post("/signup", body, response => {
+    //         if (response.uid) {
+    //             // navigate to home page
+    //         }
+    //         else {
+    //             displayMessage.removeClass("d-none").text(response.message);
+    //         }
+    //     });
+    // });
 
-        });
-    });
+
+
+    //========================================================//
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyBbeo6HDibDSFp3S8s3NFzRiGq63SSJadU",
+        authDomain: "harcam-project2.firebaseapp.com",
+        databaseURL: "https://harcam-project2.firebaseio.com",
+        projectId: "harcam-project2",
+        storageBucket: "",
+        messagingSenderId: "496002682671",
+        appId: "1:496002682671:web:9c2667e92420572a"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    firebase.auth().onAuthStateChanged(user => { if (user) console.log(user.uid) });
 });
+

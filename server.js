@@ -18,7 +18,7 @@ app.set("view engine", "handlebars");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//Rounting:
+//Routing:
 require("./app/routes/userRoutes")(app);
 require("./app/routes/htmlRoutes")(app);
 

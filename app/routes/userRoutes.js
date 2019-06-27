@@ -1,25 +1,29 @@
 const firebase = require("firebase");
-
+const firebaseConfig = require("../config/firebaseConfig");
+firebase.initializeApp(firebaseConfig);
 
 module.exports = function (app) {
     app.post("/login", (req, res) => {
         const promise = firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password);
-        promise.catch(error => {
-            console.log(error);
-            res.json(error);
-        });
+        loginResponse(promise, res);
     });
     app.post("/signup", (req, res) => {
-        console.log("Ran here!!=========================================");
+        // handle repeat account creations!!
         const promise = firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password);
-        console.log("Ran here!!=========================================again");
-
-        promise.catch(error => {
-            console.log("error: ==================================================");
-            // res.json(error);
-        });
-        // promise.then(response => {
-        //     console.log("response: " + response);
-        // });
+        loginResponse(promise, res);
     });
+
+    firebase.auth().onAuthStateChanged(user => { if (user) console.log(user.uid) });
+
+    function loginResponse(promise, res) {
+        promise.catch(error => {
+            res.json(error);
+        }).then(response => {
+            if (response) {
+                const uid = response.user.uid;
+                console.log(uid + " just logged in");
+                res.json({ uid });
+            }
+        });
+    }
 }

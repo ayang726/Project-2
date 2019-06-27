@@ -1,48 +1,4 @@
 $(document).ready(() => {
-
-
-
-    // $("#loginForm").on("submit", event => {
-    //     event.preventDefault();
-    //     const displayMessage = $("#loginForm .form-message");
-    //     // send post request to server for login
-    //     const email = $("#loginEmail").val();
-    //     const password = $("#loginPassword").val();
-    //     const body = { email, password };
-    //     $.post("/login", body, response => {
-    //         if (response.uid) {
-    //             // navigate to home page
-    //         }
-    //         else {
-    //             displayMessage.removeClass("d-none").text(response.message);
-    //         }
-    //     });
-    // });
-
-    // $("#signupForm").on("submit", event => {
-    //     event.preventDefault();
-    //     const displayMessage = $("#signupForm .form-message");
-
-    //     const email = $("#signupEmail").val();
-    //     const password = $("#signupPassword").val();
-    //     const confirmPassword = $("#signupConfirmPassword").val();
-    //     if (password !== confirmPassword) {
-    //         return displayMessage.removeClass("d-none").text("The passwords you have entered do not match.")
-    //     }
-    //     const name = $("#firstName").val();
-    //     const body = { email, password, name };
-    //     $.post("/signup", body, response => {
-    //         if (response.uid) {
-    //             // navigate to home page
-    //         }
-    //         else {
-    //             displayMessage.removeClass("d-none").text(response.message);
-    //         }
-    //     });
-    // });
-
-
-
     //========================================================//
     // Your web app's Firebase configuration
     var firebaseConfig = {
@@ -57,6 +13,54 @@ $(document).ready(() => {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
-    firebase.auth().onAuthStateChanged(user => { if (user) console.log(user.uid) });
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            location.href === location.origin + "/" ? location.href = "/home" : console.log("On page " + location.href);
+        }
+        else {
+            location.href !== location.origin + "/" ? location.href = "/" : console.log("Welcome");
+        };
+    });
+
+    $("#loginForm").on("submit", event => {
+        event.preventDefault();
+        const displayMessage = $("#loginForm .form-message");
+        // send post request to server for login
+        const email = $("#loginEmail").val();
+        const password = $("#loginPassword").val();
+
+        const signInPromise = firebase.auth().signInWithEmailAndPassword(email, password);
+        signInPromise.catch(err => {
+            displayMessage.removeClass("d-none").text(err.message);
+        });
+
+    });
+
+    $("#signupForm").on("submit", event => {
+        event.preventDefault();
+        const displayMessage = $("#signupForm .form-message");
+
+        const email = $("#signupEmail").val();
+        const password = $("#signupPassword").val();
+        const confirmPassword = $("#signupConfirmPassword").val();
+        if (password !== confirmPassword) {
+            return displayMessage.removeClass("d-none").text("The passwords you have entered do not match.")
+        }
+        const name = $("#firstName").val();
+
+        const signupPromise = firebase.auth().createUserWithEmailAndPassword(email, password);
+
+        signupPromise.catch(err => {
+            displayMessage.removeClass("d-none").text(err.message);
+        }).then(response => {
+            if (response) {
+                $.post("/api/users/create", response => {
+                    console.log(response);
+                })
+            }
+        });
+
+    });
+
 });
 

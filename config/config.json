@@ -1,26 +1,29 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "database_development",
+    "password": "root",
+    "database": "STOCKAPP",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "port": 1000
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "database_test",
+    "password": "root",
+    "database": "STOCKAPP",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "port": 1000
   },
   "production": {
     "username": "root",
-    "password": null,
-    "database": "database_production",
+    "password": "root",
+    "database": "STOCKAPP",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "port": 1000
   }
 }

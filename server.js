@@ -3,12 +3,12 @@ require("dotenv").config();
 const express = require("express");
 const exphbs = require("express-handlebars");
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 7000;
 const app = express();
 
 
 //Serve static public folder
-app.use(express.static("./app/public"));
+app.use(express.static("./public"));
 
 //Handlebars config
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -20,10 +20,15 @@ app.use(express.json());
 
 //Routing:
 // require("./app/routes/userRoutes")(app);
-require("./app/routes/htmlRoutes")(app);
+require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app);
 
-
+const db = require("./models");
 
 //Listening
 // This needs to be updated to console log a different URL!!!
-app.listen(PORT, () => { console.log("Server listening on http://localhost:" + PORT) })
+db.sequelize.sync({ force: true }).then(function () {
+    app.listen(PORT, () => {
+        console.log("Server listening on http://localhost:" + PORT)
+    });
+});

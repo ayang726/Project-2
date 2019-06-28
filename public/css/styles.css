@@ -1,0 +1,51 @@
+nav a{
+    text-decoration: none;
+    color: #000;
+}
+nav a:hover{
+    text-decoration: none;
+    color:#000;
+}
+nav ul{
+    list-style: none;
+    padding-left: 0;
+}
+nav li{
+    padding: 0;
+}
+nav form{
+    position: relative;
+}
+.hidden{
+    opacity: 0;
+}
+#searchBar {
+    height: 40px;
+    width: 300px;
+    margin:0;
+    padding: 0 20px;
+}
+.searchResult {
+    background: #eee;
+    position: absolute;
+    top: 40px;
+}
+.searchResultList{
+    margin: 0;
+}
+.searchResultListItem{
+    line-height: 40px;
+    height: 40px;
+    width: 300px;
+    padding: 0 20px;
+    margin:0;
+}
+
+.searchResultListItem:hover{
+    background: rgba(0, 0, 0, 0.1);
+}
+.searchResultListItem a{
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}

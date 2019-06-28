@@ -1,4 +1,6 @@
+let currentUser;
 $(document).ready(() => {
+
     //========================================================//
     // Your web app's Firebase configuration
     var firebaseConfig = {
@@ -16,10 +18,12 @@ $(document).ready(() => {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             location.href === location.origin + "/" ? location.href = "/home" : console.log("On page " + location.href);
+            currentUser = user.uid;
         }
         else {
             location.href !== location.origin + "/" ? location.href = "/" : console.log("Welcome");
         };
+
     });
 
     $("#loginForm").on("submit", event => {
@@ -54,12 +58,16 @@ $(document).ready(() => {
             displayMessage.removeClass("d-none").text(err.message);
         }).then(response => {
             if (response) {
-                $.post("/api/users/create", response => {
-                    console.log(response);
+                // console.log(response.user.uid);
+                $.post("/api/users/create", { email, password, name, uid: response.user.uid }, db_feedback => {
+                    // console.log(db_feedback);
                 })
             }
         });
 
+    });
+    $("#logout").on("click", () => {
+        firebase.auth().signOut();
     });
 
 });

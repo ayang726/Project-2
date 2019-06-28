@@ -21,14 +21,16 @@ nav form{
 }
 #searchBar {
     height: 40px;
-    width: 300px;
-    margin:0;
+    width: 60vw;
+    margin:0 20px;
     padding: 0 20px;
 }
+
 .searchResult {
     background: #eee;
     position: absolute;
     top: 40px;
+    margin: 0 20px;
 }
 .searchResultList{
     margin: 0;
@@ -36,7 +38,7 @@ nav form{
 .searchResultListItem{
     line-height: 40px;
     height: 40px;
-    width: 300px;
+    width: 60vw;
     padding: 0 20px;
     margin:0;
 }
@@ -45,7 +47,14 @@ nav form{
     background: rgba(0, 0, 0, 0.1);
 }
 .searchResultListItem a{
+    overflow: hidden;
     display: inline-block;
     height: 100%;
     width: 100%;
+}
+
+
+.searchSymbols{
+    width: 5em;
+    display: inline-block;
 }

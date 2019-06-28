@@ -18,6 +18,8 @@ if (process.env.ENABLE_PRODUCTION) {
     }
 }
 iexRequest.parseTestUrl = function (q) {
+    console.log("IEX test query alled");
+
     return `${baseSanboxUrl}/${q}/?token=${TestToken}`;
 }
 

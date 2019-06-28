@@ -7,6 +7,7 @@ const searchForm = searchBar.parent();
 
 let searchSymbols = { allTickers: [], recentSearches: [] };
 
+
 searchBar.focus(search);
 searchBar.keyup(search);
 
@@ -24,6 +25,38 @@ searchForm.on("submit", e => {
 function search() {
     loadAllTickers();
     loadRecentSearchData();
+    populateSearchList();
+}
+function loadAllTickers() {
+    if (searchSymbols.allTickers.length === 0) {
+        $.get("/api/symbols", response => {
+            searchSymbols.allTickers = response.data;
+            populateSearchList();
+        });
+    }
+}
+function loadRecentSearchData() {
+    console.log(currentUser);
+
+    if (searchSymbols.recentSearches.length === 0) {
+        $.get(`/api/users/${currentUser}/recentSearches`, response => {
+            console.log(response);
+            response.forEach(ticker => {
+                searchSymbols.recentSearches.push({ symbol: ticker.symbol, name: ticker.name })
+                populateSearchList();
+            })
+        });
+    }
+}
+function saveRecentSearch(symbol, name) {
+    $.post("/api/recentSearches",
+        { uid: currentUser, name, symbol },
+        response => console.log(response)
+    );
+}
+
+function populateSearchList() {
+    console.log(searchSymbols.recentSearches);
 
     searchResultList.empty();
     let resultList = [];
@@ -37,35 +70,11 @@ function search() {
         );
     }
 
-    resultList.forEach(search => {
-        let html = `<li class="searchResultListItem"><a href="#" onclick="saveRecentSearch(search)">${search.symbol}</a></li>`;
+    resultList.forEach(function (search) {
+        let html = `<li class="searchResultListItem"><a href="/stock/${search.symbol}" onclick="saveRecentSearch('${search.symbol}', '${search.name}')"><span class="searchSymbols">${search.symbol}</span>${search.name}</a></li>`;
         searchResultList.append(html);
     });
     searchResult.animate({ opacity: 1 }, 100, () => searchResult.removeClass("d-none"));
 
-}
-function loadAllTickers() {
-    if (searchSymbols.allTickers.length === 0) {
-        $.get("/api/symbols", response => {
-            searchSymbols.allTickers = response.data;
-        });
-    }
-}
-function loadRecentSearchData() {
-
-    if (searchSymbols.recentSearches.length === 0) {
-        $.get(`/api/users/:${currentUser}/recentSearches`, response => {
-            response.forEach(ticker => {
-                searchSymbols.recentSearches.push({ symbol: ticker.symbol, name: ticker.name })
-            })
-        });
-    }
-}
-function saveRecentSearch(ticker) {
-    console.log(ticker);
-    $.post("/api/recentSearches",
-        { uid: currentUser, name: ticker.name, symbol: ticker.symbol },
-        response => console.log(response)
-    );
 }
 // });

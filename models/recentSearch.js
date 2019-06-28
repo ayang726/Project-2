@@ -5,6 +5,14 @@ module.exports = function (sequelize, DataTypes) {
             symbol: { type: DataTypes.STRING },
             name: { type: DataTypes.STRING },
             uid: { type: DataTypes.STRING }
+        },
+        {
+            indexes: [
+                {
+                    unique: true,
+                    fields: ["uid", "symbol"]
+                }
+            ]
         });
     return RecentSearch;
 }

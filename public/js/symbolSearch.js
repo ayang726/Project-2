@@ -1,3 +1,5 @@
+console.log("Symbol Search loaded");
+
 // $(document).ready(() => {
 const searchResult = $(".searchResult");
 const searchResultList = $(".searchResultList");
@@ -36,11 +38,10 @@ function loadAllTickers() {
     }
 }
 function loadRecentSearchData() {
-    console.log(currentUser);
+
 
     if (searchSymbols.recentSearches.length === 0) {
         $.get(`/api/users/${currentUser}/recentSearches`, response => {
-            console.log(response);
             response.forEach(ticker => {
                 searchSymbols.recentSearches.push({ symbol: ticker.symbol, name: ticker.name })
                 populateSearchList();
@@ -50,14 +51,13 @@ function loadRecentSearchData() {
 }
 function saveRecentSearch(symbol, name) {
     $.post("/api/recentSearches",
-        { uid: currentUser, name, symbol },
-        response => console.log(response)
+        { uid: currentUser, name, symbol }
+        // , response => console.log(response)
     );
 }
 
 function populateSearchList() {
-    console.log(searchSymbols.recentSearches);
-
+    // console.log(searchSymbols.recentSearches);
     searchResultList.empty();
     let resultList = [];
     if (searchBar.val() === "") {

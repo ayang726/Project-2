@@ -6,17 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Price Chart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+
 </head>
 
 <body>
-    <h1>Price Chart</h1>
-
-    <canvas id="myChart" width="50" height="50"></canvas>
+    <div class="container">
+        <div class="row">
+            <div class="col-12-md">
+                <h1>Price Chart</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12-md">
+                <a href="#" class="list-group-item list-group-item-action">AAPL
+                    <div class="d-flex w-100 justify-content-between">
+                        <h3 class="mb-1">$1,010.60</h3>
+                        <p class="mb-1">+$0.15 (0.01%) <small class="text-muted">Today</small></p>
+                        <p class="mb-1">-$0.09 (-0.01%) <small class="text-muted">After Hours</small></p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12-md">
+                <canvas id="myChart" width="250" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12-md">
+                <button type="button" class="btn btn-primary">1D</button>
+                <button type="button" class="btn btn-secondary">1W</button>
+                <button type="button" class="btn btn-success">1M</button>
+                <button type="button" class="btn btn-warning">3M</button>
+                <button type="button" class="btn btn-danger">ALL</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
-
-
 
 <script src="/js/priceChart.js"></script>
 

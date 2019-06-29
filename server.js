@@ -20,13 +20,8 @@ app.use(express.json());
 
 //Routing:
 // require("./app/routes/userRoutes")(app);
-<<<<<<< HEAD
 require("./routes/htmlRoutes")(app);
 require("./routes/apiRoutes")(app);
-=======
-require("./app/routes/htmlRoutes")(app);
-
->>>>>>> master
 
 const db = require("./models");
 

@@ -1,2 +1,2 @@
-Drop database if exists development_database;
-create database development_database;
+Drop database if exists database_development;
+create database database_development;

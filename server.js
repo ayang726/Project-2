@@ -32,7 +32,7 @@ const db = require("./models");
 
 //Listening
 // This needs to be updated to console log a different URL!!!
-db.sequelize.sync({ force: true }).then(function () {
+db.sequelize.sync({ force: false }).then(function () {
     app.listen(PORT, () => {
         console.log("Server listening on http://localhost:" + PORT)
     });

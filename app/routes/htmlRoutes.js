@@ -6,4 +6,7 @@ module.exports = function (app) {
     app.get("/home", (req, res) => {
         res.render("home", {});
     });
+    app.get("/priceChart", (req, res) => {
+        res.render("priceChart", {});
+    });
 }

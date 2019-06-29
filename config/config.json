@@ -2,6 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
+<<<<<<< HEAD
     "database": "STOCKAPP",
     "host": "127.0.0.1",
     "dialect": "mysql",
@@ -25,5 +26,28 @@
     "dialect": "mysql",
     "operatorsAliases": false,
     "port": 1000
+=======
+    "port": 8889,
+    "database": "database_development",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+>>>>>>> master
   }
 }

@@ -1,0 +1,60 @@
+nav a{
+    text-decoration: none;
+    color: #000;
+}
+nav a:hover{
+    text-decoration: none;
+    color:#000;
+}
+nav ul{
+    list-style: none;
+    padding-left: 0;
+}
+nav li{
+    padding: 0;
+}
+nav form{
+    position: relative;
+}
+.hidden{
+    opacity: 0;
+}
+#searchBar {
+    height: 40px;
+    width: 60vw;
+    margin:0 20px;
+    padding: 0 20px;
+}
+
+.searchResult {
+    background: #eee;
+    position: absolute;
+    top: 40px;
+    margin: 0 20px;
+}
+.searchResultList{
+    margin: 0;
+}
+.searchResultListItem{
+    line-height: 40px;
+    height: 40px;
+    width: 60vw;
+    padding: 0 20px;
+    margin:0;
+}
+
+.searchResultListItem:hover{
+    background: rgba(0, 0, 0, 0.1);
+}
+.searchResultListItem a{
+    overflow: hidden;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+
+
+.searchSymbols{
+    width: 5em;
+    display: inline-block;
+}

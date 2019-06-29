@@ -2,10 +2,16 @@
   "name": "Project-2",
   "version": "1.0.0",
   "description": "Coding Bootcamp Project - 2",
+<<<<<<< HEAD
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
+=======
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> master
   },
   "repository": {
     "type": "git",
@@ -19,12 +25,25 @@
   },
   "homepage": "https://github.com/ayang726/Project-2#readme",
   "dependencies": {
+<<<<<<< HEAD
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "mysql": "^2.17.1",
     "sequelize": "^5.8.12"
   },
   "devDependencies": {
+=======
+    "axios": "^0.19.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "firebase": "^6.2.3",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.8.12"
+  },
+  "devDependencies": {
+    "dotenv": "^8.0.0",
+>>>>>>> master
     "sequelize-cli": "^5.5.0"
   }
 }

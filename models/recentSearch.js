@@ -20,11 +20,11 @@
 module.exports = function (sequelize, DataTypes) {
     var RecentSearch = sequelize.define("RecentSearch", {
         uid: {
-            type: DataTypes.INT,
+            type: DataTypes.STRING,
             allowNull: false
         },
         tickerid: {
-            type: DataTypes.INT,
+            type: DataTypes.STRING,
             allowNull: false
         }
     });

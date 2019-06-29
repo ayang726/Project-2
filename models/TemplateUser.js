@@ -2,7 +2,7 @@ module.exports = function (sequelize, DataTypes) {
 
     var TemplateUser = sequelize.define("TemplateUser", {
         uid: {
-            type: DataTypes.INT,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         templatename: {

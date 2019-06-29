@@ -2,16 +2,16 @@ module.exports = function (sequelize, DataTypes) {
 
     var TemplateMetric = sequelize.define("TemplateMetric", {
         templateid: {
-            type: DataTypes.INT,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         metricid: {
-            type: DataTypes.INT,
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     });
 
-    TickerMetric.associate = function (models) {
+    TemplateMetric.associate = function (models) {
         TickerMetric.hasMany(models.TemplateUser);
         TickerMetric.hasMany(models.Metric);
     };

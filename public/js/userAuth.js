@@ -1,5 +1,6 @@
 let currentUser;
 $(document).ready(() => {
+    console.log("UserAuth Loaded");
 
     //========================================================//
     // Your web app's Firebase configuration

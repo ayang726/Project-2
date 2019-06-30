@@ -15,23 +15,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
 
     <script>
-        let dataSets = [];
+        var dataSets = [];
         function oneDayFn(myLabel) {
             dataSets = [];
             dataSetsLabel = [];
             const btnElem = document.getElementById("OneDayID");
-            //var axios = require("axios");
-            //https://sandbox.iexapis.com/stable/stock/AAPL/chart/1m?token=Tpk_d1e0d015368c4061af98937e274f629b
-            // Then run a request with axios to the OMDB API with the movie specified
+            const testUrl = "https://sandbox.iexapis.com";
+            var param1 = "/stable";
+            var param2 = "/stock/";
+            var symbol = "AAPL";
+            var param3 = "/intraday-prices";
+            const testApiToken = "Tpk_d1e0d015368c4061af98937e274f629b";
 
-            const requestURL = "https://sandbox.iexapis.com/stable/stock/AAPL/intraday-prices?token=Tpk_d1e0d015368c4061af98937e274f629b";
-            //const requestURL = "https://sandbox.iexapis.com/stable/stock/AAPL/chart/1m?token=Tpk_d1e0d015368c4061af98937e274f629b";
-            // axios.get(requestURL).then(
-            //     function (response) {
-            //         console.log("RESPONSE DATA: " + response.data);
-            //     }
-            // );
-            //myChart.data.datasets = [];
+            const prodUrl = "https://cloud.iexapis.com";
+            const prodApiToken = "pk_e2c875b16a704e47a1e278ec4974db36";
+
+
+            const requestURL = testUrl + param1 + param2 + symbol + param3 + "?token=" + testApiToken;
             $.ajax({
                 url: requestURL,
                 type: 'GET',
@@ -96,6 +96,89 @@
         }
     </script>
 
+    <script>
+        var dataSets = [];
+        function oneMonthFn(myLabel) {
+            dataSets = [];
+            dataSetsLabel = [];
+            const btnElem = document.getElementById("OneMonthID");
+            const testUrl = "https://sandbox.iexapis.com";
+            var param1 = "/stable";
+            var param2 = "/stock/";
+            var symbol = "AAPL";
+            var param3 = "/chart/";
+            var timeRange = "1m";
+            const testApiToken = "Tpk_d1e0d015368c4061af98937e274f629b";
+
+            const prodUrl = "https://cloud.iexapis.com";
+            const prodApiToken = "Tpk_d1e0d015368c4061af98937e274f629b";
+
+
+            const requestURL = testUrl + param1 + param2 + symbol + param3 + timeRange + "?token=" + testApiToken;
+            $.ajax({
+                url: requestURL,
+                type: 'GET',
+                success: function (res) {
+                    //console.log(res);
+                    for (var i = 0; i < res.length; i++) {
+                        const dataObj = res[i];
+                        const volData = dataObj.close;
+                        const labelValue = dataObj.label;
+                        if (!dataSetsLabel.includes(labelValue)) {
+                            dataSetsLabel.push(labelValue);
+                        }
+                        const volNum = parseInt(volData);
+                        console.log("volData:[" + i + "]: " + volNum);
+                        if (!isNaN(volNum)) {
+                            dataSets.push(volNum);
+                        }
+                    }
+                    ctx = document.getElementById('myChart').getContext('2d');
+                    myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: dataSetsLabel,
+                            datasets: [{
+                                label: 'Average Price',
+                                data: dataSets,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                }
+            });
+
+        }
+    </script>
+
+
+
+
 </head>
 
 <body>
@@ -121,7 +204,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12-md">
-                <canvas id="myChart" width="450" height="450"></canvas>
+                <canvas id="myChart" width="400" height="400"></canvas>
             </div>
         </div>
     </div>
@@ -129,9 +212,9 @@
         <div class="row">
             <div class="col-12-md">
                 <button type="button" id="OneDayID" onClick="oneDayFn()" class="btn btn-primary">1D</button>
-                <button type="button" id="OneWeekID" class="btn btn-secondary">1W</button>
-                <button type="button" id="OneMonthID" class="btn btn-success">1M</button>
-                <button type="button" id="ThreeMonthID" class="btn btn-warning">3M</button>
+                <button type="button" id="OneMonthID" onClick="oneMonthFn()" class="btn btn-secondary">1M</button>
+                <button type="button" id="ThreeMonthID" class="btn btn-success">3M</button>
+                <button type="button" id="OneYearID" class="btn btn-warning">1Y</button>
                 <button type="button" id="AllID" class="btn btn-danger">ALL</button>
             </div>
         </div>
@@ -147,7 +230,7 @@
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: [],
             datasets: [{
                 label: 'Average Price',
                 data: [],

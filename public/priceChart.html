@@ -39,7 +39,7 @@
                     //console.log(res);
                     for (var i = 0; i < res.length; i++) {
                         const dataObj = res[i];
-                        const volData = dataObj.volume;
+                        const volData = dataObj.average;
                         const labelValue = dataObj.label;
                         if (!dataSetsLabel.includes(labelValue)) {
                             dataSetsLabel.push(labelValue);
@@ -59,7 +59,7 @@
                         data: {
                             labels: dataSetsLabel,
                             datasets: [{
-                                label: '# of Volumes',
+                                label: 'Average Price',
                                 data: dataSets,
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
@@ -149,7 +149,7 @@
         data: {
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
             datasets: [{
-                label: '# of Volumes',
+                label: 'Average Price',
                 data: [],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',

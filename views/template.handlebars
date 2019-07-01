@@ -37,7 +37,8 @@
                             <div id="advancedStatsMetrics" class="collapse show" aria-labelledby="headingOne"
                                 data-parent="#accordion">
                                 <ul class="list-group">
-                                    <li class="list-group-item">Cras justo odio</li>
+                                    <li class="list-group-item">Cras justo odio<button type="button"
+                                            class="btn btn-dark">+</button></li>
                                     <li class="list-group-item">Dapibus ac facilisis in</li>
                                     <li class="list-group-item">Morbi leo risus</li>
                                     <li class="list-group-item">Porta ac consectetur ac</li>
@@ -261,9 +262,24 @@
         $('#financialsMetrics').toggle();
     })
 
-     //   $('#myCollapsible').collapse({
-      //      toggle: false
-      //  })
+    //   $('#myCollapsible').collapse({
+    //      toggle: false
+    //  })
+
+    //on click save template, pull the input of template name and metrics and post it to the the template metric api, which then adds it
+    //to the database
+    //on click save template, pull the template name and post it to the template user api, which then adds it to the database 
+    function createTemplate() {
+        $.post("/api/templatemetric", Data)
+            .then(results) {
+
+
+        };
+        $.post("/api/templateuser", Data)
+            .then(results) {
+
+        };
+    }
 
 
 </script>

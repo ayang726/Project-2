@@ -1,12 +1,9 @@
 module.exports = function (app) {
-    app.post("/api/metric", (req, res) => {
-        db.User.create({
-            metric: req.body.metric,
-            period: req.body.period,
-            value: req.body.value
-        }).then(response => {
-            // console.log(response);
-        })
-    });
 
+    app.get("/api/metric", function (req, res) {
+        // Add sequelize code to find all posts, and return them to the user with res.json
+        db.Metric.findAll({}).then(function (dbMetric) {
+            res.json(dbMetric);
+        });
+    });
 }

@@ -18,8 +18,8 @@ $(document).ready(() => {
 
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            location.href === location.origin + "/" ? location.href = "/home" : console.log("On page " + location.href);
             currentUser = user.uid;
+            location.href === location.origin + "/" ? location.href = "/home/" + currentUser : console.log("On page " + location.href);
         }
         else {
             location.href !== location.origin + "/" ? location.href = "/" : console.log("Welcome");

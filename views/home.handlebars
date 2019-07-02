@@ -28,11 +28,143 @@
         </ul>
     </div>
 </nav>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-9 stockInfo">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="d-inline-block">{{ticker}}</h2>
+                    <div class="dropdown float-right templateDropdown">
+                        <button class="btn btn-warning dropdown-toggle" type="button" id="templateDropdownBtn"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Templates
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="templateDropdownBtn">
+                            {{#each templates}}
+                            <button class="dropdown-item" onclick="changeTemplate({{templateID}})">{{name}}</button>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12" id="stockView">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <canvas class="priceChart"></canvas>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="metrics">
+                                <div class="row">
+                                    <div class="col-lg-6 metricsCell">
+                                        <p>
+                                            <span class="metricsName">Revenu</span>
+                                            <span class="metricsValue">$6.1B</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 metricsCell">
+                                        <p>
+                                            <span class="metricsName">Revenu</span>
+                                            <span class="metricsValue">$6.1B</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 metricsCell">
+                                        <p>
+                                            <span class="metricsName">Revenu</span>
+                                            <span class="metricsValue">$6.1B</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 metricsCell">
+                                        <p>
+                                            <span class="metricsName">Revenu</span>
+                                            <span class="metricsValue">$6.1B</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="card newsArticle">
+                                <div class="card-body">
+                                    <a class="articleUrl" href="#">
+                                        <h5 class="card-title articleTitle">Card title</h5>
+                                    </a>
+                                    <p class="card-text articleSummary">Some quick example text to build on the card
+                                        title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="card newsArticle">
+                                <div class="card-body">
+                                    <a class="articleUrl" href="#">
+                                        <h5 class="card-title articleTitle">Card title</h5>
+                                    </a>
+                                    <p class="card-text articleSummary">Some quick example text to build on the card
+                                        title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="card newsArticle">
+                                <div class="card-body">
+                                    <a class="articleUrl" href="#">
+                                        <h5 class="card-title articleTitle">Card title</h5>
+                                    </a>
+                                    <p class="card-text articleSummary">Some quick example text to build on the card
+                                        title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="card newsArticle">
+                                <div class="card-body">
+                                    <a class="articleUrl" href="#">
+                                        <h5 class="card-title articleTitle">Card title</h5>
+                                    </a>
+                                    <p class="card-text articleSummary">Some quick example text to build on the card
+                                        title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 text-center">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="watchList">
+                        <h3>Watch List</h3>
+                        <ul class="container text-center">
+                            {{#each watchList}}
+                            <li class="text-center">
+                                <hr>
+                                <a href="/stock/{{ticker}}">
+                                    <h5>{{ticker}}</h5>
+                                </a>
+                                <h6 class="updated-quote live-data" ticker="{{ticker}}">-</h6>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-lg-12">
+                    <button class="btn btn-warning btn-large">Add to watchList</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<h1>This is a stock page</h1>
-<h2>{{symbol}}</h2>
 
-
-{{!-- loading js files --}}
-<script src="/js/userAuth.js"></script>
-<script src="/js/symbolSearch.js"></script>
+    {{!-- loading js files --}}
+    <script src="/js/userAuth.js"></script>
+    <script src="/js/symbolSearch.js"></script>

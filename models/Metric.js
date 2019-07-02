@@ -8,6 +8,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         period: {
             type: DataTypes.STRING,
             allowNull: false
@@ -15,17 +19,17 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Metric.associate = function (models) {
-        models.Metric.belongsTo(models.TickerMetric, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-        models.Metric.belongsTo(models.TemplateMetric, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
+        Metric.hasMany(models.TickerMetric);
+        Metric.hasMany(models.TemplateMetric);
     };
+
+    // Metric.hasMany(TickerMetric, {
+    //     foreignKey: 'id'
+    // })
+
+    // Metric.hasMany(TemplateMetric, {
+    //     foreignKey: 'id'
+    // })
 
     return Metric;
 }

@@ -1,13 +1,13 @@
 module.exports = function (sequelize, DataTypes) {
     var UserTicker = sequelize.define("UserTicker", {
-        uid: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        tickerid: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
+        // uid: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        // },
+        // tickerid: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        // },
         active: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
@@ -17,9 +17,20 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     UserTicker.associate = function (models) {
-        UserTicker.hasMany(models.User);
-        UserTicker.hasMany(models.Ticker);
-    };
+        models.UserTicker.belongsTo(models.Ticker, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    }
+    UserTicker.associate = function (models) {
+        models.UserTicker.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    }
+
 
     return UserTicker;
 };

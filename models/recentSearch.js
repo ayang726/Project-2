@@ -23,15 +23,26 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        tickerid: {
-            type: DataTypes.STRING,
-            allowNull: false
-        }
+        // tickerid: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        // }
     });
+    RecentSearch.associate = function (models) {
+        models.RecentSearch.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
 
     RecentSearch.associate = function (models) {
-        RecentSearch.hasMany(models.User);
-        RecentSearch.hasMany(models.Ticker);
-    };
+        models.RecentSearch.belongsTo(models.Ticker, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    }
+
     return RecentSearch;
 }

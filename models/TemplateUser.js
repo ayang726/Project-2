@@ -16,12 +16,15 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    TemplateUser.associate = function (models) {
-        TemplateUser.hasMany(models.User);
-    };
+    // TemplateUser.associate = function (models) {
+    //     TemplateUser.hasMany(models.TemplateMetric);
+    // };
+
+
 
     TemplateUser.associate = function (models) {
-        models.TemplateUser.belongsTo(models.TemplateMetric, {
+        TemplateUser.hasMany(models.TemplateMetric);
+        models.TemplateUser.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             }

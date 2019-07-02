@@ -7,22 +7,21 @@
 </div>
 
 
-
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
-            <h4>Click to Edit Existing Templates</h4>
-            <button class="btn btn-primary">Default Template</button>
+        <div class="col-md-2">
+            <h4>Edit Template</h4>
+            <button class="btn btn-dark">Default</button>
         </div>
         <div class="col-md-9">
-            <h4>Name Your Template</h4>
+            <h4>Template Name</h4>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="Sizing example input"
+                <input id="customTemplateName" type="text" class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-default">
             </div>
-            <h4>Customize Your Metrics</h4>
+            <h4>Metrics</h4>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <div id="accordion">
                         <div class="card">
                             <div class="card-header" id="headingOne">
@@ -36,13 +35,22 @@
 
                             <div id="advancedStatsMetrics" class="collapse show" aria-labelledby="headingOne"
                                 data-parent="#accordion">
-                                <ul class="list-group">
-                                    <li class="list-group-item">Cras justo odio<button type="button"
-                                            class="btn btn-dark">+</button></li>
-                                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                                    <li class="list-group-item">Morbi leo risus</li>
-                                    <li class="list-group-item">Porta ac consectetur ac</li>
-                                    <li class="list-group-item">Vestibulum at eros</li>
+                                <ul class="list-group" id="advancedStatsList">
+                                    {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 1'> Metric 1</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 2'> Metric 2</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 3'> Metric 3</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 4'> Metric 4</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 5'> Metric 5</label>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -58,12 +66,22 @@
 
                             <div id="balanceSheetMetrics" class="collapse show" aria-labelledby="headingOne"
                                 data-parent="#accordion">
-                                <ul class="list-group">
-                                    <li class="list-group-item">Cras justo odio</li>
-                                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                                    <li class="list-group-item">Morbi leo risus</li>
-                                    <li class="list-group-item">Porta ac consectetur ac</li>
-                                    <li class="list-group-item">Vestibulum at eros</li>
+                                <ul class="list-group" id='balanceSheetList'>
+                                    {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 1'> Metric 1</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 2'> Metric 2</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 3'> Metric 3</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 4'> Metric 4</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 5'> Metric 5</label>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -79,12 +97,22 @@
 
                             <div id="cashFlowStatementMetrics" class="collapse show" aria-labelledby="headingOne"
                                 data-parent="#accordion">
-                                <ul class="list-group">
-                                    <li class="list-group-item">Cras justo odio</li>
-                                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                                    <li class="list-group-item">Morbi leo risus</li>
-                                    <li class="list-group-item">Porta ac consectetur ac</li>
-                                    <li class="list-group-item">Vestibulum at eros</li>
+                                <ul class="list-group" id="cashFlowStatementList">
+                                    {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 1'> Metric 1</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 2'> Metric 2</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 3'> Metric 3</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 4'> Metric 4</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 5'> Metric 5</label>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -100,18 +128,28 @@
 
                             <div id="incomeStatementMetrics" class="collapse show" aria-labelledby="headingOne"
                                 data-parent="#accordion">
-                                <ul class="list-group">
-                                    <li class="list-group-item">Cras justo odio</li>
-                                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                                    <li class="list-group-item">Morbi leo risus</li>
-                                    <li class="list-group-item">Porta ac consectetur ac</li>
-                                    <li class="list-group-item">Vestibulum at eros</li>
+                                <ul class="list-group" id="incomeStatementList">
+                                    {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 1'> Metric 1</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 2'> Metric 2</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 3'> Metric 3</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 4'> Metric 4</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 5'> Metric 5</label>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h5 class="mb-0">
@@ -124,12 +162,22 @@
 
                         <div id="priceTargetMetrics" class="collapse show" aria-labelledby="headingOne"
                             data-parent="#accordion">
-                            <ul class="list-group">
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Morbi leo risus</li>
-                                <li class="list-group-item">Porta ac consectetur ac</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
+                            <ul class="list-group" id='priceTargetList'>
+                                {{!-- <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 1'> Metric 1</label>
+                                </li>
+                                <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 2'> Metric 2</label>
+                                </li>
+                                <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 3'> Metric 3</label>
+                                </li>
+                                <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 4'> Metric 4</label>
+                                </li>
+                                <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 5'> Metric 5</label>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -145,12 +193,22 @@
 
                         <div id="keyStatsMetrics" class="collapse show" aria-labelledby="headingOne"
                             data-parent="#accordion">
-                            <ul class="list-group">
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Morbi leo risus</li>
-                                <li class="list-group-item">Porta ac consectetur ac</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
+                            <ul class="list-group" id='keyStatsList'>
+                                {{!-- <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 1'> Metric 1</label>
+                                </li>
+                                <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 2'> Metric 2</label>
+                                </li>
+                                <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 3'> Metric 3</label>
+                                </li>
+                                <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 4'> Metric 4</label>
+                                </li>
+                                <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 5'> Metric 5</label>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -166,12 +224,22 @@
 
                         <div id="estimatesMetrics" class="collapse show" aria-labelledby="headingOne"
                             data-parent="#accordion">
-                            <ul class="list-group">
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Morbi leo risus</li>
-                                <li class="list-group-item">Porta ac consectetur ac</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
+                            <ul class="list-group" id='estimatesList'>
+                                {{!-- <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 1'> Metric 1</label>
+                                </li>
+                                <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 2'> Metric 2</label>
+                                </li>
+                                <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 3'> Metric 3</label>
+                                </li>
+                                <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 4'> Metric 4</label>
+                                </li>
+                                <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
+                                            name='metric' value='Metric 5'> Metric 5</label>
+                                </li> --}}
                             </ul>
                         </div>
                         <div class="card">
@@ -186,57 +254,187 @@
 
                             <div id="financialsMetrics" class="collapse show" aria-labelledby="headingOne"
                                 data-parent="#accordion">
-                                <ul class="list-group">
-                                    <li class="list-group-item">Cras justo odio</li>
-                                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                                    <li class="list-group-item">Morbi leo risus</li>
-                                    <li class="list-group-item">Porta ac consectetur ac</li>
-                                    <li class="list-group-item">Vestibulum at eros</li>
+                                <ul class="list-group" id='financialStatementsList'>
+                                    {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 1'> Metric 1</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 2'> Metric 2</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 3'> Metric 3</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 4'> Metric 4</label>
+                                    </li>
+                                    <li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='Metric 5'> Metric 5</label>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal"
+                    id='viewCustomTemplate'>
+                    View Your Custom Template
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <div class="col-md-3">
-                    <h4>View Your Custom Template</h4>
-                    <h6>Template Name:</h6>
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button class="btn btn-primary" id="saveCustomTemplateButton" type="submit">Save</button>
-                </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Custom Template</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>Template Name: <h6 id='inputTemplateName'></h6>
+                </h6>
+                <table class="table table-bordered" id="viewCreatedTemplate">
+                    <tbody>
+                        <tr id="viewMetricAddedCol1">
+                        </tr>
+                        <tr id="viewMetricAddedCol2">
+                        </tr>
+                        <tr id="viewMetricAddedCol3">
+                        </tr>
+                        <tr id="viewMetricAddedCol4">
+                        </tr>
+                        <tr id="viewMetricAddedCol5">
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                <button class="btn btn-dark" id="saveCustomTemplateButton" type="submit">Save</button>
             </div>
         </div>
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+
+    ///////////////////////////////////////////drag and drop package???///////////////////////////////////
+
+    //////////////////////////api get metrics from db to display////////////////////////////////////
+
+    $.get("/api/metric", function (data) {
+        console.log(data);
+        //     //create the ui, put the metric ids in an attribute
+        console.log(data[0]);
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].category === 'Advanced Stats') {
+                $('#advancedStatsList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                    </li>`)
+            }
+            if (data[i].category === 'Balance Sheet') {
+                $('#balanceSheetList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                    </li>`)
+            }
+            if (data[i].category === 'Key Stats') {
+                $('#keyStatsList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                    </li>`)
+            }
+            if (data[i].category === 'Cash Flow Statement') {
+                $('#cashFlowStatementList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                    </li>`)
+            }
+            if (data[i].category === 'Estimates') {
+                $('#estimatesList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                    </li>`)
+            }
+            if (data[i].category === 'Income Statement') {
+                $('#incomeStatementList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                    </li>`)
+            }
+            if (data[i].category === 'Financial Statements') {
+                $('#financialStatementsList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                    </li>`)
+            }
+            if (data[i].category === 'Price Target') {
+                $('#priceTargetList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
+                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                    </li>`)
+            }
+        }
+
+
+
+    });
+
+
+    //////////////////////////////////////////////////////////////UI display/////////////////////////////////////////////////////////
+    //on save if on clicked is true push into array or object or something, display on screen and make api request
+    var customTemplateMetrics = [];
+    var customTemplateName = "";
+
+    //on click view custom template, checked metrics are made into table on modal
+    $("#viewCustomTemplate").on("click", function () {
+        console.log($(this).val());
+        var metricIsChecked = $(".addMetric").is(":checked");
+        console.log(metricIsChecked);
+
+        $.each($("input[name='metric']:checked"), function () {
+            customTemplateMetrics.push($(this).val());
+        });
+        console.log(customTemplateMetrics)
+        customTemplateName = $('#customTemplateName').val().trim();
+        $('#inputTemplateName').html(customTemplateName);
+
+        for (var i = 0; i < customTemplateMetrics.length; i++) {
+            if (i < 2) {
+                $('#viewMetricAddedCol1').append(`<td>${customTemplateMetrics[i]}</td>`);
+            } else if (i < 4) {
+                $('#viewMetricAddedCol2').append(`<td>${customTemplateMetrics[i]}</td>`);
+            } else if (i < 6) {
+                $('#viewMetricAddedCol3').append(`<td>${customTemplateMetrics[i]}</td>`);
+            } else if (i < 8) {
+                $('#viewMetricAddedCol4').append(`<td>${customTemplateMetrics[i]}</td>`);
+            } else if (i < 10) {
+                $('#viewMetricAddedCol5').append(`<td>${customTemplateMetrics[i]}</td>`);
+            }
+
+        };
+    });
+
+
+    //on save, make a post to the database
     $("#saveCustomTemplateButton").on("click", function () {
-        console.log($("#inlineCheckbox2").val());
+
     })
 
+
+
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+
+
+
+
+    //////////////////////////////////////////list of metrics toggle///////////////////////////////////////////////////////////////////////
     $("#advancedStats").on("click", function () {
         $('#advancedStatsMetrics').toggle();
     })
@@ -262,24 +460,20 @@
         $('#financialsMetrics').toggle();
     })
 
-    //   $('#myCollapsible').collapse({
-    //      toggle: false
-    //  })
+/////////////////////////////////////////////api////////////////////////////////////////////////////
 
-    //on click save template, pull the input of template name and metrics and post it to the the template metric api, which then adds it
-    //to the database
-    //on click save template, pull the template name and post it to the template user api, which then adds it to the database 
-    function createTemplate() {
-        $.post("/api/templatemetric", Data)
-            .then(results) {
+// on click save template, pull the input of template name and metrics and post it to the the template metric api, which then adds it
+// to the database
+// on click save template, pull the template name and post it to the template user api, which then adds it to the database 
+// function createTemplate() {
+//     $.post("/api/template", Data)
+//         .then(results) {
 
 
-        };
-        $.post("/api/templateuser", Data)
-            .then(results) {
+//     };
 
-        };
-    }
+// }
+
 
 
 </script>

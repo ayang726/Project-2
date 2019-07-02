@@ -10,22 +10,35 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
+    // Ticker.associate = function (models) {
+    //     models.Ticker.belongsTo(models.UserTicker, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    //     models.Ticker.belongsTo(models.TickerMetric, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    //     models.Ticker.belongsTo(models.RecentSearch, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // };
+
+    // Ticker.hasMany(TickerMetric, {
+    //     foreignKey: 'id'
+    // })
+
+    // Metric.hasMany(TickerMetric, {
+    //     foreignKey: 'id'
+    // })
+
     Ticker.associate = function (models) {
-        models.Ticker.belongsTo(models.UserTicker, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-        models.Ticker.belongsTo(models.TickerMetric, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-        models.Ticker.belongsTo(models.RecentSearch, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
+        Ticker.hasMany(models.UserTicker);
+        Ticker.hasMany(models.RecentSearch);
     };
 
     return Ticker;

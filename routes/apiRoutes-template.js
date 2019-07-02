@@ -4,19 +4,19 @@ const db = require("../models");
 //post to Template User API/table and Template Metric API/table
 module.exports = function (app) {
     app.post("/api/template", (req, res) => {
-        //how do I pass in the template id? it has not been created yet..
+        //how do I pass in the template id? it has not been created
         db.TemplateMetric.create({
             templateid: req.body.templateid,
             metricid: req.body.metricid
         }).then(response => {
-            // console.log(response);
+            console.log(response);
         })
 
         db.TemplateUser.create({
             uid: req.body.uid,
             templatename: req.body.templatename
         }).then(response => {
-            // console.log(response);
+            console.log(response);
         })
     });
 

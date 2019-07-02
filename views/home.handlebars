@@ -51,7 +51,9 @@
                 <div class="col-lg-12" id="stockView">
                     <div class="row">
                         <div class="col-lg-8">
-                            <canvas class="priceChart"></canvas>
+                            <iframe id="ifStockId" style="margin-left: 10px;" border="0" width="50%" height="600px"
+                                src="./home.html" />
+                            {{!-- <canvas class="priceChart"></canvas> --}}
                         </div>
                         <div class="col-lg-4">
                             <div class="metrics">
@@ -168,3 +170,4 @@
     {{!-- loading js files --}}
     <script src="/js/userAuth.js"></script>
     <script src="/js/symbolSearch.js"></script>
+    <script src="/js/priceChart.js"></script>

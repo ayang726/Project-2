@@ -1,2 +1,2 @@
-Drop database if exists development_database;
-create database development_database;
+Drop database if exists Stocker;
+create database Stocker;

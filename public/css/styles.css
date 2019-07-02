@@ -36,6 +36,7 @@ nav form{
     position: absolute;
     top: 40px;
     margin: 0 20px;
+    z-index: 10;
 }
 .searchResultList{
     margin: 0;
@@ -49,7 +50,7 @@ nav form{
 }
 
 .searchResultListItem:hover{
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(128, 128, 128, 0.8);
 }
 .searchResultListItem a{
     overflow: hidden;

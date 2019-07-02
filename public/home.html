@@ -19,26 +19,26 @@
     <div class="container">
         <div class="row">
             <div class="col-12-md">
-                <h1>Price Chart</h1>
+                <h4 style="margin-left: 50px">Price Chart</h4>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-12-md">
+            <div style="margin-left: 50px" class="col-12-md">
                 <a href="#" class="list-group-item list-group-item-action">AAPL
                     <div class="d-flex w-100 justify-content-between">
-                        <h3 class="mb-1">$1,010.60</h3>
+                        <h4 class="mb-1">$1,010.60</h4>
                         <p class="mb-1">+$0.15 (0.01%) <small class="text-muted">Today</small></p>
                         <p class="mb-1">-$0.09 (-0.01%) <small class="text-muted">After Hours</small></p>
                 </a>
-            </div>
+            </div><br>
         </div>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-12-md">
-                <canvas id="myChart" width="400" height="400"></canvas>
+                <canvas id="myChart" width="350" height="350"></canvas>
             </div>
         </div>
     </div>
@@ -46,11 +46,10 @@
         <div class="row">
             <div class="col-12-md">
                 <button type="button" id="OneDayID" onClick="oneDayFn()" class="btn btn-primary"
-                    style="margin-left: 40px">1-Day</button>
-                <button type="button" id="OneMonthID" onClick="oneMonthFn()" class="btn btn-secondary">1-Month</button>
-                <button type="button" id="ThreeMonthID" onClick="threeMonthFn()"
-                    class="btn btn-success">3-Months</button>
-                <button type="button" id="OneYearID" onClick="oneYearFn()" class="btn btn-warning">1-Year</button>
+                    style="margin-left: 30px">1-Day</button>
+                <button type="button" id="OneMonthID" onClick="oneMonthFn()" class="btn btn-secondary">1-Mo</button>
+                <button type="button" id="ThreeMonthID" onClick="threeMonthFn()" class="btn btn-success">3-Mos</button>
+                <button type="button" id="OneYearID" onClick="oneYearFn()" class="btn btn-warning">1-Yr</button>
                 <button type="button" id="AllID" onClick="allIdFn()" class="btn btn-danger">ALL</button>
             </div>
         </div>
@@ -59,5 +58,5 @@
 
 </html>
 
-<script src="/js/priceChart-package.js"></script>
+<script src="/js/priceChart-reset.js"></script>
 <script src="/js/priceChart.js"></script>

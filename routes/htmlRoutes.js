@@ -3,21 +3,21 @@ module.exports = function (app) {
     app.get("/", (req, res) => {
         res.render("welcome");
     });
-    app.get("/home/:uid", (req, res) => {
-        let watchList = fetchWatchList(req.params.uid);
-        let templates = fetchTemplateList(req.params.uid);
-        res.render("home", { watchList, templates })
+    app.get("/home", (req, res) => {
+        // let watchList = fetchWatchList(req.params.uid);
+        // let templates = fetchTemplateList(req.params.uid);
+        res.render("home")
     });
 
-    app.get("/stock/:ticker/:uid", (req, res) => {
+    app.get("/stock/:ticker", (req, res) => {
         let ticker = req.params.ticker;
-        let watchList = fetchWatchList(req.params.uid);
-        let templates = fetchTemplateList(req.params.uid);
+        // let watchList = fetchWatchList(req.params.uid);
+        // let templates = fetchTemplateList(req.params.uid);
 
         // TEST CODE
-        watchList = [{ ticker: "AAPL" }, { ticker: "MSFT" }, { ticker: "MDB" }];
-        templates = [{ name: "template 1" }, { name: "mytemplate" }];
-        res.render("home", { ticker, watchList, templates });
+        // watchList = [{ ticker: "AAPL" }, { ticker: "MSFT" }, { ticker: "MDB" }];
+        // templates = [{ name: "template 1" }, { name: "mytemplate" }];
+        res.render("home", { ticker });
     });
 }
 

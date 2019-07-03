@@ -39,10 +39,7 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Templates
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="templateDropdownBtn">
-                            {{#each templates}}
-                            <button class="dropdown-item" onclick="changeTemplate({{templateID}})">{{name}}</button>
-                            {{/each}}
+                        <div id="templateList" class="dropdown-menu" aria-labelledby="templateDropdownBtn">
                         </div>
                     </div>
                 </div>
@@ -54,9 +51,19 @@
                             {{!-- <iframe id="ifStockId" style="margin-left: 10px;" border="0" width="50%" height="600px"
                                 src="./home.html" /> --}}
                             <canvas id="myChart"></canvas>
+                            <nav><button type="button" id="OneDayID" onClick="oneDayFn()" class="btn btn-primary"
+                                    style="margin-left: 30px">1-Day</button>
+                                <button type="button" id="OneMonthID" onClick="oneMonthFn()"
+                                    class="btn btn-secondary">1-Mo</button>
+                                <button type="button" id="ThreeMonthID" onClick="threeMonthFn()"
+                                    class="btn btn-success">3-Mos</button>
+                                <button type="button" id="OneYearID" onClick="oneYearFn()"
+                                    class="btn btn-warning">1-Yr</button>
+                                <button type="button" id="AllID" onClick="allIdFn()" class="btn btn-danger">ALL</button>
+                            </nav>
                         </div>
                         <div class="col-lg-4">
-                            <div class="metrics">
+                            <div id="metrics">
                                 <div class="row">
                                     <div class="col-lg-6 metricsCell">
                                         <p>
@@ -86,7 +93,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" id="newsArticles">
                         <div class="col-lg-3">
                             <div class="card newsArticle">
                                 <div class="card-body">
@@ -145,15 +152,6 @@
                     <div class="watchList">
                         <h5>Watch List</h5>
                         <ul class="container text-center">
-                            {{#each watchList}}
-                            <li class="text-center">
-                                <hr>
-                                <a href="/stock/{{ticker}}">
-                                    <h6>{{ticker}}</h6>
-                                </a>
-                                <h6 class="updated-quote live-data" ticker="{{ticker}}">-</h6>
-                            </li>
-                            {{/each}}
                         </ul>
                     </div>
                 </div>

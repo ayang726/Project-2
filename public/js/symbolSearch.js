@@ -38,10 +38,8 @@ function loadAllTickers() {
     }
 }
 function loadRecentSearchData() {
-
-
     if (searchSymbols.recentSearches.length === 0) {
-        $.get(`/api/users/${currentUser}/recentSearches`, response => {
+        $.get(`/api/recentSearches/${currentUser}`, response => {
             response.forEach(ticker => {
                 searchSymbols.recentSearches.push({ symbol: ticker.symbol, name: ticker.name })
                 populateSearchList();

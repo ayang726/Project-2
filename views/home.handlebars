@@ -29,12 +29,69 @@
     </div>
 </nav>
 
-<h1>This is a stock page</h1>
 <h2>{{symbol}}</h2>
-<iframe id="ifStockId" style="margin-left: 10px;" border="0" width="50%" height="600px" src="./home.html" />
+
+
+<html>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div style="margin-left: 10px" class="col-12-md">
+                <nav class="nav">
+                    <a class="nav-link active" href="#">Price Chart for <b>AAPL</b></a>
+                </nav>
+                <nav class="nav">
+                    <a class="nav-link" href="#">$1,010.60</a>
+                </nav>
+                <nav style:font-size="7px" class="nav">
+                    <a class="nav-link" href="#">+$0.15 (0.01%) <small class="text-muted">Today</small></a>
+                    <a class="nav-link" href="#">-$0.09 (-0.01%) <small class="text-muted">After Hours</small></a>
+
+                </nav>
+            </div><br>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12-md">
+                <canvas id="myChart" width="350" height="350"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12-md">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12-md">
+                <button type="button" id="OneDayID" onClick="oneDayFn()" class="btn btn-secondary"
+                    style="margin-left: 30px">1-Day</button>
+                <button type="button" id="OneMonthID" onClick="oneMonthFn()" class="btn btn-secondary">1-Mo</button>
+                <button type="button" id="ThreeMonthID" onClick="threeMonthFn()"
+                    class="btn btn-secondary">3-Mos</button>
+                <button type="button" id="OneYearID" onClick="oneYearFn()" class="btn btn-secondary">1-Yr</button>
+                <button type="button" id="AllID" onClick="allIdFn()" class="btn btn-secondary">ALL</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
 
 
 {{!-- loading js files --}}
 <script src="/js/userAuth.js"></script>
 <script src="/js/symbolSearch.js"></script>
 <script src="/js/priceChart.js"></script>
+<script src="/js/priceChart-reset.js"></script>

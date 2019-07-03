@@ -22,6 +22,7 @@ app.use(express.json());
 // require("./app/routes/userRoutes")(app);
 require("./routes/htmlRoutes")(app);
 require("./routes/apiRoutes")(app);
+
 require("./routes/apiRoutes-template")(app);
 require("./routes/apiRoutes-metric")(app);
 

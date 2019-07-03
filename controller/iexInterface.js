@@ -23,8 +23,25 @@ iexRequest.parseTestUrl = function (q) {
     return `${baseSanboxUrl}/${q}/?token=${TestToken}`;
 }
 
-iexRequest.test.symbols = function () { return axios.get(iexRequest.parseTestUrl("ref-data/symbols")); }
-iexRequest.prod.symbols = function () { return axioçs.get(iexRequest.parseProdUrl("ref-data/symbols")); }
+iexRequest.test.symbols = () => { return axios.get(iexRequest.parseTestUrl("ref-data/symbols")); }
+iexRequest.prod.symbols = () => { return axios.get(iexRequest.parseProdUrl("ref-data/symbols")); }
+
+iexRequest.test.advancedStats = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/advanced-stats")); }
+iexRequest.test.priceTarget = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/price-target")); }
+iexRequest.test.balanceSheet = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/balance-sheet")); }
+iexRequest.test.keyStats = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/stats")); }
+iexRequest.test.cashFlow = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/cash-flow")); }
+iexRequest.test.estimates = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/estimates")); }
+iexRequest.test.income = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/income")); }
+iexRequest.test.financials = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/financials")); }
 
 module.exports = { iexRequest };
 
+//Advanced Stats        
+//Price Target
+//Balance SHeet        
+//Keystats
+//Cash FLow Statement
+//Estimates
+//Income Statement
+//Financials

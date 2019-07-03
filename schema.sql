@@ -386,3 +386,4 @@ INSERT INTO METRICS
     (Metric, Description, Category, Period, createdAt, updatedAt)
 Values
     ('ytdChangePercent', 'YTD Year Change Percent', 'Key Stats', 'Daily', now(), now());
+

@@ -2,9 +2,10 @@
   "name": "Project-2",
   "version": "1.0.0",
   "description": "Coding Bootcamp Project - 2",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,8 @@
     "firebase": "^6.2.3",
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
-    "sequelize": "^5.8.12"
+    "sequelize": "^5.8.12",
+    "sortablejs": "^1.10.0-rc3"
   },
   "devDependencies": {
     "dotenv": "^8.0.0",

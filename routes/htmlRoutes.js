@@ -19,6 +19,13 @@ module.exports = function (app) {
         // templates = [{ name: "template 1" }, { name: "mytemplate" }];
         res.render("home", { ticker });
     });
+
+
+    app.get("/template", function (req, res) {
+        res.render("template");
+
+    });
+
 }
 
 // These functions should be in a controller js

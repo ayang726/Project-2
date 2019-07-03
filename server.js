@@ -23,6 +23,9 @@ app.use(express.json());
 require("./routes/htmlRoutes")(app);
 require("./routes/apiRoutes")(app);
 
+require("./routes/apiRoutes-template")(app);
+require("./routes/apiRoutes-metric")(app);
+
 const db = require("./models");
 
 //Listening

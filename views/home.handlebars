@@ -44,23 +44,38 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-lg-12" id="stockView">
+                    <br>
+                    <h6 style="margin-left: 50px">$1,011.45</h6>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <p style="margin-left: 50px"><small>+$0.18 (0.02%) <span
+                                        style="color: gray">Today</span></small>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p style="margin-left: 50px"><small>-$0.02 (-0.00%)<span style="color: gray">After
+                                        Hours</span></small>
+                            </p>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-8">
-                            {{!-- <iframe id="ifStockId" style="margin-left: 10px;" border="0" width="50%" height="600px"
-                                src="./home.html" /> --}}
                             <canvas id="myChart"></canvas>
-                            <nav><button type="button" id="OneDayID" onClick="oneDayFn()" class="btn btn-primary"
-                                    style="margin-left: 30px">1-Day</button>
+                            <nav><button type="button" id="OneDayID" onClick="oneDayFn()" class="badge badge-secondary"
+                                    style="margin-left: 50px">1-Day</button>
                                 <button type="button" id="OneMonthID" onClick="oneMonthFn()"
-                                    class="btn btn-secondary">1-Mo</button>
+                                    class="badge badge-secondary">1-Month</button>
                                 <button type="button" id="ThreeMonthID" onClick="threeMonthFn()"
-                                    class="btn btn-success">3-Mos</button>
+                                    class="badge badge-secondary">3-Months</button>
                                 <button type="button" id="OneYearID" onClick="oneYearFn()"
-                                    class="btn btn-warning">1-Yr</button>
-                                <button type="button" id="AllID" onClick="allIdFn()" class="btn btn-danger">ALL</button>
+                                    class="badge badge-secondary">1-Year</button>
+                                <button type="button" id="AllID" onClick="allIdFn()"
+                                    class="badge badge-secondary">ALL</button>
                             </nav>
+                            <br><br>
                         </div>
                         <div class="col-lg-4">
                             <div id="metrics">

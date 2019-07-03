@@ -38,10 +38,8 @@ function loadAllTickers() {
     }
 }
 function loadRecentSearchData() {
-
-
     if (searchSymbols.recentSearches.length === 0) {
-        $.get(`/api/users/${currentUser}/recentSearches`, response => {
+        $.get(`/api/recentSearches/${currentUser}`, response => {
             response.forEach(ticker => {
                 searchSymbols.recentSearches.push({ symbol: ticker.symbol, name: ticker.name })
                 populateSearchList();
@@ -71,7 +69,7 @@ function populateSearchList() {
     }
 
     resultList.forEach(function (search) {
-        let html = `<li class="searchResultListItem"><a href="/stock/${search.symbol}" onclick="saveRecentSearch('${search.symbol}', '${search.name}')"><span class="searchSymbols">${search.symbol}</span>${search.name}</a></li>`;
+        let html = `<li class="searchResultListItem"><a href="/stock/${search.symbol}/${currentUser}" onclick="saveRecentSearch('${search.symbol}', '${search.name}')"><span class="searchSymbols">${search.symbol}</span>${search.name}</a></li>`;
         searchResultList.append(html);
     });
     searchResult.animate({ opacity: 1 }, 100, () => searchResult.removeClass("d-none"));

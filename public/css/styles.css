@@ -1,13 +1,17 @@
-nav a{
+/* global styles  */
+a{
     text-decoration: none;
     color: #000;
 }
-nav a:hover{
+a:hover{
     text-decoration: none;
     color:#000;
 }
-nav ul{
+ul{
     list-style: none;
+}
+/* nav bar styles  */
+nav ul{
     padding-left: 0;
 }
 nav li{
@@ -16,6 +20,7 @@ nav li{
 nav form{
     position: relative;
 }
+/* navbar search styles */
 .hidden{
     opacity: 0;
 }
@@ -31,6 +36,7 @@ nav form{
     position: absolute;
     top: 40px;
     margin: 0 20px;
+    z-index: 10;
 }
 .searchResultList{
     margin: 0;
@@ -44,7 +50,7 @@ nav form{
 }
 
 .searchResultListItem:hover{
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(128, 128, 128, 0.8);
 }
 .searchResultListItem a{
     overflow: hidden;
@@ -52,9 +58,40 @@ nav form{
     height: 100%;
     width: 100%;
 }
-
-
 .searchSymbols{
     width: 5em;
     display: inline-block;
+}
+
+/* Home Page */
+
+.watchList {
+    box-sizing: border-box;
+    box-shadow: 0 0 30px 1px #aaa;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    margin: 0;
+}
+
+#stockView{
+    border: 1px solid #000;
+    margin-top: 0.5em;
+}
+
+.priceChart {
+    width: 100%;
+    height: 45vh;
+    background: #ddd;
+    margin: .5em;
+
+}
+
+.metrics{
+    margin: .5em;
+}
+
+#stockView .newsArticle, #stockView .newsArticle .card-body{
+    padding: 0;
+    margin: 0;
+    border: none;
 }

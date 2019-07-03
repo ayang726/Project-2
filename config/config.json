@@ -2,8 +2,8 @@
   "development": {
     "username": "root",
     "password": "root",
-    "port": 8890,
-    "database": "database_development",
+    "port": 8889,
+    "database": "Stocker",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": false

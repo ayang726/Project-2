@@ -28,13 +28,144 @@
         </ul>
     </div>
 </nav>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-10 stockInfo">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="d-inline-block">{{ticker}}</h2>
+                    <div class="dropdown float-right templateDropdown">
+                        <button class="btn btn-warning dropdown-toggle" type="button" id="templateDropdownBtn"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Templates
+                        </button>
+                        <div id="templateList" class="dropdown-menu" aria-labelledby="templateDropdownBtn">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12" id="stockView">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            {{!-- <iframe id="ifStockId" style="margin-left: 10px;" border="0" width="50%" height="600px"
+                                src="./home.html" /> --}}
+                            <canvas id="myChart"></canvas>
+                            <nav><button type="button" id="OneDayID" onClick="oneDayFn()" class="btn btn-primary"
+                                    style="margin-left: 30px">1-Day</button>
+                                <button type="button" id="OneMonthID" onClick="oneMonthFn()"
+                                    class="btn btn-secondary">1-Mo</button>
+                                <button type="button" id="ThreeMonthID" onClick="threeMonthFn()"
+                                    class="btn btn-success">3-Mos</button>
+                                <button type="button" id="OneYearID" onClick="oneYearFn()"
+                                    class="btn btn-warning">1-Yr</button>
+                                <button type="button" id="AllID" onClick="allIdFn()" class="btn btn-danger">ALL</button>
+                            </nav>
+                        </div>
+                        <div class="col-lg-4">
+                            <div id="metrics">
+                                <div class="row">
+                                    <div class="col-lg-6 metricsCell">
+                                        <p>
+                                            <span class="metricsName">Revenu</span>
+                                            <span class="metricsValue">$6.1B</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 metricsCell">
+                                        <p>
+                                            <span class="metricsName">Revenu</span>
+                                            <span class="metricsValue">$6.1B</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 metricsCell">
+                                        <p>
+                                            <span class="metricsName">Revenu</span>
+                                            <span class="metricsValue">$6.1B</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 metricsCell">
+                                        <p>
+                                            <span class="metricsName">Revenu</span>
+                                            <span class="metricsValue">$6.1B</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="newsArticles">
+                        <div class="col-lg-3">
+                            <div class="card newsArticle">
+                                <div class="card-body">
+                                    <a class="articleUrl" href="#">
+                                        <h5 class="card-title articleTitle">Card title</h5>
+                                    </a>
+                                    <p class="card-text articleSummary">Some quick example text to build on the card
+                                        title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="card newsArticle">
+                                <div class="card-body">
+                                    <a class="articleUrl" href="#">
+                                        <h5 class="card-title articleTitle">Card title</h5>
+                                    </a>
+                                    <p class="card-text articleSummary">Some quick example text to build on the card
+                                        title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="card newsArticle">
+                                <div class="card-body">
+                                    <a class="articleUrl" href="#">
+                                        <h5 class="card-title articleTitle">Card title</h5>
+                                    </a>
+                                    <p class="card-text articleSummary">Some quick example text to build on the card
+                                        title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="card newsArticle">
+                                <div class="card-body">
+                                    <a class="articleUrl" href="#">
+                                        <h5 class="card-title articleTitle">Card title</h5>
+                                    </a>
+                                    <p class="card-text articleSummary">Some quick example text to build on the card
+                                        title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 text-center">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="watchList">
+                        <h5>Watch List</h5>
+                        <ul class="container text-center">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-lg-12">
+                    <button class="btn btn-warning btn-large">Add to watchList</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<h1>This is a stock page</h1>
-<h2>{{symbol}}</h2>
-<iframe id="ifStockId" style="margin-left: 10px;" border="0" width="50%" height="600px" src="./home.html" />
 
-
-{{!-- loading js files --}}
-<script src="/js/userAuth.js"></script>
-<script src="/js/symbolSearch.js"></script>
-<script src="/js/priceChart.js"></script>
+    {{!-- loading js files --}}
+    <script src="/js/userAuth.js"></script>
+    <script src="/js/symbolSearch.js"></script>
+    <script src="/js/priceChart.js"></script>

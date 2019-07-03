@@ -389,6 +389,8 @@
     //on save if on clicked is true push into array or object or something, display on screen and make api request
     var customTemplateMetrics = [];
     var customTemplateName = "";
+    var uid = "test";
+
 
     //on click view custom template, checked metrics are made into table on modal
     $("#viewCustomTemplate").on("click", function () {
@@ -419,10 +421,19 @@
         };
     });
 
+    var templatePost = {
+        uid: 9999999,
+        templatename: "test",
+        UserId: 1,
+        MetricId: 4
+    }
 
     //on save, make a post to the database
     $("#saveCustomTemplateButton").on("click", function () {
-
+        $.post("/api/template/", templatePost)
+            .then(function (results) {
+                console.log(results)
+            });
     })
 
 
@@ -460,19 +471,14 @@
         $('#financialsMetrics').toggle();
     })
 
-/////////////////////////////////////////////api////////////////////////////////////////////////////
+    /////////////////////////////////////////////api////////////////////////////////////////////////////
 
-// on click save template, pull the input of template name and metrics and post it to the the template metric api, which then adds it
-// to the database
-// on click save template, pull the template name and post it to the template user api, which then adds it to the database 
-// function createTemplate() {
-//     $.post("/api/template", Data)
-//         .then(results) {
+    // on click save template, pull the input of template name and metrics and post it to the the template metric api, which then adds it
+    // to the database
+    // on click save template, pull the template name and post it to the template user api, which then adds it to the database 
 
-
-//     };
-
-// }
+    //uid: req.body.uid,
+    // templatename: req.body.templatename 
 
 
 

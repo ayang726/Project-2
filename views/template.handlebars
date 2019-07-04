@@ -340,42 +340,42 @@
         for (var i = 0; i < data.length; i++) {
             if (data[i].category === 'Advanced Stats') {
                 $('#advancedStatsList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metric}'> ${data[i].metric}</label>
                                     </li>`)
             }
             if (data[i].category === 'Balance Sheet') {
                 $('#balanceSheetList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metric}'> ${data[i].metric}</label>
                                     </li>`)
             }
             if (data[i].category === 'Key Stats') {
                 $('#keyStatsList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metric}'> ${data[i].metric}</label>
                                     </li>`)
             }
             if (data[i].category === 'Cash Flow Statement') {
                 $('#cashFlowStatementList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metric}'> ${data[i].metric}</label>
                                     </li>`)
             }
             if (data[i].category === 'Estimates') {
                 $('#estimatesList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metric}'> ${data[i].metric}</label>
                                     </li>`)
             }
             if (data[i].category === 'Income Statement') {
                 $('#incomeStatementList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metric}'> ${data[i].metric}</label>
                                     </li>`)
             }
             if (data[i].category === 'Financial Statements') {
                 $('#financialStatementsList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metric}'> ${data[i].metric}</label>
                                     </li>`)
             }
             if (data[i].category === 'Price Target') {
                 $('#priceTargetList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' value='${data[i].metric}'> ${data[i].metric}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metric}'> ${data[i].metric}</label>
                                     </li>`)
             }
         }
@@ -390,6 +390,7 @@
     var customTemplateMetrics = [];
     var customTemplateName = "";
     var uid = "test";
+    var customTemplateMetricIds = [];
 
 
     //on click view custom template, checked metrics are made into table on modal
@@ -398,13 +399,20 @@
         var metricIsChecked = $(".addMetric").is(":checked");
         console.log(metricIsChecked);
 
+        //create an array with all of the selected metrics
         $.each($("input[name='metric']:checked"), function () {
             customTemplateMetrics.push($(this).val());
+            customTemplateMetricIds.push($(this).attr('metricId'));
         });
         console.log(customTemplateMetrics)
+
+        //retrieving name of the template
         customTemplateName = $('#customTemplateName').val().trim();
         $('#inputTemplateName').html(customTemplateName);
+        console.log(customTemplateName);
 
+
+        //creating the demo template to view
         for (var i = 0; i < customTemplateMetrics.length; i++) {
             if (i < 2) {
                 $('#viewMetricAddedCol1').append(`<td>${customTemplateMetrics[i]}</td>`);
@@ -419,22 +427,46 @@
             }
 
         };
+
+        console.log(customTemplateMetrics);
+        templatePostArray = [];
+        var customTemplate;
+        var metricIdArray = [];
+
+        //create an array of objects to be posted into templatemetrics table
+        for (var i = 0; i < customTemplateMetrics.length; i++) {
+            customTemplate = { uid: 9999999, templatename: customTemplateName, UserId: 1, MetricId: customTemplateMetricIds[i] }
+            templatePostArray.push(customTemplate)
+            metricIdArray.push(customTemplateMetricIds[i])
+            //console.log(customTemplate);
+            //console.log(templatePostArray);
+        };
+        console.log(metricIdArray);
+
+        //test object for post request
+        templatePost = {
+            uid: 9999999,
+            templatename: customTemplateName,
+            UserId: 1,
+            MetricId: metricIdArray
+        };
+
+        console.log(templatePostArray)
+
+        templatePostArray = { "": templatePostArray };
+
+        //on save, make a post to the database
+        $("#saveCustomTemplateButton").on("click", function () {
+            $.post("/api/template/", templatePostArray)
+                .then(function (results) {
+                    console.log(results)
+                });
+        })
+
+
+
     });
 
-    var templatePost = {
-        uid: 9999999,
-        templatename: "test",
-        UserId: 1,
-        MetricId: 4
-    }
-
-    //on save, make a post to the database
-    $("#saveCustomTemplateButton").on("click", function () {
-        $.post("/api/template/", templatePost)
-            .then(function (results) {
-                console.log(results)
-            });
-    })
 
 
 

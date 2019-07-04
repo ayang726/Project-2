@@ -1,28 +1,45 @@
-var mysql = require("mysql");
+
 const db = require("../models");
 
 //user selects metrics for template
 //post to Template User API/table and Template Metric API/table
 module.exports = function (app) {
     app.post("/api/template/", (req, res) => {
-        console.log(req.body);
+
+        var numberOfMetrics = req.body.length;
+        console.log(req.body[0]);
         db.TemplateUser.create({
-            UserId: req.body.UserId,
-            templatename: req.body.templatename,
-            uid: req.body.uid,
+            UserId: req.body[0].UserId,
+            templatename: req.body[0].templatename,
+            uid: req.body[0].uid,
         }).then(response => {
             console.log(response);
 
-            // connection.query("SELECT LAST_INSERT_ID()", function (err, result) {
-            //     if (err) {
-            //         throw err;
-            //     }
-            //how do I pass in the template id? it has not been created
+            //retrieving the templateUserId from the response
             var templateId = response.dataValues.id;
-            db.TemplateMetric.create({
-                templateid: templateId,
-                MetricId: req.body.MetricId
-            }).then(response => {
+            var bulkCreateArray = [];
+
+            console.log("HERE");
+            console.log(req.body);
+
+            // console.log(templateId);
+            console.log("LOOKHERE");
+            // console.log(Object.values(req.body));
+            var bodyArray = Object.values(req.body)
+            console.log(bodyArray)
+
+            //creating an array with the MetricId's from the req.body plus the TemplateUserId 
+            for (var i = 0; i < bodyArray.length; i++) {
+                bulkCreateArray.push({ TemplateUserId: templateId, MetricId: bodyArray[i].MetricId });
+            }
+            console.log("overHere");
+            console.log(bulkCreateArray);
+            db.TemplateMetric.bulkCreate(bulkCreateArray
+                // {
+                // TemplateUserId: templateId,
+                // MetricId: req.body.MetricId
+                // }
+            ).then(response => {
                 console.log(response);
             })
 

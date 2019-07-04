@@ -36,5 +36,4 @@ function fetchWatchList(uid) {
 
 function fetchTemplateList(uid) {
     console.log("fetchTemplates to be implemented " + uid);
-
 }

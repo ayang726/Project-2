@@ -1,5 +1,6 @@
 const axios = require("axios");
 const iexKeys = require("../config/keys").iex;
+const configKeys = require("../config/keys").config;
 
 const TestToken = iexKeys.test.api;
 const TestSecret = iexKeys.test.secret;
@@ -12,7 +13,7 @@ const baseSanboxUrl = "https://sandbox.iexapis.com/stable";
 
 let iexRequest = { test: {}, prod: {} };
 
-if (process.env.ENABLE_PRODUCTION) {
+if (configKeys.enableProd) {
     iexRequest.parseProdUrl = function (q) {
         return `${baseUrl}/${q}/?token=${ProdToken}`;
     }

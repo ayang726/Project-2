@@ -12,5 +12,8 @@ module.exports = {
             secret: process.env.IEX_TEST_SECRET
         }
 
+    },
+    config: {
+        enableProd: process.env.ENABLE_PRODUCTION
     }
 }

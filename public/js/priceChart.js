@@ -54,6 +54,7 @@ var myChart = new Chart(ctx, {
 });
 
 function oneDayFn(myLabel) {
+    var dataSetsLabel = [];
     const btnElem = document.getElementById("OneDayID");
     var param3 = "/intraday-prices";
     const requestURL = testUrl + param1 + param2 + symbol + param3 + "?token=" + testApiToken;
@@ -107,6 +108,7 @@ function oneDayFn(myLabel) {
 };
 
 function oneMonthFn(myLabel) {
+    var dataSetsLabel = [];
     const btnElem = document.getElementById("OneMonthID");
     var param3 = "/intraday-prices";
     var param3 = "/chart/";
@@ -159,6 +161,7 @@ function oneMonthFn(myLabel) {
 };
 
 function threeMonthFn(myLabel) {
+    var dataSetsLabel = [];
     const btnElem = document.getElementById("ThreeMonthID");
     var param3 = "/intraday-prices";
     var param3 = "/chart/";
@@ -211,6 +214,7 @@ function threeMonthFn(myLabel) {
 };
 
 function oneYearFn(myLabel) {
+    var dataSetsLabel = [];
     const btnElem = document.getElementById("OneYearID");
     var param3 = "/intraday-prices";
     var param3 = "/chart/";
@@ -263,6 +267,7 @@ function oneYearFn(myLabel) {
 };
 
 function allIdFn(myLabel) {
+    var dataSetsLabel = [];
     const btnElem = document.getElementById("AllID");
     var param3 = "/intraday-prices";
     var param3 = "/chart/";

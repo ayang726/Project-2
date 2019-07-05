@@ -322,7 +322,8 @@
             <div class="modal-footer">
                 <button type="button" id="closeTemplateModal" class="btn btn-dark" data-dismiss="modal">Close</button>
                 <button class="btn btn-dark" id="saveCustomTemplateButton" type="submit">Save</button>
-                <button class="btn btn-dark" id="updateCustomTemplateButton" type="submit">Update</button>
+                <button class="btn btn-dark" id="updateCustomTemplateButton" style="display:none"
+                    type="submit">Update</button>
                 <button class="btn btn-dark" id="deleteCustomTemplateButton" type="submit">Delete</button>
             </div>
         </div>
@@ -411,6 +412,8 @@
         console.log($(e).attr("value"));
         var metricNumber = $(e).attr("value");
         //hide the save button and show the update button (will write a put on click of the update button)
+        $("#saveCustomTemplateButton").hide();
+        $("#updateCustomTemplateButton").show();
 
         //keep the button highlighted *****************************
 
@@ -424,9 +427,9 @@
             console.log(data[0].templatename);
             $("#customTemplateName").val(data[0].templatename);
 
-            //on click save check for template name - if exists do an update statement
         });
     }
+
 
     //////////////////////////////////////////////////////////////UI display/////////////////////////////////////////////////////////
     //on save if on clicked is true push into array or object or something, display on screen and make api request
@@ -513,6 +516,27 @@
 
             $(".addMetric").checked = false;
         });
+
+
+
+        //make a put call to DB to update existing template                                                 !!!!!!!!!
+        $("#updateCustomTemplateButton").on("click", function () {
+            var templateNameEdit = $(inputTemplateName).html();
+            console.log(templateNameEdit);
+
+            $.post(`/api/template/${templateNameEdit}`, templatePostArray)
+                .then(function (results) {
+                    console.log(results)
+                });
+
+            $('.viewMetricChild').remove();
+            customTemplateMetrics = [];
+
+            $(".addMetric").checked = false;
+
+        })
+
+
         //clear template
         $("#closeTemplateModal").on("click", function () {
             $('.viewMetricChild').remove();

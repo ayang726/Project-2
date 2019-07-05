@@ -19,8 +19,14 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Metric.associate = function (models) {
-        Metric.hasMany(models.TickerMetric);
-        Metric.hasMany(models.TemplateMetric);
+        Metric.hasMany(models.TickerMetric,
+            {
+                onDelete: "cascade"
+            })
+        Metric.hasMany(models.TemplateMetric,
+            {
+                onDelete: "cascade"
+            })
     };
 
     // Metric.hasMany(TickerMetric, {

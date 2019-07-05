@@ -501,6 +501,7 @@
 
         templatePostArray = { "": templatePostArray };
 
+
         //on save, make a post to the database
         $("#saveCustomTemplateButton").on("click", function () {
 
@@ -534,7 +535,15 @@
 
             $(".addMetric").checked = false;
 
-        })
+        });
+
+        $("#deleteCustomTemplateButton").on("click", function () {
+            var templateNameEdit = $(inputTemplateName).html();
+            $.post(`/api/template/delete/${templateNameEdit}`, function (result) {
+                console.log(result);
+            })
+
+        });
 
 
         //clear template

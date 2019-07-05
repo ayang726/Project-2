@@ -108,4 +108,15 @@ module.exports = function (app) {
 
     });
     // })
+
+    app.post("/api/template/delete/:templatename", function (req, res) {
+        db.TemplateUser.destroy({
+            where: {
+                templatename: req.params.templatename
+            }
+        }
+        ).then(function (dbTemplateUsers) {
+            res.json(dbTemplateUsers);
+        });
+    });
 };

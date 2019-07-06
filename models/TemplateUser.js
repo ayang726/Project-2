@@ -7,7 +7,8 @@ module.exports = function (sequelize, DataTypes) {
         // },
         templatename: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         active: {
             type: DataTypes.BOOLEAN,

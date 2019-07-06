@@ -525,6 +525,8 @@
             customTemplateMetrics = [];
 
             $(".addMetric").checked = false;
+
+            location.reload();
         });
 
 
@@ -544,6 +546,8 @@
 
             $(".addMetric").checked = false;
 
+            location.reload();
+
         });
 
         $("#deleteCustomTemplateButton").on("click", function () {
@@ -552,6 +556,7 @@
                 console.log(result);
             })
 
+            location.reload();
         });
 
 
@@ -559,6 +564,8 @@
         $("#closeTemplateModal").on("click", function () {
             $('.viewMetricChild').remove();
             customTemplateMetrics = [];
+
+
         });
         //clear template
         $("#close-x").on("click", function () {
@@ -570,6 +577,7 @@
             //why is this not working????
             //  document.getElementsByClassName("addMetric").checked = false;
             //  console.log($(".addMetric").is(":checked"));
+
         });
 
 

@@ -2,8 +2,10 @@
 // populate chart
 // populate news
 let ticker;
-updatingWatchlist();
-updatingTemplates();
+// updatingWatchlist();
+setTimeout(() => {
+    updatingTemplates();
+}, 2000);
 // updating the watchlist
 function updatingWatchlist() {
     $.get("/api/watchlist/" + currentUser, response => {
@@ -29,28 +31,30 @@ function updatingTemplates() {
     $.get("/api/templates/" + currentUser, response => {
         if (response.length === 0) {
             let metrics = $("#metrics .row")[0];
-            metrics.empty();
-            const html = `<h5>Please go to the Templates Page to create an template</h5>`
-            metrics.append(html);
+            $(metrics).html("");
+            const html = `<h5>Please go to the Templates Page to create a template</h5>`;
+            $(metrics).append(html);
             return;
         }
+
 
         let templateDropdown = $("#templateList");
         templateDropdown.empty();
         response.forEach(template => {
-            const html = `<button class="dropdown-item" onclick="changeTemplate(${template.templateID})">${template.name}</button>`;
+            const html = `<button class="dropdown-item" onclick="changeTemplate(${template.id})">${template.templatename}</button>`;
             templateDropdown.append(html);
         });
 
-        changeTemplate(response[0].templateID);
+        changeTemplate(response[0].id);
     });
 }
 // change template function used on initial load and on template change
 function changeTemplate(templateID) {
     let metrics = $("#metrics .row")[0];
-    metrics.empty();
+    $(metrics).empty();
 
     $.get("/api/template/" + templateID, response => {
+        // console.log(response);
         response.forEach(metric => {
             const html = `
             <div class="col-lg-6 metricsCell">
@@ -60,7 +64,7 @@ function changeTemplate(templateID) {
                 </p>
             </div>
             `;
-            metrics.append(html);
+            $(metrics).append(html);
         });
 
         updateMetrics();
@@ -69,18 +73,25 @@ function changeTemplate(templateID) {
 
 
 // update metrics list according to the template selected
+// this should be changed to update all metrics value simultanuously
 function updateMetrics() {
     let metricsValueDisplay = $(".metricsValue");
-    metricsValueDisplay.forEach(metric => {
+    //this is only a temporary fix, so Lindsey sees something on the screen
+    let routeArr = location.href.split("/");
+    let ticker = routeArr[routeArr.length - 1];
+    $(metricsValueDisplay).each((index, metric) => {
+
         const id = $(metric).attr("data-id");
         const period = $(metric).attr("data-period");
-        $(metric).text(updateValue(id, period));
+        $(metric).text(updateValue(id, ticker));
     });
 }
 
 // updating the values of a metric
-async function updateValue(metricId) {
-    return await $.get("/api/tickerMetric/" + metricId + "/" + ticker);
+function updateValue(metricId, ticker) {
+    $.get("/api/tickerMetric/" + metricId + "/" + ticker, response => {
+        return response;
+    });
 }
 
 function updatingChart(period) {

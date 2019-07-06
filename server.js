@@ -25,6 +25,7 @@ require("./routes/apiRoutes")(app);
 
 require("./routes/apiRoutes-template")(app);
 require("./routes/apiRoutes-metric")(app);
+require("./routes/apiRoutes-templatemetric")(app);
 
 const db = require("./models");
 

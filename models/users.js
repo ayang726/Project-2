@@ -9,9 +9,19 @@ module.exports = function (sequelize, DataTypes) {
         });
 
     User.associate = function (models) {
-        User.hasMany(models.TemplateUser);
-        User.hasMany(models.UserTicker);
-        User.hasMany(models.RecentSearch);
+        User.hasMany(models.TemplateUser,
+            {
+                onDelete: "cascade"
+            })
+
+        User.hasMany(models.UserTicker,
+            {
+                onDelete: "cascade"
+            })
+        User.hasMany(models.RecentSearch,
+            {
+                onDelete: "cascade"
+            })
     };
 
 

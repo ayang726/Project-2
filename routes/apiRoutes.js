@@ -14,24 +14,24 @@ module.exports = function (app) {
             password: req.body.password,
             name: req.body.name
         }).then(response => {
-            // console.log(response);
+            res.sendStatus(200);
         })
     });
 
     // storing user recentsearches
     app.post("/api/recentSearches", (req, res) => {
-        db.RecentSearch.create({
-            symbol: req.body.symbol,
-            name: req.body.name,
-            uid: req.body.uid
-        }).then(response => {
-            res.json(response);
+        db.Ticker.findOne({ where: { symbol: req.body.symbol } }).then(response => {
+            const TickerId = response.id;
+            const UserId = req.body.uid;
+            db.RecentSearch.create({ TickerId, UserId }).then(response => {
+                res.sendStatus(200);
+            });
         });
     });
 
     // Getting user recent searches
     app.get("/api/recentSearches/:uid", (req, res) => {
-        db.RecentSearch.findAll({ where: { uid: req.params.uid } }).
+        db.RecentSearch.findAll({ where: { UserId: req.params.uid } }).
             then(response => {
                 res.json(response);
             });
@@ -39,7 +39,7 @@ module.exports = function (app) {
 
     // getthing the different symbols a user has in the watchlist
     app.get("/api/watchlist/:uid", (req, res) => {
-        db.WatchList.findAll({ where: { uid: req.params.uid } })
+        db.UserTicker.findAll({ where: { UserId: req.params.uid } })
             .then(response => {
                 res.json(response);
             });
@@ -47,7 +47,7 @@ module.exports = function (app) {
 
     // Getthing different templates a particular user has
     app.get("/api/templates/:uid", (req, res) => {
-        db.UserTemplates.findAll({ where: { uid: req.params.uid } })
+        db.TemplateUser.findAll({ where: { UserId: req.params.uid } })
             .then(response => {
                 res.json(response);
             });
@@ -55,7 +55,7 @@ module.exports = function (app) {
 
     // Getting template of a user to generate different metrics table
     app.get("/api/template/:templateID", (req, res) => {
-        db.TemplateMetrics.findAll({ where: { templateID: req.params.templateID } })
+        db.TemplateMetrics.findAll({ where: { TemplateUserId: req.params.templateID } })
             // this query needs to join the metrics table to also return metrics period
             .then(response => {
                 res.json(response);

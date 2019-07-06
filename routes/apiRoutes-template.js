@@ -9,9 +9,8 @@ module.exports = function (app) {
         var numberOfMetrics = req.body.length;
         console.log(req.body[0]);
         db.TemplateUser.create({
-            UserId: req.body[0].UserId,
             templatename: req.body[0].templatename,
-            uid: req.body[0].uid,
+            UserUid: req.body[0].uid,
         }).then(response => {
             console.log(response);
 
@@ -69,9 +68,8 @@ module.exports = function (app) {
             })
         console.log(req.body[0]);
         db.TemplateUser.create({
-            UserId: req.body[0].UserId,
             templatename: req.body[0].templatename,
-            uid: req.body[0].uid
+            UserUid: req.body[0].uid
         }).then(response => {
             console.log(response);
 

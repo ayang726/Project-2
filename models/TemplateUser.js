@@ -1,13 +1,14 @@
 module.exports = function (sequelize, DataTypes) {
 
     var TemplateUser = sequelize.define("TemplateUser", {
-        uid: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
+        // uid: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false
+        // },
         templatename: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         active: {
             type: DataTypes.BOOLEAN,

@@ -338,6 +338,7 @@
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/userAuth.js"></script>
 <script>
 
     ///////////////////////////////////////////drag and drop package???///////////////////////////////////
@@ -489,7 +490,7 @@
 
         //create an array of objects to be posted into templatemetrics table
         for (var i = 0; i < customTemplateMetrics.length; i++) {
-            customTemplate = { uid: 9999999, templatename: customTemplateName, UserId: 1, MetricId: customTemplateMetricIds[i] }
+            customTemplate = { uid: currentUser, templatename: customTemplateName, MetricId: customTemplateMetricIds[i] }
             templatePostArray.push(customTemplate)
             metricIdArray.push(customTemplateMetricIds[i])
             //console.log(customTemplate);

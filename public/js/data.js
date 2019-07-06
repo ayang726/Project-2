@@ -2,11 +2,13 @@
 // populate chart
 // populate news
 let ticker;
+updatingWatchlist();
+updatingTemplates();
 // updating the watchlist
 function updatingWatchlist() {
     $.get("/api/watchlist/" + currentUser, response => {
         let watchList = $(".watchList ul")[0];
-        watchList.empty();
+        watchList.html = "";
         response.forEach(ticker => {
             const html = `
         <li class="text-center">
@@ -25,20 +27,30 @@ function updatingWatchlist() {
 // Update the list of templates
 function updatingTemplates() {
     $.get("/api/templates/" + currentUser, response => {
+        if (response.length === 0) {
+            let metrics = $("#metrics .row")[0];
+            metrics.empty();
+            const html = `<h5>Please go to the Templates Page to create an template</h5>`
+            metrics.append(html);
+            return;
+        }
+
         let templateDropdown = $("#templateList");
         templateDropdown.empty();
         response.forEach(template => {
             const html = `<button class="dropdown-item" onclick="changeTemplate(${template.templateID})">${template.name}</button>`;
             templateDropdown.append(html);
         });
-        changeTemplate(response[0].templateID, currentUser);
+
+        changeTemplate(response[0].templateID);
     });
 }
 // change template function used on initial load and on template change
 function changeTemplate(templateID) {
+    let metrics = $("#metrics .row")[0];
+    metrics.empty();
+
     $.get("/api/template/" + templateID, response => {
-        let metrics = $("#metrics .row");
-        metrics.empty();
         response.forEach(metric => {
             const html = `
             <div class="col-lg-6 metricsCell">
@@ -54,6 +66,7 @@ function changeTemplate(templateID) {
         updateMetrics();
     });
 }
+
 
 // update metrics list according to the template selected
 function updateMetrics() {
@@ -73,6 +86,7 @@ async function updateValue(metricId) {
 function updatingChart(period) {
     $.get("/api/chart/" + period + "/" + ticker, response => {
         //call the update Chart function from the priceChart.js using the response
+        plotChart(response);
     });
 }
 

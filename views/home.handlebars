@@ -1,186 +1,190 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-<a class="navbar-brand" href="/">Stocker</a>
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
+    <a class="navbar-brand" href="/">Stocker</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
 
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
-<form class="form-inline my-2 my-lg-0" autocomplete="off">
-<input class="form-control mr-sm-2" type="search" id="searchBar" placeholder="Search" aria-label="Search">
-{{!-- <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button> --}}
-<div class="searchResult d-none">
-<ul class="searchResultList"></ul>
-</div>
-</form>
-<ul class="navbar-nav ml-auto">
-<li class="nav-item active">
-<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="#">Template</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" id="logout">Log Out</a>
-</li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form class="form-inline my-2 my-lg-0" autocomplete="off">
+            <input class="form-control mr-sm-2" type="search" id="searchBar" placeholder="Search" aria-label="Search">
+            {{!-- <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button> --}}
+            <div class="searchResult d-none">
+                <ul class="searchResultList"></ul>
+            </div>
+        </form>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Template</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="logout">Log Out</a>
+            </li>
 
-</ul>
-</div>
+        </ul>
+    </div>
 </nav>
 <div class="container mt-4">
-<div class="row">
-<div class="col-lg-10 stockInfo">
-<div class="row">
-<div class="col-lg-12">
-<h2 class="d-inline-block">{{ticker}}</h2>
-<div class="dropdown float-right templateDropdown">
-<button class="btn btn-warning dropdown-toggle" type="button" id="templateDropdownBtn"
-data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Templates
-</button>
-<div id="templateList" class="dropdown-menu" aria-labelledby="templateDropdownBtn">
-</div>
-</div>
-</div>
-</div>
+    <div class="row">
+        <div class="col-lg-10 stockInfo">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="d-inline-block">{{ticker}}</h2>
+                    <div class="dropdown float-right templateDropdown">
+                        <button class="btn btn-warning dropdown-toggle" type="button" id="templateDropdownBtn"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Templates
+                        </button>
+                        <div id="templateList" class="dropdown-menu" aria-labelledby="templateDropdownBtn">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<div class="row">
-<div class="col-lg-12" id="stockView">
-<br>
-<h6 style="margin-left: 50px">$1,011.45</h6>
-<div class="row">
-<div class="col-lg-3">
-<p style="margin-left: 50px"><small>+$0.18 (0.02%) <span
-style="color: gray">Today</span></small>
-</p>
-</div>
-<div class="col-lg-6">
-<p style="margin-left: 50px"><small>-$0.02 (-0.00%)<span style="color: gray">After
-Hours</span></small>
-</p>
-</div>
-</div>
-<div class="row">
-<div class="col-lg-8">
-<canvas id="myChart"></canvas>
-<nav><button type="button" id="OneDayID" onClick="processRequest('', '/intraday-prices', 'OneDayID')" class="badge badge-secondary"
-style="margin-left: 50px">1-Day</button>
-<button type="button" id="OneMonthID" onClick="processRequest('1m', '/chart/', 'OneMonthID')"
-class="badge badge-secondary">1-Month</button>
-<button type="button" id="ThreeMonthID" onClick="processRequest('3m', '/chart/', 'ThreeMonthID')"
-class="badge badge-secondary">3-Months</button>
-<button type="button" id="OneYearID" onClick="processRequest('1y', '/chart/', 'OneYearID')"
-class="badge badge-secondary">1-Year</button>
-<button type="button" id="AllID" onClick="processRequest('max', '/chart/', 'AllID')"
-class="badge badge-secondary">ALL</button>
-</nav>
-<br><br>
-</div>
-<div class="col-lg-4">
-<div id="metrics">
-<div class="row">
-<div class="col-lg-6 metricsCell">
-<p>
-<span class="metricsName">Revenu</span>
-<span class="metricsValue">$6.1B</span>
-</p>
-</div>
-<div class="col-lg-6 metricsCell">
-<p>
-<span class="metricsName">Revenu</span>
-<span class="metricsValue">$6.1B</span>
-</p>
-</div>
-<div class="col-lg-6 metricsCell">
-<p>
-<span class="metricsName">Revenu</span>
-<span class="metricsValue">$6.1B</span>
-</p>
-</div>
-<div class="col-lg-6 metricsCell">
-<p>
-<span class="metricsName">Revenu</span>
-<span class="metricsValue">$6.1B</span>
-</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="row" id="newsArticles">
-<div class="col-lg-3">
-<div class="card newsArticle">
-<div class="card-body">
-<a class="articleUrl" href="#">
-<h5 class="card-title articleTitle">Card title</h5>
-</a>
-<p class="card-text articleSummary">Some quick example text to build on the card
-title and make up
-the bulk of the card's content.</p>
-</div>
-</div>
-</div>
-<div class="col-lg-3">
-<div class="card newsArticle">
-<div class="card-body">
-<a class="articleUrl" href="#">
-<h5 class="card-title articleTitle">Card title</h5>
-</a>
-<p class="card-text articleSummary">Some quick example text to build on the card
-title and make up
-the bulk of the card's content.</p>
-</div>
-</div>
-</div>
-<div class="col-lg-3">
-<div class="card newsArticle">
-<div class="card-body">
-<a class="articleUrl" href="#">
-<h5 class="card-title articleTitle">Card title</h5>
-</a>
-<p class="card-text articleSummary">Some quick example text to build on the card
-title and make up
-the bulk of the card's content.</p>
-</div>
-</div>
-</div>
-<div class="col-lg-3">
-<div class="card newsArticle">
-<div class="card-body">
-<a class="articleUrl" href="#">
-<h5 class="card-title articleTitle">Card title</h5>
-</a>
-<p class="card-text articleSummary">Some quick example text to build on the card
-title and make up
-the bulk of the card's content.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-lg-2 text-center">
-<div class="row">
-<div class="col-lg-12">
-<div class="watchList">
-<h5>Watch List</h5>
-<ul class="container text-center">
-</ul>
-</div>
-</div>
-</div>
-<div class="row my-4">
-<div class="col-lg-12">
-<button class="btn btn-warning btn-large">Add to watchList</button>
-</div>
-</div>
-</div>
-</div>
+            <div class="row">
+                <div class="col-lg-12" id="stockView">
+                    <br>
+                    <h6 style="margin-left: 50px">$1,011.45</h6>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <p style="margin-left: 50px"><small>+$0.18 (0.02%) <span
+                                        style="color: gray">Today</span></small>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p style="margin-left: 50px"><small>-$0.02 (-0.00%)<span style="color: gray">After
+                                        Hours</span></small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <canvas id="myChart"></canvas>
+                            <nav><button type="button" id="OneDayID"
+                                    onClick="updatingChart('', '/intraday-prices', 'OneDayID')"
+                                    class="badge badge-secondary" style="margin-left: 50px">1-Day</button>
+                                <button type="button" id="OneMonthID"
+                                    onClick="updatingChart('1m', '/chart/', 'OneMonthID')"
+                                    class="badge badge-secondary">1-Month</button>
+                                <button type="button" id="ThreeMonthID"
+                                    onClick="updatingChart('3m', '/chart/', 'ThreeMonthID')"
+                                    class="badge badge-secondary">3-Months</button>
+                                <button type="button" id="OneYearID"
+                                    onClick="updatingChart('1y', '/chart/', 'OneYearID')"
+                                    class="badge badge-secondary">1-Year</button>
+                                <button type="button" id="AllID" onClick="updatingChart('max', '/chart/', 'AllID')"
+                                    class="badge badge-secondary">ALL</button>
+                            </nav>
+                            <br><br>
+                        </div>
+                        <div class="col-lg-4">
+                            <div id="metrics">
+                                <div class="row">
+                                    <div class="col-lg-6 metricsCell">
+                                        <p>
+                                            <span class="metricsName">Revenu</span>
+                                            <span class="metricsValue">$6.1B</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 metricsCell">
+                                        <p>
+                                            <span class="metricsName">Revenu</span>
+                                            <span class="metricsValue">$6.1B</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 metricsCell">
+                                        <p>
+                                            <span class="metricsName">Revenu</span>
+                                            <span class="metricsValue">$6.1B</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 metricsCell">
+                                        <p>
+                                            <span class="metricsName">Revenu</span>
+                                            <span class="metricsValue">$6.1B</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="newsArticles">
+                        <div class="col-lg-3">
+                            <div class="card newsArticle">
+                                <div class="card-body">
+                                    <a class="articleUrl" href="#">
+                                        <h5 class="card-title articleTitle">Card title</h5>
+                                    </a>
+                                    <p class="card-text articleSummary">Some quick example text to build on the card
+                                        title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="card newsArticle">
+                                <div class="card-body">
+                                    <a class="articleUrl" href="#">
+                                        <h5 class="card-title articleTitle">Card title</h5>
+                                    </a>
+                                    <p class="card-text articleSummary">Some quick example text to build on the card
+                                        title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="card newsArticle">
+                                <div class="card-body">
+                                    <a class="articleUrl" href="#">
+                                        <h5 class="card-title articleTitle">Card title</h5>
+                                    </a>
+                                    <p class="card-text articleSummary">Some quick example text to build on the card
+                                        title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="card newsArticle">
+                                <div class="card-body">
+                                    <a class="articleUrl" href="#">
+                                        <h5 class="card-title articleTitle">Card title</h5>
+                                    </a>
+                                    <p class="card-text articleSummary">Some quick example text to build on the card
+                                        title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 text-center">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="watchList">
+                        <h5>Watch List</h5>
+                        <ul class="container text-center">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-lg-12">
+                    <button class="btn btn-warning btn-large">Add to watchList</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-{{!-- loading js files --}}
-<script src="/js/userAuth.js"></script>
-<script src="/js/symbolSearch.js"></script>
-<script src="/js/priceChart.js"></script>
+    {{!-- loading js files --}}
+    <script src="/js/userAuth.js"></script>
+    <script src="/js/symbolSearch.js"></script>
+    <script src="/js/priceChart.js"></script>

@@ -48,15 +48,18 @@ iexRequest.parseProdUrl = function (q) {
 
 
 iexRequest['symbols'] = () => { return axios.get(iexRequest.parseUrl("ref-data/symbols")); }
+
+// Metrics requests
 iexRequest['advanced-stats'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/advanced-stats`)); }
 iexRequest['price-target'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/price-target`)); }
-iexRequest['balance-sheet'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/balance-sheet`)); }
+iexRequest['balance-sheet'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/balance-sheet/last`)); }
 iexRequest['stats'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/stats`)); }
-iexRequest['cash-flow'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/cash-flow`)); }
+iexRequest['cash-flow'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/cash-flow/last`)); }
 iexRequest['estimates'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/estimates`)); }
-iexRequest['income'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/income`)); }
-iexRequest['financials'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/financials`)); }
+iexRequest['income'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/income/last`)); }
+iexRequest['financials'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/financials/last`)); }
 
+// Chart quote requests
 iexRequest.test.intraday = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/intraday-prices")); }
 iexRequest.test.historicalPrices = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/chart/1m")); }
 

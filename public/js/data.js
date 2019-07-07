@@ -62,10 +62,8 @@ function changeTemplate(templateID) {
         response.forEach(metric => {
             const html = `
             <div class="col-lg-6 metricsCell">
-                <p>
-                    <span class="metricsName">${metric.metricDescription}</span>
-                    <span class="metricsValue" data-id="${metric.id}"></span>
-                </p>
+                    <p class="metricsName">${metric.description}</p>
+                    <p class="metricsValue" data-id="${metric.id}"></p>
             </div>
             `;
             $(metrics).append(html);
@@ -87,17 +85,15 @@ function updateMetrics() {
         // $(metric).text(updateValue(id, ticker));
     });
     $.post("/api/getMetricValues", { metricIds, ticker }, response => {
-
+        $(metricsValueDisplay).each((index, metric) => {
+            const metricId = $(metric).attr("data-id");
+            if (response[metricId])
+                $(metric).text(response[metricId]);
+            else
+                $(metric).text("-");
+        });
     });
 }
-
-// updating the values of a metric
-// function updateValue(metricId, ticker) {
-//     $.get("/api/tickerMetric/" + metricId + "/" + ticker, response => {
-//         return response;
-//     });
-// }
-
 //updating the Price Chart display
 function updatingChart(period) {
     $.get("/api/chart/" + period + "/" + ticker, response => {

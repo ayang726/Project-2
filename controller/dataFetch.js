@@ -23,23 +23,81 @@ dataFetchManager.getSymbols = async function () {
 }
 
 dataFetchManager.getMetrics = async function (metricIds, ticker) {
-    metricIds.forEach(async id => {
+    let responseObject = {};
+    for (let i = 0; i < metricIds.length; i++) {
+        const id = metricIds[i];
+
         let dbResponse = await db.TickerMetric.findOne({
             include: [
                 { model: db.Metric, where: { id } },
                 { model: db.Ticker, where: { symbol: ticker } }
             ]
         });
-        if (dbResponse) return dbResponse.value;
-        // use IEX to query data then store them into database
-        let metric = await db.Metric.findOne({ where: { id } })
-        console.log(metric.category);
-        let iexResponse = await iexRequest[metric.category](ticker);
-        let data = iexResponse.data;
-        console.log('===========================');
-        console.log(data);
-        console.log('===========================');
-    });
+        if (dbResponse) {
+            responseObject[id] = dbResponse.value;
+        } else {
+            // use IEX to query data then store them into database
+            let metric = await db.Metric.findOne({ where: { id } })
+            let iexResponse = await iexRequest[metric.category](ticker);
+            let data = iexResponse.data;
+
+
+            // console.log('===========================');
+            // console.log(metric.category);
+            // console.log(data);
+            switch (metric.category) {
+                case "advanced-stats":
+                case "price-target":
+                case "stats":
+                case "estimates":
+                    data = data;
+                    break;
+                case "balance-sheet":
+                    data = data.balancesheet[0];
+                    break;
+                case "cash-flow":
+                    data = data.cashflow[0];
+                    break;
+                case "income":
+                    data = data.income[0];
+                    break;
+                case "financials":
+                    data = data.financials[0];
+                    break;
+            }
+            // store data in database
+            db.Metric.findAll({ where: { category: metric.category } }).then(metricsResponse => {
+                db.Ticker.findOne({ where: { symbol: ticker } }).then(tickerFound => {
+                    let bulkInsertion = [];
+                    metricsResponse.forEach(metric => {
+                        if (Object.keys(data).includes(metric.name)) {
+                            let value;
+                            if (data[metric.name])
+                                value = data[metric.name].toString();
+                            else
+                                value = null;
+                            console.log('msg 103');
+                            console.log(metric.name);
+                            console.log(value);
+                            bulkInsertion.push({ value, MetricId: metric.id, TickerId: tickerFound.id })
+                        }
+                    });
+
+                    db.TickerMetric.bulkCreate(bulkInsertion);
+                })
+            });
+
+            responseObject[id] = data[metric.name];
+            console.log('===========================');
+        }
+
+    };
+
+    console.log('msg - 102');
+
+    console.log(responseObject);
+    return { data: responseObject };
+
 }
 
 dataFetchManager.getQuotes = async function (timeRange, ticker) {

@@ -113,10 +113,11 @@ module.exports = function (app) {
     //         });
     // });
 
-    app.post("/api/getMetricValues", (req, res) => {
+    app.post("/api/getMetricValues", async (req, res) => {
         const metricIds = req.body.metricIds;
         const ticker = req.body.ticker;
-        dataFetchManager.getMetrics(metricIds, ticker);
+        let response = await dataFetchManager.getMetrics(metricIds, ticker);
+        res.json(response.data);
     });
 
     // getting the chart data for the period requested for a symbol

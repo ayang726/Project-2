@@ -97,6 +97,13 @@ function updatingNews() {
             `
             newsArticles.append(html);
         }
+    });
+}
 
+function updatingLatestPrice() {
+    let latestPrice = $("#latestPriceDisplay");
+    latestPrice.empty
+    $.get("/api/latestPrice/" + ticker, response => {
+        latestPrice.append(response);
     });
 }

@@ -37,6 +37,7 @@ iexRequest.test.financials = () => { return axios.get(iexRequest.parseTestUrl("s
 
 iexRequest.test.intraday = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/intraday-prices")); }
 iexRequest.test.historicalPrices = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/chart/1m")); }
+iexRequest.test.latestPrice = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/quote/latestPrice")); }
 
 module.exports = { iexRequest };
 

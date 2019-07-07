@@ -91,4 +91,10 @@ module.exports = function (app) {
     app.get("/api/news/:ticker", (req, res) => {
         res.json(dataFetchManager.getNews(ticker));
     });
+
+    // Getting the latest quote price for a ticker symbol
+    app.get("/api/latestPrice/:ticker", (req, res) => {
+        res.json(dataFetchManager.getLatestPrice(ticker));
+    });
+
 };

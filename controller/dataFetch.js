@@ -34,6 +34,11 @@ dataFetchManager.getQuotes = async function (timeRange, ticker) {
     }
 }
 
+dataFetchManager.getLatestPrice = function (symbol) {
+    console.log(`fetching latest price for ${symbol}`);
+}
+
+
 dataFetchManager.getNews = function (symbol) {
     console.log(`fetching news for ${symbol}`);
 }

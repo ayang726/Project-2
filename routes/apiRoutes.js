@@ -14,24 +14,29 @@ module.exports = function (app) {
             password: req.body.password,
             name: req.body.name
         }).then(response => {
-            // console.log(response);
+            res.sendStatus(200);
         })
     });
 
     // storing user recentsearches
     app.post("/api/recentSearches", (req, res) => {
-        db.RecentSearch.create({
-            symbol: req.body.symbol,
-            name: req.body.name,
-            uid: req.body.uid
-        }).then(response => {
-            res.json(response);
+        db.Ticker.findOne({ where: { symbol: req.body.symbol } }).then(response => {
+            const TickerId = response.id;
+            const UserUid = req.body.uid;
+            db.RecentSearch.create({ TickerId, UserUid }).then(response => {
+                res.sendStatus(200);
+            });
         });
     });
 
     // Getting user recent searches
     app.get("/api/recentSearches/:uid", (req, res) => {
-        db.RecentSearch.findAll({ where: { uid: req.params.uid } }).
+        db.RecentSearch.findAll({
+            where: { UserUid: req.params.uid },
+            include: [{
+                model: db.Ticker,
+            }]
+        }).
             then(response => {
                 res.json(response);
             });
@@ -39,26 +44,52 @@ module.exports = function (app) {
 
     // getthing the different symbols a user has in the watchlist
     app.get("/api/watchlist/:uid", (req, res) => {
-        db.WatchList.findAll({ where: { uid: req.params.uid } })
+        db.UserTicker.findAll({ where: { UserUid: req.params.uid } })
             .then(response => {
                 res.json(response);
             });
     });
 
+    app.post("/api/watchlist/:ticker/:uid", (req, res) => {
+        db.Ticker.findOne({ where: { symbol: req.params.ticker } }).then(tickerResponse => {
+            const tickerId = tickerResponse.dataValues.id;
+            db.UserTicker.create({
+                UserUid: req.params.uid,
+                TickerId: tickerId
+            }).then(response => { res.sendStatus(200) });
+        });
+
+    });
+
     // Getthing different templates a particular user has
     app.get("/api/templates/:uid", (req, res) => {
-        db.UserTemplates.findAll({ where: { uid: req.params.uid } })
+        db.TemplateUser.findAll({ where: { UserUid: req.params.uid } })
             .then(response => {
                 res.json(response);
             });
     });
 
     // Getting template of a user to generate different metrics table
-    app.get("/api/template/:templateID", (req, res) => {
-        db.TemplateMetrics.findAll({ where: { templateID: req.params.templateID } })
-            // this query needs to join the metrics table to also return metrics period
+    app.get("/api/template/:templateUserId", (req, res) => {
+        let responseObj = [];
+        db.TemplateMetric.findAll({
+            where: { TemplateUserId: req.params.templateUserId },
+            include: [{
+                model: db.Metric,
+            }]
+        })
             .then(response => {
-                res.json(response);
+                // a list of metricsids
+                response.forEach(templateMetric => {
+                    let id = templateMetric.dataValues.MetricId;
+                    let description = templateMetric.dataValues.Metric.metricDescription;
+                    let period = templateMetric.dataValues.Metric.period;
+                    let category = templateMetric.dataValues.Metric.category;
+                    let name = templateMetric.dataValues.Metric.name;
+                    responseObj.push({ id, description, period, category, name });
+                });
+
+                res.json(responseObj);
             });
     });
     //========================================//
@@ -66,20 +97,26 @@ module.exports = function (app) {
     //========================================//
     app.get("/api/symbols", async (req, res) => {
         let result = await dataFetchManager.getSymbols();
+        // console.log("results from apiRoutes" + result[0]);
         res.json({ data: result });
     });
 
     // getthing the metric value for a symbol
     // this needs to be changed to one request pulling all metrics data 
-    app.get("/api/tickerMetric/:metricId/:ticker", (req, res) => {
-        db.Metrics.findOne(({ where: { metricId: req.params.metricId } }))
-            .then(response => {
-                const metricCategory = response.category;
-                const metricName = response.name;
-                // call dataFetch object's functiosn
-                res.json(dataFetchManager
-                    .getMetric(metricCategory, metricName, req.params.ticker));
-            });
+    // app.get("/api/tickerMetric/:metricId/:ticker", (req, res) => {
+    //     db.Metric.findOne(({ where: { id: req.params.metricId } }))
+    //         .then(response => {
+    //             const metricCategory = response.category;
+    //             const metricName = response.metric;
+    //             // call dataFetch object's functiosn
+    //             res.json(dataFetchManager.getMetric(metricCategory, metricName, req.params.ticker));
+    //         });
+    // });
+
+    app.post("/api/getMetricValues", (req, res) => {
+        const metricIds = req.body.metricIds;
+        const ticker = req.body.ticker;
+        dataFetchManager.getMetrics(metricIds, ticker);
     });
 
     // getting the chart data for the period requested for a symbol

@@ -30,22 +30,24 @@ function search() {
     populateSearchList();
 }
 function loadAllTickers() {
-    if (searchSymbols.allTickers.length === 0) {
+    if (!searchSymbols.allTickers.length) {
         $.get("/api/symbols", response => {
-            searchSymbols.allTickers = response.data;
-            populateSearchList();
+            if (response.data) {
+                searchSymbols.allTickers = response.data;
+                populateSearchList();
+            }
         });
     }
 }
 function loadRecentSearchData() {
-    if (searchSymbols.recentSearches.length === 0) {
-        $.get(`/api/recentSearches/${currentUser}`, response => {
-            response.forEach(ticker => {
-                searchSymbols.recentSearches.push({ symbol: ticker.symbol, name: ticker.name })
-                populateSearchList();
-            })
-        });
-    }
+    $.get(`/api/recentSearches/${currentUser}`, response => {
+        searchSymbols.recentSearches = [];
+        response.forEach(ticker => {
+            console.log("============\n" + JSON.stringify(ticker.Ticker.tickername));
+            searchSymbols.recentSearches.push({ symbol: ticker.Ticker.symbol, tickername: ticker.Ticker.tickername });
+            populateSearchList();
+        })
+    });
 }
 function saveRecentSearch(symbol, name) {
     $.post("/api/recentSearches",
@@ -64,13 +66,14 @@ function populateSearchList() {
     else {
         resultList = searchSymbols.allTickers.filter(ticker =>
             ticker.symbol.toLowerCase().includes(searchBar.val())
-            || ticker.name.toLowerCase().includes(searchBar.val())
+            || ticker.tickername.toLowerCase().includes(searchBar.val())
         );
     }
 
-    resultList.forEach(function (search) {
-        let html = `<li class="searchResultListItem"><a href="/stock/${search.symbol}/${currentUser}" onclick="saveRecentSearch('${search.symbol}', '${search.name}')"><span class="searchSymbols">${search.symbol}</span>${search.name}</a></li>`;
+    resultList.forEach(function (search, index) {
+        let html = `<li class="searchResultListItem"><a href="/stock/${search.symbol}" onclick="saveRecentSearch('${search.symbol}', '${search.tickername}')"><span class="searchSymbols">${search.symbol}</span>${search.tickername}</a></li>`;
         searchResultList.append(html);
+        if (index > 10) return;
     });
     searchResult.animate({ opacity: 1 }, 100, () => searchResult.removeClass("d-none"));
 

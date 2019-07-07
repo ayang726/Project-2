@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
     var Metric = sequelize.define("Metric", {
-        metric: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -8,13 +8,18 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        description: {
+        metricDescription: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        categoryDescription: {
             type: DataTypes.STRING,
             allowNull: false
         },
         period: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            defaultValue: "daily"
         }
     });
 

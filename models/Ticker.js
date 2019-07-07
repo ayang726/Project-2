@@ -37,6 +37,10 @@ module.exports = function (sequelize, DataTypes) {
     // })
 
     Ticker.associate = function (models) {
+        Ticker.hasMany(models.TickerMetric,
+            {
+                onDelete: "cascade"
+            })
         Ticker.hasMany(models.UserTicker,
             {
                 onDelete: "cascade"

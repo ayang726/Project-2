@@ -350,44 +350,44 @@
         //     //create the ui, put the metric ids in an attribute
         console.log(data[0]);
         for (var i = 0; i < data.length; i++) {
-            if (data[i].category === 'Advanced Stats') {
+            if (data[i].categoryDescription === 'Advanced Stats') {
                 $('#advancedStatsList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
-            if (data[i].category === 'Balance Sheet') {
+            if (data[i].categoryDescription === 'Balance Sheet') {
                 $('#balanceSheetList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
-            if (data[i].category === 'Key Stats') {
+            if (data[i].categoryDescription === 'Key Stats') {
                 $('#keyStatsList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
-            if (data[i].category === 'Cash Flow Statement') {
+            if (data[i].categoryDescription === 'Cash Flow Statement') {
                 $('#cashFlowStatementList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
-            if (data[i].category === 'Estimates') {
+            if (data[i].categoryDescription === 'Estimates') {
                 $('#estimatesList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
-            if (data[i].category === 'Income Statement') {
+            if (data[i].categoryDescription === 'Income Statement') {
                 $('#incomeStatementList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
-            if (data[i].category === 'Financial Statements') {
+            if (data[i].categoryDescription === 'Financial Statements') {
                 $('#financialStatementsList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
-            if (data[i].category === 'Price Target') {
+            if (data[i].categoryDescription === 'Price Target') {
                 $('#priceTargetList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
         }

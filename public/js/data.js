@@ -71,7 +71,7 @@ async function updateValue(metricId) {
 }
 
 //updating the Price Chart display
-function updatingChart(period, chartType, btnElemID) {
+function updatingChart(period) {
     $.get("/api/chart/" + period + "/" + ticker, response => {
         //calling the update Chart function from the priceChart.js using the response
         plotChart(response);

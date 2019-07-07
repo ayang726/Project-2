@@ -66,11 +66,6 @@ module.exports = function (app) {
     //========================================//
     app.get("/api/symbols", async (req, res) => {
         let result = await dataFetchManager.getSymbols();
-        //TEST CODE
-        result = {
-            dataSets =[],
-            dataSetsLabel =[]
-        }
         res.json({ data: result });
     });
 

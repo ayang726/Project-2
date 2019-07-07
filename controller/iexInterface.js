@@ -23,6 +23,15 @@ iexRequest.parseTestUrl = function (q) {
     return `${baseSanboxUrl}/${q}/?token=${TestToken}`;
 }
 
+//timer to automatically refresh the intra-day price chart every 5 seconds
+const filter = require("rxjs/operators");
+const timer = require("rxjs/observable/timer");
+//schedule this to run every 1 to 5 seconds
+const source = timer(1000, 5000);
+const intradaySched = source.pipe(filter(() => true));
+intradaySched.subscribe(() => { return axios.get(iexRequest.parseTestUrl("stock/aapl/intraday-prices")); });
+//end of timer
+
 iexRequest.test.symbols = () => { return axios.get(iexRequest.parseTestUrl("ref-data/symbols")); }
 iexRequest.prod.symbols = () => { return axios.get(iexRequest.parseProdUrl("ref-data/symbols")); }
 
@@ -35,7 +44,7 @@ iexRequest.test.estimates = () => { return axios.get(iexRequest.parseTestUrl("st
 iexRequest.test.income = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/income")); }
 iexRequest.test.financials = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/financials")); }
 
-iexRequest.test.intraday = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/intraday-prices")); }
+//iexRequest.test.intraday = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/intraday-prices")); }
 iexRequest.test.historicalPrices = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/chart/1m")); }
 
 module.exports = { iexRequest };

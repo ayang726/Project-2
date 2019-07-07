@@ -31,8 +31,17 @@ const db = require("./models");
 
 //Listening
 // This needs to be updated to console log a different URL!!!
-db.sequelize.sync({ force: false }).then(function () {
+
+// temporarily use this variable for dev purposes
+let recreatingTable = false;
+
+db.sequelize.sync({ force: recreatingTable }).then(function () {
     app.listen(PORT, () => {
         console.log("Server listening on http://localhost:" + PORT)
+
+        // to be rearranged properly, with seed and sequelize-cli seed
+        if (recreatingTable) {
+            require("./seeders/insertMetricsData.js")(db);
+        }
     });
 });

@@ -2,10 +2,13 @@
 // populate chart
 // populate news
 let routeArr = location.href.split("/");
+let route = routeArr[routeArr.length - 2];
 let ticker = routeArr[routeArr.length - 1];
 // updatingWatchlist();
 setTimeout(() => {
-    updatingTemplates();
+    if (route === "stock") {
+        updatingTemplates();
+    }
 }, 2000);
 // updating the watchlist
 function updatingWatchlist() {
@@ -60,8 +63,8 @@ function changeTemplate(templateID) {
             const html = `
             <div class="col-lg-6 metricsCell">
                 <p>
-                    <span class="metricsName">${metric.description}</span>
-                    <span class="metricsValue" data-id="${metric.id}" data-name="${metric.name}" data-category="${metric.category}" data-period="${metrics.period}"></span>
+                    <span class="metricsName">${metric.metricDescription}</span>
+                    <span class="metricsValue" data-id="${metric.id}"></span>
                 </p>
             </div>
             `;
@@ -77,16 +80,13 @@ function changeTemplate(templateID) {
 // this should be changed to update all metrics value simultanuously
 function updateMetrics() {
     let metricsValueDisplay = $(".metricsValue");
-    let reqObject = [];
+    let metricIds = [];
     $(metricsValueDisplay).each((index, metric) => {
         const metricId = $(metric).attr("data-id");
-        const period = $(metric).attr("data-period");
-        const metricCategory = $(metric).attr("data-category");
-        const metricName = $(metric).attr("data-name");
-        reqObject.push({ metricId, period, metricCategory, metricName })
+        metricIds.push(metricId)
         // $(metric).text(updateValue(id, ticker));
     });
-    $.post("/api/getMetricValues", { reqObject, ticker }, response => {
+    $.post("/api/getMetricValues", { metricIds, ticker }, response => {
 
     });
 }

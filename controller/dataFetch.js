@@ -22,17 +22,23 @@ dataFetchManager.getSymbols = async function () {
 
 }
 
-dataFetchManager.getMetrics = async function (metrics, ticker) {
-    metrics.forEach(async metric => {
+dataFetchManager.getMetrics = async function (metricIds, ticker) {
+    metricIds.forEach(async id => {
         let dbResponse = await db.TickerMetric.findOne({
             include: [
-                { model: db.Metric, where: { id: metric.metricId } },
+                { model: db.Metric, where: { id } },
                 { model: db.Ticker, where: { symbol: ticker } }
             ]
         });
-        if (!dbResponse) {
-            // use IEX to query data then store them into database
-        }
+        if (dbResponse) return dbResponse.value;
+        // use IEX to query data then store them into database
+        let metric = await db.Metric.findOne({ where: { id } })
+        console.log(metric.category);
+        let iexResponse = await iexRequest[metric.category](ticker);
+        let data = iexResponse.data;
+        console.log('===========================');
+        console.log(data);
+        console.log('===========================');
     });
 }
 

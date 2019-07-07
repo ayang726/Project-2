@@ -13,23 +13,33 @@ const baseSanboxUrl = "https://sandbox.iexapis.com/stable";
 
 let iexRequest = { test: {}, prod: {} };
 
-if (configKeys.enableProd) {
+console.log("production key loaded = " + configKeys.enableProd);
+
+if (configKeys.enableProd == false) {
+    console.log('============================');
+    console.log("Warning, Production API Key Loaded");
+    console.log('============================');
     iexRequest.parseUrl = function (q) {
+        console.log('============================');
         console.log("IEX production query called");
-        return `${baseUrl}/${q}/?token=${ProdToken}`;
+        // return `${baseUrl}/${q}/?token=${ProdToken}`;
+        return `${baseSanboxUrl}/${q}/?token=${TestToken}`;
     }
 } else {
     iexRequest.parseUrl = function (q) {
+        console.log('============================');
         console.log("IEX test query called");
         return `${baseSanboxUrl}/${q}/?token=${TestToken}`;
     }
 }
 
 iexRequest.parseTestUrl = function (q) {
+    console.log('============================');
     console.log("IEX test query called");
     return `${baseSanboxUrl}/${q}/?token=${TestToken}`;
 }
 iexRequest.parseProdUrl = function (q) {
+    console.log('============================');
     console.log("IEX production query called");
     return `${baseUrl}/${q}/?token=${ProdToken}`;
 }
@@ -37,15 +47,15 @@ iexRequest.parseProdUrl = function (q) {
 
 
 
-iexRequest.symbols = () => { return axios.get(iexRequest.parseUrl("ref-data/symbols")); }
-iexRequest.advancedStats = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/advanced-stats`)); }
-iexRequest.priceTarget = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/price-target`)); }
-iexRequest.balanceSheet = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/balance-sheet`)); }
-iexRequest.keyStats = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/stats`)); }
-iexRequest.cashFlow = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/cash-flow`)); }
-iexRequest.estimates = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/estimates`)); }
-iexRequest.income = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/income`)); }
-iexRequest.financials = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/financials`)); }
+iexRequest['symbols'] = () => { return axios.get(iexRequest.parseUrl("ref-data/symbols")); }
+iexRequest['advanced-stats'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/advanced-stats`)); }
+iexRequest['price-target'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/price-target`)); }
+iexRequest['balance-sheet'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/balance-sheet`)); }
+iexRequest['stats'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/stats`)); }
+iexRequest['cash-flow'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/cash-flow`)); }
+iexRequest['estimates'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/estimates`)); }
+iexRequest['income'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/income`)); }
+iexRequest['financials'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/financials`)); }
 
 module.exports = { iexRequest };
 

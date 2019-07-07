@@ -82,10 +82,10 @@ module.exports = function (app) {
                 // a list of metricsids
                 response.forEach(templateMetric => {
                     let id = templateMetric.dataValues.MetricId;
-                    let description = templateMetric.dataValues.Metric.description;
+                    let description = templateMetric.dataValues.Metric.metricDescription;
                     let period = templateMetric.dataValues.Metric.period;
                     let category = templateMetric.dataValues.Metric.category;
-                    let name = templateMetric.dataValues.Metric.metric;
+                    let name = templateMetric.dataValues.Metric.name;
                     responseObj.push({ id, description, period, category, name });
                 });
 
@@ -114,9 +114,9 @@ module.exports = function (app) {
     // });
 
     app.post("/api/getMetricValues", (req, res) => {
-        const reqObject = req.body.reqObject;
+        const metricIds = req.body.metricIds;
         const ticker = req.body.ticker;
-        dataFetchManager.getMetrics(reqObject, ticker);
+        dataFetchManager.getMetrics(metricIds, ticker);
     });
 
     // getting the chart data for the period requested for a symbol

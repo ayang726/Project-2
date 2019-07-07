@@ -14,6 +14,6 @@ module.exports = {
 
     },
     config: {
-        enableProd: process.env.ENABLE_PRODUCTION
+        enableProd: process.env.ENABLE_PRODUCTION,
     }
 }

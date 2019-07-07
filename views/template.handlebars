@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <h3>Create Template</h3>
+            <h3 class='templateTitle'>Create Template</h3>
         </div>
     </div>
 </div>
@@ -10,18 +10,18 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2 edit-cont">
-            <h5 id="viewTemplatesToEdit">Edit Template</h5>
+            <h6 id="viewTemplatesToEdit">Edit Template</h6>
             {{!-- <button class="btn btn-dark">Default</button> --}}
         </div>
         <div class="col-md-9">
-            <h5>Template Name</h5>
-            <div class="input-group mb-3">
+            <h6>Template Name</h6>
+            <div class="input-group mb-3 name-cont">
                 <input id="customTemplateName" type="text" class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-default">
             </div>
-            <h5>Metrics</h5>
+            <h6>Metrics</h6>
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-5 metric-cont">
                     <div id="accordion">
                         <div class="card">
                             <div class="card-header bg-dark" id="headingOne">
@@ -289,9 +289,9 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-12 text-center">
-                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"
-                    id='viewCustomTemplate'>
-                    View Your Custom Template
+                <button type="button" class="btn btn-warning font-weight-bold" data-toggle="modal"
+                    data-target="#exampleModal" id='viewCustomTemplate'>
+                    View Custom Template
                 </button>
             </div>
         </div>

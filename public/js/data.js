@@ -70,9 +70,11 @@ async function updateValue(metricId) {
     return await $.get("/api/tickerMetric/" + metricId + "/" + ticker);
 }
 
+//updating the Price Chart display
 function updatingChart(period) {
     $.get("/api/chart/" + period + "/" + ticker, response => {
-        //call the update Chart function from the priceChart.js using the response
+        //calling the update Chart function from the priceChart.js using the response
+        plotChart(response);
     });
 }
 

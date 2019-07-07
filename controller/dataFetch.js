@@ -19,8 +19,19 @@ dataFetchManager.getMetric = function (category, metric, symbol) {
 
 }
 
-dataFetchManager.getQuotes = function (period, symbol) {
-    console.log(`fetching quotes: ${period} for ${symbol}`);
+dataFetchManager.getQuotes = async function (timeRange, ticker) {
+    // get data from iex server
+    if (timeRange !== undefined && timeRange.length > 0) {
+        let response = await iexRequest.test.historicalPrices()
+        dataObject.daily.historicalPrices = response.data;
+        return dataObject.daily.historicalPrices;
+    }
+    else {
+        let response = await iexRequest.test.intraday()
+        dataObject.daily.intraday = response.data;
+        // returning data
+        return dataObject.daily.intraday;
+    }
 }
 
 dataFetchManager.getNews = function (symbol) {

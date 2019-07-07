@@ -34,7 +34,7 @@
                                 </h5>
                             </div>
 
-                            <div id="advancedStatsMetrics" class="collapse show" aria-labelledby="headingOne"
+                            <div id="advancedStatsMetrics" class="collapse" aria-labelledby="headingOne"
                                 data-parent="#accordion">
                                 <ul class="list-group" id="advancedStatsList">
                                     {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
@@ -66,7 +66,7 @@
                                 </h5>
                             </div>
 
-                            <div id="balanceSheetMetrics" class="collapse show" aria-labelledby="headingOne"
+                            <div id="balanceSheetMetrics" class="collapse" aria-labelledby="headingOne"
                                 data-parent="#accordion">
                                 <ul class="list-group" id='balanceSheetList'>
                                     {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
@@ -98,7 +98,7 @@
                                 </h5>
                             </div>
 
-                            <div id="cashFlowStatementMetrics" class="collapse show" aria-labelledby="headingOne"
+                            <div id="cashFlowStatementMetrics" class="collapse" aria-labelledby="headingOne"
                                 data-parent="#accordion">
                                 <ul class="list-group" id="cashFlowStatementList">
                                     {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
@@ -130,7 +130,7 @@
                                 </h5>
                             </div>
 
-                            <div id="incomeStatementMetrics" class="collapse show" aria-labelledby="headingOne"
+                            <div id="incomeStatementMetrics" class="collapse" aria-labelledby="headingOne"
                                 data-parent="#accordion">
                                 <ul class="list-group" id="incomeStatementList">
                                     {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
@@ -165,7 +165,7 @@
                             </h5>
                         </div>
 
-                        <div id="priceTargetMetrics" class="collapse show" aria-labelledby="headingOne"
+                        <div id="priceTargetMetrics" class="collapse" aria-labelledby="headingOne"
                             data-parent="#accordion">
                             <ul class="list-group" id='priceTargetList'>
                                 {{!-- <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
@@ -197,7 +197,7 @@
                             </h5>
                         </div>
 
-                        <div id="keyStatsMetrics" class="collapse show" aria-labelledby="headingOne"
+                        <div id="keyStatsMetrics" class="collapse" aria-labelledby="headingOne"
                             data-parent="#accordion">
                             <ul class="list-group" id='keyStatsList'>
                                 {{!-- <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
@@ -229,7 +229,7 @@
                             </h5>
                         </div>
 
-                        <div id="estimatesMetrics" class="collapse show" aria-labelledby="headingOne"
+                        <div id="estimatesMetrics" class="collapse" aria-labelledby="headingOne"
                             data-parent="#accordion">
                             <ul class="list-group" id='estimatesList'>
                                 {{!-- <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
@@ -260,7 +260,7 @@
                                 </h5>
                             </div>
 
-                            <div id="financialsMetrics" class="collapse show" aria-labelledby="headingOne"
+                            <div id="financialsMetrics" class="collapse" aria-labelledby="headingOne"
                                 data-parent="#accordion">
                                 <ul class="list-group" id='financialStatementsList'>
                                     {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
@@ -431,7 +431,19 @@
             console.log("these are the metrics");
             console.log(data);
             //check all the metric boxes for that template *********************************
+            //loop through all metric IDs in the get response and if the addmetric class has metric attribute equal to 
+            //the metrictocheck add attribute checked
+            console.log($(".addMetric").attr('metricId'));
+            for (var i = 0; i < data.length; i++) {
+                metricIdToCheck = data[i].MetricId;
 
+                console.log(metricIdToCheck);
+                console.log($(".addMetric").attr('metricId'));
+                if ($(".addMetric").attr('metricId') == metricIdToCheck) {
+                    $(".addMetric").attr('checked');
+                }
+
+            }
             //fill in the name input with that templates name
             console.log(data[0].templatename);
             $("#customTemplateName").val(data[0].templatename);

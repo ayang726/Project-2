@@ -7,8 +7,7 @@ module.exports = function (sequelize, DataTypes) {
         // },
         templatename: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
+            allowNull: false
         },
         active: {
             type: DataTypes.BOOLEAN,
@@ -24,7 +23,7 @@ module.exports = function (sequelize, DataTypes) {
 
 
     TemplateUser.associate = function (models) {
-        TemplateUser.hasMany(models.TemplateMetric);
+        TemplateUser.hasMany(models.TemplateMetric, { onDelete: 'cascade', hooks: true });
         models.TemplateUser.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false

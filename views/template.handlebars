@@ -490,7 +490,7 @@
 
         //create an array of objects to be posted into templatemetrics table
         for (var i = 0; i < customTemplateMetrics.length; i++) {
-            customTemplate = { uid: currentUser, templatename: customTemplateName, MetricId: customTemplateMetricIds[i] }
+            customTemplate = { UserUid: currentUser, templatename: customTemplateName, MetricId: customTemplateMetricIds[i] }
             templatePostArray.push(customTemplate)
             metricIdArray.push(customTemplateMetricIds[i])
             //console.log(customTemplate);

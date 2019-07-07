@@ -33,7 +33,7 @@ const db = require("./models");
 // This needs to be updated to console log a different URL!!!
 
 // temporarily use this variable for dev purposes
-let recreatingTable = true;
+let recreatingTable = false;
 
 db.sequelize.sync({ force: recreatingTable }).then(function () {
     app.listen(PORT, () => {

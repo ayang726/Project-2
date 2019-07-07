@@ -10,7 +10,7 @@ dataFetchManager.getSymbols = async function () {
         return databaseResponse
     };
     // get data from iex server
-    let iexResponse = await iexRequest.test.symbols()
+    let iexResponse = await iexRequest.symbols()
     // massaging data
     const symbols = iexResponse.data.filter(ticker => ticker.region === "US");
     // Storing data to database
@@ -22,9 +22,21 @@ dataFetchManager.getSymbols = async function () {
 
 }
 
-dataFetchManager.getMetric = function (category, metric, symbol) {
-    console.log(`fetching for metrics: ${category}: ${metric}, for ${symbol}`);
+dataFetchManager.getMetrics = async function (metrics, ticker) {
+    metrics.forEach(async metric => {
+        let dbResponse = await db.TickerMetric.findOne({
+            include: [
+                { model: db.Metric, where: { id: metric.metricId } },
+                { model: db.Ticker, where: { symbol: ticker } }
+            ]
+        });
+        if (!dbResponse) {
+            // use IEX to query data then store them into database
+        }
+    });
 }
+
+// dataFetchManager.getMetric("keyStats", "avg10Volume", "AAPL")
 
 dataFetchManager.getQuotes = function (period, symbol) {
     console.log(`fetching quotes: ${period} for ${symbol}`);

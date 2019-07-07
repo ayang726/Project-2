@@ -31,8 +31,7 @@ module.exports = function (sequelize, DataTypes) {
                     fields: ["UserUid", "TickerId"]
                 }
             ]
-        }
-    );
+        });
     RecentSearch.associate = function (models) {
         models.RecentSearch.belongsTo(models.User, {
             foreignKey: {

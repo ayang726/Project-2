@@ -84,7 +84,9 @@ module.exports = function (app) {
                     let id = templateMetric.dataValues.MetricId;
                     let description = templateMetric.dataValues.Metric.description;
                     let period = templateMetric.dataValues.Metric.period;
-                    responseObj.push({ id, description, period });
+                    let category = templateMetric.dataValues.Metric.category;
+                    let name = templateMetric.dataValues.Metric.metric;
+                    responseObj.push({ id, description, period, category, name });
                 });
 
                 res.json(responseObj);
@@ -101,14 +103,20 @@ module.exports = function (app) {
 
     // getthing the metric value for a symbol
     // this needs to be changed to one request pulling all metrics data 
-    app.get("/api/tickerMetric/:metricId/:ticker", (req, res) => {
-        db.Metric.findOne(({ where: { id: req.params.metricId } }))
-            .then(response => {
-                const metricCategory = response.category;
-                const metricName = response.metric;
-                // call dataFetch object's functiosn
-                res.json(dataFetchManager.getMetric(metricCategory, metricName, req.params.ticker));
-            });
+    // app.get("/api/tickerMetric/:metricId/:ticker", (req, res) => {
+    //     db.Metric.findOne(({ where: { id: req.params.metricId } }))
+    //         .then(response => {
+    //             const metricCategory = response.category;
+    //             const metricName = response.metric;
+    //             // call dataFetch object's functiosn
+    //             res.json(dataFetchManager.getMetric(metricCategory, metricName, req.params.ticker));
+    //         });
+    // });
+
+    app.post("/api/getMetricValues", (req, res) => {
+        const reqObject = req.body.reqObject;
+        const ticker = req.body.ticker;
+        dataFetchManager.getMetrics(reqObject, ticker);
     });
 
     // getting the chart data for the period requested for a symbol

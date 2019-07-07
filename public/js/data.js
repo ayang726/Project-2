@@ -1,7 +1,8 @@
 
 // populate chart
 // populate news
-let ticker;
+let routeArr = location.href.split("/");
+let ticker = routeArr[routeArr.length - 1];
 // updatingWatchlist();
 setTimeout(() => {
     updatingTemplates();
@@ -60,7 +61,7 @@ function changeTemplate(templateID) {
             <div class="col-lg-6 metricsCell">
                 <p>
                     <span class="metricsName">${metric.description}</span>
-                    <span class="metricsValue" data-id="${metric.id}" data-period="${metrics.period}"></span>
+                    <span class="metricsValue" data-id="${metric.id}" data-name="${metric.name}" data-category="${metric.category}" data-period="${metrics.period}"></span>
                 </p>
             </div>
             `;
@@ -76,23 +77,26 @@ function changeTemplate(templateID) {
 // this should be changed to update all metrics value simultanuously
 function updateMetrics() {
     let metricsValueDisplay = $(".metricsValue");
-    //this is only a temporary fix, so Lindsey sees something on the screen
-    let routeArr = location.href.split("/");
-    let ticker = routeArr[routeArr.length - 1];
+    let reqObject = [];
     $(metricsValueDisplay).each((index, metric) => {
-
-        const id = $(metric).attr("data-id");
+        const metricId = $(metric).attr("data-id");
         const period = $(metric).attr("data-period");
-        $(metric).text(updateValue(id, ticker));
+        const metricCategory = $(metric).attr("data-category");
+        const metricName = $(metric).attr("data-name");
+        reqObject.push({ metricId, period, metricCategory, metricName })
+        // $(metric).text(updateValue(id, ticker));
+    });
+    $.post("/api/getMetricValues", { reqObject, ticker }, response => {
+
     });
 }
 
 // updating the values of a metric
-function updateValue(metricId, ticker) {
-    $.get("/api/tickerMetric/" + metricId + "/" + ticker, response => {
-        return response;
-    });
-}
+// function updateValue(metricId, ticker) {
+//     $.get("/api/tickerMetric/" + metricId + "/" + ticker, response => {
+//         return response;
+//     });
+// }
 
 function updatingChart(period) {
     $.get("/api/chart/" + period + "/" + ticker, response => {

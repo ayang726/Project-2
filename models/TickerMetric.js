@@ -12,7 +12,14 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false
         }
-    });
+    }, {
+            indexes: [
+                {
+                    unique: true,
+                    fields: ["TickerId", "MetricId"]
+                }
+            ]
+        });
 
     TickerMetric.associate = function (models) {
         models.TickerMetric.belongsTo(models.Ticker, {
@@ -20,8 +27,6 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: false
             }
         });
-    }
-    TickerMetric.associate = function (models) {
         models.TickerMetric.belongsTo(models.Metric, {
             foreignKey: {
                 allowNull: false

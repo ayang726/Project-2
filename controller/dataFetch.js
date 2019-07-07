@@ -3,6 +3,7 @@ const db = require("../models");
 
 let dataFetchManager = {};
 
+
 dataFetchManager.getSymbols = async function () {
     // Get data from on the server storage
     let databaseResponse = await db.Ticker.findAll({});
@@ -24,6 +25,7 @@ dataFetchManager.getSymbols = async function () {
 
 dataFetchManager.getMetrics = async function (metricIds, ticker) {
     let responseObject = {};
+    if (!metricIds) return
     for (let i = 0; i < metricIds.length; i++) {
         const id = metricIds[i];
 
@@ -76,9 +78,9 @@ dataFetchManager.getMetrics = async function (metricIds, ticker) {
                                 value = data[metric.name].toString();
                             else
                                 value = null;
-                            console.log('msg 103');
-                            console.log(metric.name);
-                            console.log(value);
+                            // console.log('msg 103');
+                            // console.log(metric.name);
+                            // console.log(value);
                             bulkInsertion.push({ value, MetricId: metric.id, TickerId: tickerFound.id })
                         }
                     });
@@ -88,14 +90,14 @@ dataFetchManager.getMetrics = async function (metricIds, ticker) {
             });
 
             responseObject[id] = data[metric.name];
-            console.log('===========================');
+            // console.log('===========================');
         }
 
     };
 
-    console.log('msg - 102');
+    // console.log('msg - 102');
 
-    console.log(responseObject);
+    // console.log(responseObject);
     return { data: responseObject };
 
 }
@@ -118,6 +120,5 @@ dataFetchManager.getQuotes = async function (timeRange, ticker) {
 dataFetchManager.getNews = function (symbol) {
     console.log(`fetching news for ${symbol}`);
 }
-
 
 module.exports = { dataFetchManager };

@@ -15,7 +15,7 @@ let iexRequest = { test: {}, prod: {} };
 
 console.log("production key loaded = " + configKeys.enableProd);
 
-if (configKeys.enableProd == false) {
+if (configKeys.enableProd == "Enable Production") {
     console.log('============================');
     console.log("Warning, Production API Key Loaded");
     console.log('============================');

@@ -2,6 +2,9 @@ const dataFetchManager = require("../controller/dataFetch").dataFetchManager;
 const db = require("../models");
 
 module.exports = function (app) {
+    // THIS IS TEMPORARY
+    // TEST CODE
+ 
 
 
     //========================================//
@@ -44,7 +47,10 @@ module.exports = function (app) {
 
     // getthing the different symbols a user has in the watchlist
     app.get("/api/watchlist/:uid", (req, res) => {
-        db.UserTicker.findAll({ where: { UserUid: req.params.uid } })
+        db.UserTicker.findAll({
+            where: { UserUid: req.params.uid },
+            include: [{ model: db.Ticker }]
+        })
             .then(response => {
                 res.json(response);
             });
@@ -100,18 +106,6 @@ module.exports = function (app) {
         // console.log("results from apiRoutes" + result[0]);
         res.json({ data: result });
     });
-
-    // getthing the metric value for a symbol
-    // this needs to be changed to one request pulling all metrics data 
-    // app.get("/api/tickerMetric/:metricId/:ticker", (req, res) => {
-    //     db.Metric.findOne(({ where: { id: req.params.metricId } }))
-    //         .then(response => {
-    //             const metricCategory = response.category;
-    //             const metricName = response.metric;
-    //             // call dataFetch object's functiosn
-    //             res.json(dataFetchManager.getMetric(metricCategory, metricName, req.params.ticker));
-    //         });
-    // });
 
     app.post("/api/getMetricValues", async (req, res) => {
         const metricIds = req.body.metricIds;

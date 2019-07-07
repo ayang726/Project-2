@@ -8,24 +8,27 @@ let ticker = routeArr[routeArr.length - 1];
 setTimeout(() => {
     if (route === "stock") {
         updatingTemplates();
+        updatingWatchlist();
     }
 }, 2000);
 // updating the watchlist
 function updatingWatchlist() {
     $.get("/api/watchlist/" + currentUser, response => {
         let watchList = $(".watchList ul")[0];
-        watchList.html = "";
+        $(watchList).html = "";
         response.forEach(ticker => {
+            console.log(ticker);
+
             const html = `
         <li class="text-center">
             <hr>
-            <a href="/stock/${ticker.symbol}">
-            <h6>${ticker.symbol}</h6>
+            <a href="/stock/${ticker.Ticker.symbol}">
+            <h6>${ticker.Ticker.symbol}</h6>
             </a>
-            <h6 class="updated-quote live-data" ticker="${ticker.symbol}">-</h6>
+            <h6 class="updated-quote live-data" ticker="${ticker.Ticker.symbol}">-</h6>
         </li>
         `
-            watchList.append(html);
+            $(watchList).append(html);
         });
     });
 }
@@ -84,6 +87,7 @@ function updateMetrics() {
         metricIds.push(metricId)
         // $(metric).text(updateValue(id, ticker));
     });
+    if (metricIds.length === 0) return;
     $.post("/api/getMetricValues", { metricIds, ticker }, response => {
         $(metricsValueDisplay).each((index, metric) => {
             const metricId = $(metric).attr("data-id");

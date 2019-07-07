@@ -433,12 +433,12 @@
             //check all the metric boxes for that template *********************************
             //loop through all metric IDs in the get response and if the addmetric class has metric attribute equal to 
             //the metrictocheck add attribute checked
-            console.log($(".addMetric").attr('metricId'));
+            // console.log($(".addMetric").attr('metricId'));
             for (var i = 0; i < data.length; i++) {
                 metricIdToCheck = data[i].MetricId;
 
-                console.log(metricIdToCheck);
-                console.log($(".addMetric").attr('metricId'));
+                // console.log(metricIdToCheck);
+                // console.log($(".addMetric").attr('metricId'));
                 if ($(".addMetric").attr('metricId') == metricIdToCheck) {
                     $(".addMetric").attr('checked');
                 }

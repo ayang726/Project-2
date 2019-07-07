@@ -4,7 +4,7 @@ const db = require("../models");
 module.exports = function (app) {
     // THIS IS TEMPORARY
     // TEST CODE
- 
+
 
 
     //========================================//
@@ -120,7 +120,8 @@ module.exports = function (app) {
     });
 
     // Getting the news for a ticker symbol
-    app.get("/api/news/:ticker", (req, res) => {
-        res.json(dataFetchManager.getNews(ticker));
+    app.get("/api/news/:ticker", async (req, res) => {
+        let result = await dataFetchManager.getNews(req.params.ticker);
+        res.json(result);
     });
 };

@@ -9,6 +9,7 @@ setTimeout(() => {
     if (route === "stock") {
         updatingTemplates();
         updatingWatchlist();
+        updatingNews();
     }
 }, 2000);
 // updating the watchlist
@@ -108,17 +109,17 @@ function updatingChart(period) {
 
 function updatingNews() {
     let newsArticles = $("#newsArticles");
-    newsArticles.empty
+    newsArticles.html("");
     $.get("/api/news/" + ticker, response => {
         for (let i = 0; i < response.length < 4 ? response.length : 4; i++) {
             const html = `
             <div class="col-lg-3">
                 <div class="card newsArticle">
                     <div class="card-body">
-                        <a class="articleUrl" href="#">
-                            <h5 class="card-title articleTitle">${response[i].title}</h5>
+                        <a class="articleUrl" href="${response[i].url}">
+                            <h5 class="card-title articleTitle">${response[i].headline}</h5>
                         </a>
-                        <p class="card-text articleSummary">${response[i].summary}</p>
+                        <div class="card-text articleSummary">${response[i].summary}</div>
                     </div>
                 </div>
             </div>

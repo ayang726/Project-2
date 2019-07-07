@@ -117,8 +117,19 @@ dataFetchManager.getQuotes = async function (timeRange, ticker) {
     }
 }
 
-dataFetchManager.getNews = function (symbol) {
-    console.log(`fetching news for ${symbol}`);
+dataFetchManager.getNews = async function (symbol) {
+    let results = await iexRequest['news'](symbol);
+    // console.log(result.data);
+    results = results.data;
+    let responseObject = [];
+    results.forEach(news => {
+        responseObject.push({
+            headline: news.headline,
+            url: news.url,
+            summary: news.summary
+        })
+    });
+    return responseObject;
 }
 
 module.exports = { dataFetchManager };

@@ -12,14 +12,16 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true
         }
-    }, {
+    },
+        {
             indexes: [
                 {
                     unique: true,
                     fields: ["TickerId", "MetricId"]
                 }
             ]
-        });
+        }
+    );
 
     TickerMetric.associate = function (models) {
         models.TickerMetric.belongsTo(models.Ticker, {

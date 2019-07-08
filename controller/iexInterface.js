@@ -34,7 +34,7 @@ if (configKeys.enableProd == "Enable Production") {
 }
 
 iexRequest.parseTestUrl = function (q) {
-    console.log('============================');
+    console.log('parseTestUrl q============================>' + q);
     console.log("IEX test query called");
     return `${baseSanboxUrl}/${q}/?token=${TestToken}`;
 }
@@ -43,8 +43,6 @@ iexRequest.parseProdUrl = function (q) {
     console.log("IEX production query called");
     return `${baseUrl}/${q}/?token=${ProdToken}`;
 }
-
-
 
 
 iexRequest['symbols'] = () => { return axios.get(iexRequest.parseUrl("ref-data/symbols")); }
@@ -64,8 +62,15 @@ iexRequest['income'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock
 iexRequest['financials'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/financials/last`)); }
 
 // Chart quote requests
-iexRequest.test.intraday = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/intraday-prices")); }
-iexRequest.test.historicalPrices = () => { return axios.get(iexRequest.parseTestUrl("stock/aapl/chart/1m")); }
+iexRequest.test.intraday = async () => {
+    console.log("XXXXX intradayResp=======>intraday<========");
+    const intradayResp = await axios.get(iexRequest.parseTestUrl("stock/AAPL/intraday-prices"));
+    console.log("AAAA intradayResp=======>" + intradayResp.data + "<========");
+    return intradayResp.data;
+}
+iexRequest.test.historicalPrices = () => {
+    return axios.get(iexRequest.parseTestUrl("stock/aapl/chart/1m"));
+}
 
 module.exports = { iexRequest };
 

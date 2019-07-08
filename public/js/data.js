@@ -4,6 +4,7 @@
 let routeArr = location.href.split("/");
 let route = routeArr[routeArr.length - 2];
 let ticker = routeArr[routeArr.length - 1];
+
 // updatingWatchlist();
 setTimeout(() => {
     if (route === "stock") {
@@ -12,6 +13,7 @@ setTimeout(() => {
         updatingNews();
     }
 }, 2000);
+
 // updating the watchlist
 function updatingWatchlist() {
     $.get("/api/watchlist/" + currentUser, response => {
@@ -101,9 +103,27 @@ function updateMetrics() {
 }
 //updating the Price Chart display
 function updatingChart(period) {
+    console.log("updatingChart period========>" + period + "<========== ticker======>" + ticker);
     $.get("/api/chart/" + period + "/" + ticker, response => {
+        console.log("updatingChart response OBJECT========>" + response + "<==========");
         //calling the update Chart function from the priceChart.js using the response
-        plotChart(response);
+        var dataSetsLabel = [];
+        var dataSets = [];
+        console.log("DATA updatingChart response DATA========>" + response + "<==========");
+        for (var i = 0; i < response.length; i++) {
+            const dataObj = response[i];
+            console.log("DATA updatingChart dataObj========>" + dataObj + "<==========");
+            var volData = dataObj.close;
+            console.log("DATA updatingChart volData========>" + volData + "<==========");
+            const labelValue = dataObj.label;
+            if (!dataSetsLabel.includes(labelValue)) {
+                dataSetsLabel.push(labelValue);
+            }
+            const volNum = parseInt(volData);
+            dataSets.push(volNum);
+            console.log("volData:[" + i + "]: " + volNum);
+        }
+        plotChart(dataSets, dataSetsLabel);
     });
 }
 
@@ -126,6 +146,5 @@ function updatingNews() {
             `
             newsArticles.append(html);
         }
-
     });
 }

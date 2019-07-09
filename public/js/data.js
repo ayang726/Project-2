@@ -6,9 +6,9 @@ let route = routeArr[routeArr.length - 2];
 let ticker = routeArr[routeArr.length - 1];
 
 // refreshing the Price Chart every 5 minutes for intra-day
-setInterval(function () {
-    updatingChart('1d');
-}, 300000);
+// setInterval(function () {
+//     updatingChart('1d');
+// }, 300000);
 
 // updatingWatchlist();
 setTimeout(() => {
@@ -18,6 +18,7 @@ setTimeout(() => {
         updatingNews();
     }
 }, 2000);
+
 // updating the watchlist
 function updatingWatchlist() {
     $.get("/api/watchlist/" + currentUser, response => {
@@ -105,11 +106,25 @@ function updateMetrics() {
         });
     });
 }
-//updating the Price Chart display
+//updating the Price Chart 
 function updatingChart(period) {
+    //console.log("updatingChart period========>" + period + "<========== ticker======>" + ticker);
     $.get("/api/chart/" + period + "/" + ticker, response => {
-        //calling the update Chart function from the priceChart.js using the response
-        plotChart(response);
+        var dataSetsLabel = [];
+        var dataSets = [];
+        for (var i = 0; i < response.length; i++) {
+            const dataObj = response[i];
+            var volData = dataObj.close;
+            const labelValue = dataObj.label;
+            if (!dataSetsLabel.includes(labelValue)) {
+                dataSetsLabel.push(labelValue);
+            }
+            const volNum = parseInt(volData);
+            dataSets.push(volNum);
+            // console.log("volData:[" + i + "]: " + volNum);
+        }
+        //calling the plotChart function from the priceChart.js using the response above
+        plotChart(dataSets, dataSetsLabel);
     });
 }
 
@@ -132,6 +147,5 @@ function updatingNews() {
             `
             newsArticles.append(html);
         }
-
     });
 }

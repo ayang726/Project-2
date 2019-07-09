@@ -1,8 +1,8 @@
 function plotChart(dataSets, dataSetsLabel) {
     ctx = document.getElementById('myChart').getContext('2d');
     // TEST CODE:
-    dataSets = [];
-    dataSetsLabel = [];
+    //dataSets = [];
+    //dataSetsLabel = [];
     myChart = new Chart(ctx, {
         type: 'line',
         data: {

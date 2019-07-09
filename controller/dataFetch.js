@@ -102,18 +102,11 @@ dataFetchManager.getMetrics = async function (metricIds, ticker) {
 
 }
 
-dataFetchManager.getQuotes = async function (timeRange, ticker) {
+dataFetchManager.getQuotes = function (timeRange, symbol) {
     // get data from iex server
-    if (timeRange !== undefined && timeRange.length > 0) {
-        let response = await iexRequest.test.historicalPrices()
-        dataObject.daily.historicalPrices = response.data;
-        return dataObject.daily.historicalPrices;
-    }
-    else {
-        let response = await iexRequest.test.intraday()
-        dataObject.daily.intraday = response.data;
-        // returning data
-        return dataObject.daily.intraday;
+    if (timeRange !== undefined) {
+        let response = iexRequest.test.historicalPrices(timeRange, symbol)
+        return response;
     }
 }
 

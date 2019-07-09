@@ -4,6 +4,12 @@
 let routeArr = location.href.split("/");
 let route = routeArr[routeArr.length - 2];
 let ticker = routeArr[routeArr.length - 1];
+
+// refreshing the Price Chart every 5 minutes for intra-day
+setInterval(function () {
+    updatingChart('1d');
+}, 300000);
+
 // updatingWatchlist();
 setTimeout(() => {
     if (route === "stock") {

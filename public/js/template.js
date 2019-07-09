@@ -1,9 +1,8 @@
-//////////////////////////api get metrics from db to display////////////////////////////////////
-
+//api call to get metrics from db to display in UI
 $.get("/api/metric", function (data) {
     console.log(data);
+
     //create the ui, put the metric ids in an attribute
-    console.log(data[0]);
     for (var i = 0; i < data.length; i++) {
         if (data[i].categoryDescription === 'Advanced Stats') {
             $('#advancedStatsList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
@@ -184,11 +183,11 @@ $("#viewCustomTemplate").on("click", function () {
 
 });
 
-////////////////////////////////////modal////////////////////////////////////////////////////////////
+//modal
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
 })
-//////////////////////////////////////////list of metrics toggle///////////////////////////////////////////////////////////////////////
+//list of metrics toggle
 $("#advancedStats").on("click", function () {
     $('#advancedStatsMetrics').toggle();
 })

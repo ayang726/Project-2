@@ -116,10 +116,9 @@ module.exports = function (app) {
 
     // getting the chart data for the period requested for a symbol
     app.get("/api/chart/:period/:ticker", async (req, res) => {
-        console.log("APIROUTES req.params.period=====>" + req.params.period + "<======= req.params.ticker=======>" + req.params.ticker + "<=======")
-        //const jsonResp = res.json(dataFetchManager.getQuotes(req.params.period, req.params.ticker));
+        //console.log("APIROUTES req.params.period=====>" + req.params.period + "<======= req.params.ticker=======>" + req.params.ticker + "<=======")
         const jsonRespObj = await dataFetchManager.getQuotes(req.params.period, req.params.ticker);
-        console.log("jsonRespObj stringify=====>" + Object.getOwnPropertyNames(jsonRespObj[0]) + "<=======");
+        //console.log("jsonRespObj stringify=====>" + Object.getOwnPropertyNames(jsonRespObj[0]) + "<=======");
         return res.json(jsonRespObj);
     });
 

@@ -62,14 +62,29 @@ iexRequest['income'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock
 iexRequest['financials'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/financials/last`)); }
 
 // Chart quote requests
-iexRequest.test.intraday = async () => {
-    console.log("XXXXX intradayResp=======>intraday<========");
-    const intradayResp = await axios.get(iexRequest.parseTestUrl("stock/AAPL/intraday-prices"));
-    console.log("AAAA intradayResp=======>" + intradayResp.data + "<========");
-    return intradayResp.data;
+iexRequest.test.historicalPrices1d = async () => {
+    const historicalPriceResponse = await axios.get(iexRequest.parseTestUrl(`stock/aapl/chart/1d`));
+    return historicalPriceResponse.data;
 }
-iexRequest.test.historicalPrices = () => {
-    return axios.get(iexRequest.parseTestUrl("stock/aapl/chart/1m"));
+
+iexRequest.test.historicalPrices1m = async () => {
+    const historicalPriceResponse = await axios.get(iexRequest.parseTestUrl(`stock/aapl/chart/1m`));
+    return historicalPriceResponse.data;
+}
+
+iexRequest.test.historicalPrices3m = async () => {
+    const historicalPriceResponse = await axios.get(iexRequest.parseTestUrl(`stock/aapl/chart/3m`));
+    return historicalPriceResponse.data;
+}
+
+iexRequest.test.historicalPrices1y = async () => {
+    const historicalPriceResponse = await axios.get(iexRequest.parseTestUrl(`stock/aapl/chart/1y`));
+    return historicalPriceResponse.data;
+}
+
+iexRequest.test.historicalPrices5y = async () => {
+    const historicalPriceResponse = await axios.get(iexRequest.parseTestUrl(`stock/aapl/chart/5y`));
+    return historicalPriceResponse.data;
 }
 
 module.exports = { iexRequest };

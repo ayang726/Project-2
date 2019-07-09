@@ -101,20 +101,19 @@ function updateMetrics() {
         });
     });
 }
-//updating the Price Chart display
+//updating the Price Chart 
 function updatingChart(period) {
-    console.log("updatingChart period========>" + period + "<========== ticker======>" + ticker);
+    //console.log("updatingChart period========>" + period + "<========== ticker======>" + ticker);
     $.get("/api/chart/" + period + "/" + ticker, response => {
-        console.log("updatingChart response OBJECT========>" + response + "<==========");
-        //calling the update Chart function from the priceChart.js using the response
+        //  console.log("updatingChart response OBJECT========>" + response + "<==========");
         var dataSetsLabel = [];
         var dataSets = [];
-        console.log("DATA updatingChart response DATA========>" + response + "<==========");
+        //console.log("DATA updatingChart response DATA========>" + response + "<==========");
         for (var i = 0; i < response.length; i++) {
             const dataObj = response[i];
-            console.log("DATA updatingChart dataObj========>" + dataObj + "<==========");
+            //console.log("DATA updatingChart dataObj========>" + dataObj + "<==========");
             var volData = dataObj.close;
-            console.log("DATA updatingChart volData========>" + volData + "<==========");
+            //console.log("DATA updatingChart volData========>" + volData + "<==========");
             const labelValue = dataObj.label;
             if (!dataSetsLabel.includes(labelValue)) {
                 dataSetsLabel.push(labelValue);
@@ -123,7 +122,10 @@ function updatingChart(period) {
             dataSets.push(volNum);
             console.log("volData:[" + i + "]: " + volNum);
         }
+        //calling the plotChart function from the priceChart.js using the response above
         plotChart(dataSets, dataSetsLabel);
+        var dataSetsLabel = [];
+        var dataSets = [];
     });
 }
 

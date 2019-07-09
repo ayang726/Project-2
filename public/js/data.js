@@ -5,14 +5,11 @@ let routeArr = location.href.split("/");
 let route = routeArr[routeArr.length - 2];
 let ticker = routeArr[routeArr.length - 1];
 
-<<<<<<< HEAD
-=======
 // refreshing the Price Chart every 5 minutes for intra-day
-setInterval(function () {
-    updatingChart('1d');
-}, 300000);
+// setInterval(function () {
+//     updatingChart('1d');
+// }, 300000);
 
->>>>>>> master
 // updatingWatchlist();
 setTimeout(() => {
     if (route === "stock") {
@@ -124,7 +121,7 @@ function updatingChart(period) {
             }
             const volNum = parseInt(volData);
             dataSets.push(volNum);
-            console.log("volData:[" + i + "]: " + volNum);
+            // console.log("volData:[" + i + "]: " + volNum);
         }
         //calling the plotChart function from the priceChart.js using the response above
         plotChart(dataSets, dataSetsLabel);

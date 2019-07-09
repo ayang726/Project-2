@@ -102,30 +102,10 @@ dataFetchManager.getMetrics = async function (metricIds, ticker) {
 
 }
 
-dataFetchManager.getQuotes = function (timeRange, ticker) {
+dataFetchManager.getQuotes = function (timeRange, symbol) {
     // get data from iex server
-    if (timeRange !== undefined && timeRange.length > 0 && timeRange === "1d") {
-        let response = iexRequest.test.historicalPrices1d()
-        return response;
-    }
-    if (timeRange !== undefined && timeRange.length > 0 && timeRange === "1m") {
-        let response = iexRequest.test.historicalPrices1m()
-        return response;
-    }
-    if (timeRange !== undefined && timeRange.length > 0 && timeRange === "3m") {
-        let response = iexRequest.test.historicalPrices3m()
-        return response;
-    }
-    if (timeRange !== undefined && timeRange.length > 0 && timeRange === "1y") {
-        let response = iexRequest.test.historicalPrices1y()
-        return response;
-    }
-    if (timeRange !== undefined && timeRange.length > 0 && timeRange === "5y") {
-        let response = iexRequest.test.historicalPrices5y()
-        return response;
-    }
-    else {
-        let response = iexRequest.test.historicalPrices()
+    if (timeRange !== undefined) {
+        let response = iexRequest.test.historicalPrices(timeRange, symbol)
         return response;
     }
 }

@@ -124,8 +124,6 @@ function updatingChart(period) {
         }
         //calling the plotChart function from the priceChart.js using the response above
         plotChart(dataSets, dataSetsLabel);
-        var dataSetsLabel = [];
-        var dataSets = [];
     });
 }
 

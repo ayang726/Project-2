@@ -95,3 +95,29 @@ nav form{
     margin: 0;
     border: none;
 }
+
+/* template page */
+
+.edit-cont {
+    border-width: 1px;
+    border-style: solid;
+    border-color:lightgrey;
+    padding: 10px;
+}
+
+#viewCustomTemplate {
+    margin: 10px;
+    padding: 20px;
+}
+/* .metric-cont {
+    margin: 10px
+} */
+
+/* .name-cont {
+    margin: 20px;
+} */
+
+.templateTitle {
+    margin: 30px;
+
+}

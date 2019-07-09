@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <h3>Create Template</h3>
+            <h3 class='templateTitle'>Create Template</h3>
         </div>
     </div>
 </div>
@@ -9,19 +9,19 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
-            <h4 id="viewTemplatesToEdit">Edit Template</h4>
+        <div class="col-md-2 edit-cont">
+            <h6 id="viewTemplatesToEdit">Edit Template</h6>
             {{!-- <button class="btn btn-dark">Default</button> --}}
         </div>
         <div class="col-md-9">
-            <h4>Template Name</h4>
-            <div class="input-group mb-3">
+            <h6>Template Name</h6>
+            <div class="input-group mb-3 name-cont">
                 <input id="customTemplateName" type="text" class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-default">
             </div>
-            <h4>Metrics</h4>
+            <h6>Metrics</h6>
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-5 metric-cont">
                     <div id="accordion">
                         <div class="card">
                             <div class="card-header bg-dark" id="headingOne">
@@ -34,7 +34,7 @@
                                 </h5>
                             </div>
 
-                            <div id="advancedStatsMetrics" class="collapse show" aria-labelledby="headingOne"
+                            <div id="advancedStatsMetrics" class="collapse" aria-labelledby="headingOne"
                                 data-parent="#accordion">
                                 <ul class="list-group" id="advancedStatsList">
                                     {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
@@ -66,7 +66,7 @@
                                 </h5>
                             </div>
 
-                            <div id="balanceSheetMetrics" class="collapse show" aria-labelledby="headingOne"
+                            <div id="balanceSheetMetrics" class="collapse" aria-labelledby="headingOne"
                                 data-parent="#accordion">
                                 <ul class="list-group" id='balanceSheetList'>
                                     {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
@@ -98,7 +98,7 @@
                                 </h5>
                             </div>
 
-                            <div id="cashFlowStatementMetrics" class="collapse show" aria-labelledby="headingOne"
+                            <div id="cashFlowStatementMetrics" class="collapse" aria-labelledby="headingOne"
                                 data-parent="#accordion">
                                 <ul class="list-group" id="cashFlowStatementList">
                                     {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
@@ -130,7 +130,7 @@
                                 </h5>
                             </div>
 
-                            <div id="incomeStatementMetrics" class="collapse show" aria-labelledby="headingOne"
+                            <div id="incomeStatementMetrics" class="collapse" aria-labelledby="headingOne"
                                 data-parent="#accordion">
                                 <ul class="list-group" id="incomeStatementList">
                                     {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
@@ -165,7 +165,7 @@
                             </h5>
                         </div>
 
-                        <div id="priceTargetMetrics" class="collapse show" aria-labelledby="headingOne"
+                        <div id="priceTargetMetrics" class="collapse" aria-labelledby="headingOne"
                             data-parent="#accordion">
                             <ul class="list-group" id='priceTargetList'>
                                 {{!-- <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
@@ -197,7 +197,7 @@
                             </h5>
                         </div>
 
-                        <div id="keyStatsMetrics" class="collapse show" aria-labelledby="headingOne"
+                        <div id="keyStatsMetrics" class="collapse" aria-labelledby="headingOne"
                             data-parent="#accordion">
                             <ul class="list-group" id='keyStatsList'>
                                 {{!-- <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
@@ -229,7 +229,7 @@
                             </h5>
                         </div>
 
-                        <div id="estimatesMetrics" class="collapse show" aria-labelledby="headingOne"
+                        <div id="estimatesMetrics" class="collapse" aria-labelledby="headingOne"
                             data-parent="#accordion">
                             <ul class="list-group" id='estimatesList'>
                                 {{!-- <li class="list-group-item metricName"><label><input type="checkbox" class='addMetric'
@@ -260,7 +260,7 @@
                                 </h5>
                             </div>
 
-                            <div id="financialsMetrics" class="collapse show" aria-labelledby="headingOne"
+                            <div id="financialsMetrics" class="collapse" aria-labelledby="headingOne"
                                 data-parent="#accordion">
                                 <ul class="list-group" id='financialStatementsList'>
                                     {{!-- <li class="list-group-item metricName"><label><input type="checkbox"
@@ -289,9 +289,9 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-12 text-center">
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal"
-                    id='viewCustomTemplate'>
-                    View Your Custom Template
+                <button type="button" class="btn btn-warning font-weight-bold" data-toggle="modal"
+                    data-target="#exampleModal" id='viewCustomTemplate'>
+                    View Custom Template
                 </button>
             </div>
         </div>
@@ -328,11 +328,11 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" id="closeTemplateModal" class="btn btn-dark" data-dismiss="modal">Close</button>
-                <button class="btn btn-dark" id="saveCustomTemplateButton" type="submit">Save</button>
-                <button class="btn btn-dark" id="updateCustomTemplateButton" style="display:none"
+                {{!-- <button type="button" id="closeTemplateModal" class="btn btn-dark" data-dismiss="modal">Close</button> --}}
+                <button class="btn btn-warning" id="saveCustomTemplateButton" type="submit">Save</button>
+                <button class="btn btn-warning" id="updateCustomTemplateButton" style="display:none"
                     type="submit">Update</button>
-                <button class="btn btn-dark" id="deleteCustomTemplateButton" type="submit">Delete</button>
+                <button class="btn btn-warning" id="deleteCustomTemplateButton" type="submit">Delete</button>
             </div>
         </div>
     </div>
@@ -350,44 +350,44 @@
         //     //create the ui, put the metric ids in an attribute
         console.log(data[0]);
         for (var i = 0; i < data.length; i++) {
-            if (data[i].category === 'Advanced Stats') {
+            if (data[i].categoryDescription === 'Advanced Stats') {
                 $('#advancedStatsList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' id='advancedStats${i}' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
-            if (data[i].category === 'Balance Sheet') {
+            if (data[i].categoryDescription === 'Balance Sheet') {
                 $('#balanceSheetList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' id='balanceSheet${i}' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
-            if (data[i].category === 'Key Stats') {
+            if (data[i].categoryDescription === 'Key Stats') {
                 $('#keyStatsList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' id='keyStats${i}' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
-            if (data[i].category === 'Cash Flow Statement') {
+            if (data[i].categoryDescription === 'Cash Flow Statement') {
                 $('#cashFlowStatementList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' id='cashFlowStatement${i}' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
-            if (data[i].category === 'Estimates') {
+            if (data[i].categoryDescription === 'Estimates') {
                 $('#estimatesList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' id='estimates${i}' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
-            if (data[i].category === 'Income Statement') {
+            if (data[i].categoryDescription === 'Income Statement') {
                 $('#incomeStatementList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' id='incomeStatementList${i}' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
-            if (data[i].category === 'Financial Statements') {
+            if (data[i].categoryDescription === 'Financial Statements') {
                 $('#financialStatementsList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' id='financialStatementsList${i}' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
-            if (data[i].category === 'Price Target') {
+            if (data[i].categoryDescription === 'Price Target') {
                 $('#priceTargetList').append(`<li class="list-group-item metricName"><label><input type="checkbox"
-                                                class='addMetric' name='metric' metricId='${data[i].id}' value='${data[i].description}'> ${data[i].description}</label>
+                                                class='addMetric' id='priceTarget${i}' name='metric' metricId='${data[i].id}' value='${data[i].metricDescription}'> ${data[i].metricDescription}</label>
                                     </li>`)
             }
         }
@@ -399,7 +399,7 @@
     //get all data from templateuser to make the buttons still need to make the route - need to work in user id... add where clause to route
     $.get("/api/templateuser", function (data) {
         for (var i = 0; i < data.length; i++) {
-            $("#viewTemplatesToEdit").append(`<button onclick="viewExistingTemplate(this)" value="${data[i].id}" type="button" class="list-group-item list-group-item-action lead editingTemplate">${data[i].templatename}</button>`);
+            $("#viewTemplatesToEdit").append(`<button onclick="viewExistingTemplate(this)" value="${data[i].id}" type="button" class="list-group-item list-group-item-action lead editingTemplate bg-warning">${data[i].templatename}</button>`);
         }
     });
 
@@ -431,7 +431,29 @@
             console.log("these are the metrics");
             console.log(data);
             //check all the metric boxes for that template *********************************
+            //loop through all metric IDs in the get response and if the addmetric class has metric attribute equal to 
+            //the metrictocheck add attribute checked
+            // console.log($(".addMetric").attr('metricId'));
 
+
+
+
+            for (var i = 0; i < data.length; i++) {
+                metricIdToCheck = data[i].MetricId;
+
+                console.log(metricIdToCheck);
+                console.log($(".addMetric").attr('metricId'));
+
+                //  if ($(".addMetric").attr('metricId') == metricIdToCheck) {
+                //      $(".addMetric").attr('checked', '');
+                //  };
+
+                $(".addMetric").each(function () {
+                    if ($(this).attr('metricId') == metricIdToCheck) {
+                        $(this).attr('checked', '');
+                    };
+                })
+            };
             //fill in the name input with that templates name
             console.log(data[0].templatename);
             $("#customTemplateName").val(data[0].templatename);
@@ -490,7 +512,7 @@
 
         //create an array of objects to be posted into templatemetrics table
         for (var i = 0; i < customTemplateMetrics.length; i++) {
-            customTemplate = { uid: currentUser, templatename: customTemplateName, MetricId: customTemplateMetricIds[i] }
+            customTemplate = { UserUid: currentUser, templatename: customTemplateName, MetricId: customTemplateMetricIds[i] }
             templatePostArray.push(customTemplate)
             metricIdArray.push(customTemplateMetricIds[i])
             //console.log(customTemplate);

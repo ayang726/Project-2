@@ -10,7 +10,7 @@ module.exports = function (app) {
         console.log(req.body[0]);
         db.TemplateUser.create({
             templatename: req.body[0].templatename,
-            UserUid: req.body[0].uid,
+            UserUid: req.body[0].UserUid,
         }).then(response => {
             console.log(response);
 
@@ -69,7 +69,7 @@ module.exports = function (app) {
         console.log(req.body[0]);
         db.TemplateUser.create({
             templatename: req.body[0].templatename,
-            UserUid: req.body[0].uid
+            UserUid: req.body[0].UserUid
         }).then(response => {
             console.log(response);
 

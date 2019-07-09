@@ -19,15 +19,20 @@
 
 module.exports = function (sequelize, DataTypes) {
     var RecentSearch = sequelize.define("RecentSearch", {
-        uid: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
         // tickerid: {
         //     type: DataTypes.STRING,
         //     allowNull: false
         // }
-    });
+    },
+        {
+            indexes: [
+                {
+                    unique: true,
+                    fields: ["UserUid", "TickerId"]
+                }
+            ]
+        }
+    );
     RecentSearch.associate = function (models) {
         models.RecentSearch.belongsTo(models.User, {
             foreignKey: {

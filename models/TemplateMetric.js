@@ -15,7 +15,7 @@ module.exports = function (sequelize, DataTypes) {
         models.TemplateMetric.belongsTo(models.TemplateUser, {
             foreignKey: {
                 allowNull: false
-            }
+            },
         });
     }
 

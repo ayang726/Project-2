@@ -105,15 +105,11 @@ function updateMetrics() {
 function updatingChart(period) {
     //console.log("updatingChart period========>" + period + "<========== ticker======>" + ticker);
     $.get("/api/chart/" + period + "/" + ticker, response => {
-        //  console.log("updatingChart response OBJECT========>" + response + "<==========");
         var dataSetsLabel = [];
         var dataSets = [];
-        //console.log("DATA updatingChart response DATA========>" + response + "<==========");
         for (var i = 0; i < response.length; i++) {
             const dataObj = response[i];
-            //console.log("DATA updatingChart dataObj========>" + dataObj + "<==========");
             var volData = dataObj.close;
-            //console.log("DATA updatingChart volData========>" + volData + "<==========");
             const labelValue = dataObj.label;
             if (!dataSetsLabel.includes(labelValue)) {
                 dataSetsLabel.push(labelValue);

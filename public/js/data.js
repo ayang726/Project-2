@@ -5,11 +5,6 @@ let routeArr = location.href.split("/");
 let route = routeArr[routeArr.length - 2];
 let ticker = routeArr[routeArr.length - 1];
 
-// refreshing the Price Chart every 5 minutes for intra-day
-// setInterval(function () {
-//     updatingChart('1d');
-// }, 300000);
-
 // updatingWatchlist();
 setTimeout(() => {
     if (route === "stock") {
@@ -107,7 +102,10 @@ function updateMetrics() {
     });
 }
 //updating the Price Chart 
+let updateChartTimer1D;
+
 function updatingChart(period) {
+    if (updateChartTimer1D) clearTimeout(updateChartTimer1D)
     //console.log("updatingChart period========>" + period + "<========== ticker======>" + ticker);
     $.get("/api/chart/" + period + "/" + ticker, response => {
         var dataSetsLabel = [];
@@ -126,6 +124,11 @@ function updatingChart(period) {
         //calling the plotChart function from the priceChart.js using the response above
         plotChart(dataSets, dataSetsLabel);
     });
+    if (period === "1d") {
+        updateChartTimer1D = setTimeout(() => {
+            updatingChart(period)
+        }, 5 * 1000);
+    }
 }
 
 function updatingNews() {

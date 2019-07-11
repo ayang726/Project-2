@@ -21,7 +21,6 @@ function updatingWatchlist() {
         $(watchList).html = "";
         response.forEach(ticker => {
             console.log(ticker);
-
             const html = `
         <li class="text-center">
             <hr>
@@ -46,8 +45,6 @@ function updatingTemplates() {
             $(metrics).append(html);
             return;
         }
-
-
         let templateDropdown = $("#templateList");
         templateDropdown.empty();
         response.forEach(template => {
@@ -62,7 +59,6 @@ function updatingTemplates() {
 function changeTemplate(templateID) {
     let metrics = $("#metrics .row")[0];
     $(metrics).empty();
-
     $.get("/api/template/" + templateID, response => {
         // console.log(response);
         response.forEach(metric => {
@@ -78,7 +74,6 @@ function changeTemplate(templateID) {
         updateMetrics();
     });
 }
-
 
 // update metrics list according to the template selected
 // this should be changed to update all metrics value simultanuously
@@ -101,12 +96,12 @@ function updateMetrics() {
         });
     });
 }
+
+
 //updating the Price Chart 
 let updateChartTimer1D;
-
 function updatingChart(period) {
     if (updateChartTimer1D) clearTimeout(updateChartTimer1D)
-    //console.log("updatingChart period========>" + period + "<========== ticker======>" + ticker);
     $.get("/api/chart/" + period + "/" + ticker, response => {
         var dataSetsLabel = [];
         var dataSets = [];
@@ -119,16 +114,24 @@ function updatingChart(period) {
             }
             const volNum = parseInt(volData);
             dataSets.push(volNum);
-            // console.log("volData:[" + i + "]: " + volNum);
         }
         //calling the plotChart function from the priceChart.js using the response above
-        plotChart(dataSets, dataSetsLabel);
+        plotChart(dataSets, dataSetsLabel); //plot new graph
     });
     if (period === "1d") {
         updateChartTimer1D = setTimeout(() => {
             updatingChart(period)
         }, 5 * 1000);
     }
+    updatingPriceDisplay();
+}
+
+//Displaying the latest Stock Price 
+function updatingPriceDisplay() {
+    $.get("/api/price/" + ticker, response => {
+        let priceDisplay = $("#priceDisplay");
+        priceDisplay.html("$" + response);
+    });
 }
 
 function updatingNews() {

@@ -110,6 +110,12 @@ dataFetchManager.getQuotes = function (timeRange, symbol) {
     }
 }
 
+dataFetchManager.getLatestPrice = async function (symbol) {
+    let response = await iexRequest['price'](symbol);
+    let result = JSON.stringify(response.data);
+    return result;
+}
+
 dataFetchManager.getNews = async function (symbol) {
     let results = await iexRequest['news'](symbol);
     // console.log(result.data);

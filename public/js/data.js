@@ -12,7 +12,7 @@ setTimeout(() => {
         updatingWatchlist();
         updatingNews();
     }
-}, 2000);
+}, 500);
 
 // updating the watchlist
 function updatingWatchlist() {

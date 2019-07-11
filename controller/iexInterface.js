@@ -47,7 +47,9 @@ iexRequest.parseProdUrl = function (q) {
 
 iexRequest['symbols'] = () => { return axios.get(iexRequest.parseUrl("ref-data/symbols")); }
 iexRequest['news'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/news/last/4`)); }
-iexRequest['price'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/price`)); }
+iexRequest['price'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/quote/latestPrice`)); }
+iexRequest['price1'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/quote/open`)); }
+iexRequest['price2'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/quote/close`)); }
 // iexRequest['news']("AAPL").then(response => {
 //     console.log(response.data);
 

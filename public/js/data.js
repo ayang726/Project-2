@@ -125,13 +125,29 @@ function updatingChart(period) {
         }, 5 * 1000);
     }
     updatingPriceDisplay();
+    updatingOpenPriceDisplay();
+    updatingClosingPriceDisplay();
 }
 
 //Displaying the latest Stock Price 
 function updatingPriceDisplay() {
     $.get("/api/price/" + ticker, response => {
         let priceDisplay = $("#priceDisplay");
-        priceDisplay.html("$" + response);
+        priceDisplay.html("Today: $" + response);
+    });
+}
+
+function updatingOpenPriceDisplay() {
+    $.get("/api/price1/" + ticker, response => {
+        let priceDisplayOpen = $("#openPriceDisplay");
+        priceDisplayOpen.html("Opening: $" + response);
+    });
+}
+
+function updatingClosingPriceDisplay() {
+    $.get("/api/price2/" + ticker, response => {
+        let priceDisplayClose = $("#closingPriceDisplay");
+        priceDisplayClose.html("Closing: $" + response);
     });
 }
 

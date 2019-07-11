@@ -116,8 +116,14 @@ module.exports = function (app) {
 
     // getting the chart data for the period requested for a symbol
     app.get("/api/chart/:period/:ticker", async (req, res) => {
-        const jsonRespObj = await dataFetchManager.getQuotes(req.params.period, req.params.ticker);
-        return res.json(jsonRespObj);
+        const chartRespObj = await dataFetchManager.getQuotes(req.params.period, req.params.ticker);
+        return res.json(chartRespObj);
+    });
+
+    // getting the latest price data requested for a symbol
+    app.get("/api/price/:ticker", async (req, res) => {
+        const priceRespObj = await dataFetchManager.getLatestPrice(req.params.ticker);
+        return res.json(priceRespObj);
     });
 
     // Getting the news for a ticker symbol

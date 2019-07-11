@@ -47,6 +47,7 @@ iexRequest.parseProdUrl = function (q) {
 
 iexRequest['symbols'] = () => { return axios.get(iexRequest.parseUrl("ref-data/symbols")); }
 iexRequest['news'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/news/last/4`)); }
+iexRequest['price'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/price`)); }
 // iexRequest['news']("AAPL").then(response => {
 //     console.log(response.data);
 
@@ -61,7 +62,7 @@ iexRequest['estimates'] = (symbol) => { return axios.get(iexRequest.parseUrl(`st
 iexRequest['income'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/income/last`)); }
 iexRequest['financials'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/financials/last`)); }
 
-// Chart quote requests
+// Chart quote request
 iexRequest.test.historicalPrices = async (timeRange, symbol) => {
     const historicalPriceResponse = await axios.get(iexRequest.parseTestUrl(`stock/${symbol}/chart/${timeRange}`));
     return historicalPriceResponse.data;

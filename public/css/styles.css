@@ -114,3 +114,14 @@ nav form{
     margin: 30px;
 
 }
+
+#customTemplateName {
+margin-bottom: 0px;
+}
+
+#error {
+margin-top: 0px;
+color: red;
+position: relative;
+bottom: 15px;
+}

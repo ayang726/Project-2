@@ -1,3 +1,23 @@
+//attempt at adding validation
+// (function () {
+//     'use strict';
+//     window.addEventListener('load', function () {
+//         // Fetch all the forms we want to apply custom Bootstrap validation styles to
+//         var forms = $(".needs-validation");
+//         // Loop over them and prevent submission
+
+//         var validation = Array.prototype.filter.call(forms, function (form) {
+//             $("#viewCustomTemplate").on("click", function (event) {
+//                 if (form.checkValidity() === false) {
+//                     event.preventDefault();
+//                     event.stopPropagation();
+//                 }
+//                 form.classList.add('was-validated');
+//             }, false);
+//         });
+//     }, false);
+// })();
+
 //api call to get metrics from db to display in UI
 $.get("/api/metric", function (data) {
     console.log(data);
@@ -87,8 +107,23 @@ var uid;
 var customTemplateMetricIds = [];
 
 
+function validateForm() {
+    if ($("#customTemplateName").val() === "") {
+        $("#viewCustomTemplate").attr("data-target", "");
+        $("#customTemplateName").addClass("is-invalid");
+        $("#error").show();
+
+    } else {
+        $("#viewCustomTemplate").attr("data-target", "#exampleModal");
+        $("#customTemplateName").removeClass("is-invalid");
+        $("#error").hide();
+
+    };
+}
+
 //on click view custom template, checked metrics are made into table on modal
 $("#viewCustomTemplate").on("click", function () {
+    validateForm();
     console.log($(this).val());
     var metricIsChecked = $(".addMetric").is(":checked");
     console.log(metricIsChecked);
@@ -134,6 +169,7 @@ $("#viewCustomTemplate").on("click", function () {
     };
     templatePostArray = { "": templatePostArray };
 
+
     //on save, make a post to the database
     $("#saveCustomTemplateButton").on("click", function () {
         $.post("/api/template/", templatePostArray)
@@ -147,6 +183,7 @@ $("#viewCustomTemplate").on("click", function () {
         $(".addMetric").checked = false;
         location.reload();
     });
+
 
     //make a put call to DB to update existing template
     $("#updateCustomTemplateButton").on("click", function () {
@@ -163,30 +200,38 @@ $("#viewCustomTemplate").on("click", function () {
         $(".addMetric").checked = false;
         location.reload();
     });
-
-    //make post request to clear existing template from db
-    $("#deleteCustomTemplateButton").on("click", function () {
-        var templateNameEdit = $(inputTemplateName).html();
-        $.post(`/api/template/delete/${templateNameEdit}`, function (result) {
-            console.log(result);
-        })
-        location.reload();
-    });
-
-    //clear template
-    $("#close-x").on("click", function () {
-        console.log("ITHASBEENCLICKED");
-        $('.viewMetricChild').remove();
-        customTemplateMetrics = [];
-    });
-
-
 });
+
+//make post request to clear existing template from db
+$("#deleteCustomTemplateButton").on("click", function () {
+    var templateNameEdit = $(inputTemplateName).html();
+    $.post(`/api/template/delete/${templateNameEdit}`, function (result) {
+        console.log(result);
+    })
+    $('.viewMetricChild').remove();
+    customTemplateMetrics = [];
+    location.reload();
+});
+
+//clear template
+$("#close-x").on("click", function () {
+    console.log("ITHASBEENCLICKED");
+    $('.viewMetricChild').remove();
+    customTemplateMetrics = [];
+    location.reload();
+});
+
 
 //modal
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
-})
+});
+
+$('#exampleModal').on('hidden.bs.modal', function () {
+    location.reload();
+});
+
+
 //list of metrics toggle
 $("#advancedStats").on("click", function () {
     $('#advancedStatsMetrics').toggle();

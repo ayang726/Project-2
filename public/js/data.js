@@ -130,7 +130,7 @@ function updatingChart(period) {
 function updatingPriceDisplay() {
     $.get("/api/price/" + ticker, response => {
         let priceDisplay = $("#priceDisplay");
-        priceDisplay.html(response);
+        priceDisplay.html("$" + response);
     });
 }
 

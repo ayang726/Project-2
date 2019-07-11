@@ -109,15 +109,19 @@ nav form{
     margin: 10px;
     padding: 20px;
 }
-/* .metric-cont {
-    margin: 10px
-} */
-
-/* .name-cont {
-    margin: 20px;
-} */
 
 .templateTitle {
     margin: 30px;
 
+}
+
+#customTemplateName {
+margin-bottom: 0px;
+}
+
+#error {
+margin-top: 0px;
+color: red;
+position: relative;
+bottom: 15px;
 }

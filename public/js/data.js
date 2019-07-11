@@ -138,14 +138,14 @@ function updatingPriceDisplay() {
 }
 
 function updatingOpenPriceDisplay() {
-    $.get("/api/price1/" + ticker, response => {
+    $.get("/api/price-open/" + ticker, response => {
         let priceDisplayOpen = $("#openPriceDisplay");
         priceDisplayOpen.html("Opening: $" + response);
     });
 }
 
 function updatingClosingPriceDisplay() {
-    $.get("/api/price2/" + ticker, response => {
+    $.get("/api/price-close/" + ticker, response => {
         let priceDisplayClose = $("#closingPriceDisplay");
         priceDisplayClose.html("Closing: $" + response);
     });

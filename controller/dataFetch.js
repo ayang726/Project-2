@@ -116,14 +116,14 @@ dataFetchManager.getLatestPrice = async function (symbol) {
     return result;
 }
 
-dataFetchManager.getLatestPrice1 = async function (symbol) {
-    let response = await iexRequest['price1'](symbol);
+dataFetchManager.getLatestPriceOpen = async function (symbol) {
+    let response = await iexRequest['price-open'](symbol);
     let result = JSON.stringify(response.data);
     return result;
 }
 
-dataFetchManager.getLatestPrice2 = async function (symbol) {
-    let response = await iexRequest['price2'](symbol);
+dataFetchManager.getLatestPriceClose = async function (symbol) {
+    let response = await iexRequest['price-close'](symbol);
     let result = JSON.stringify(response.data);
     return result;
 }

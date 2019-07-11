@@ -127,14 +127,14 @@ module.exports = function (app) {
     });
 
     // getting the open price data requested for a symbol
-    app.get("/api/price1/:ticker", async (req, res) => {
-        const priceRespObj = await dataFetchManager.getLatestPrice1(req.params.ticker);
+    app.get("/api/price-open/:ticker", async (req, res) => {
+        const priceRespObj = await dataFetchManager.getLatestPriceOpen(req.params.ticker);
         return res.json(priceRespObj);
     });
 
     // getting the open price data requested for a symbol
-    app.get("/api/price2/:ticker", async (req, res) => {
-        const priceRespObj = await dataFetchManager.getLatestPrice2(req.params.ticker);
+    app.get("/api/price-close/:ticker", async (req, res) => {
+        const priceRespObj = await dataFetchManager.getLatestPriceClose(req.params.ticker);
         return res.json(priceRespObj);
     });
 

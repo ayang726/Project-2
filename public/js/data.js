@@ -110,6 +110,7 @@ function updatingChart(period) {
     $.get("/api/chart/" + period + "/" + ticker, response => {
         var dataSetsLabel = [];
         var dataSets = [];
+        plotChart(dataSets, dataSetsLabel); //to clear the graph
         for (var i = 0; i < response.length; i++) {
             const dataObj = response[i];
             var volData = dataObj.close;

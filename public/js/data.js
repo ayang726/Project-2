@@ -108,6 +108,7 @@ function updatingChart(period) {
         plotChart(dataSets, dataSetsLabel); //to clear the graph
         for (var i = 0; i < response.length; i++) {
             const dataObj = response[i];
+            
             var volData = dataObj.close;
             const labelValue = dataObj.label;
             if (!dataSetsLabel.includes(labelValue)) {
@@ -125,13 +126,29 @@ function updatingChart(period) {
         }, 5 * 1000);
     }
     updatingPriceDisplay();
+    updatingOpenPriceDisplay();
+    updatingClosingPriceDisplay();
 }
 
 //Displaying the latest Stock Price 
 function updatingPriceDisplay() {
     $.get("/api/price/" + ticker, response => {
         let priceDisplay = $("#priceDisplay");
-        priceDisplay.html("$" + response);
+        priceDisplay.html("Today: $" + response);
+    });
+}
+
+function updatingOpenPriceDisplay() {
+    $.get("/api/price-open/" + ticker, response => {
+        let priceDisplayOpen = $("#openPriceDisplay");
+        priceDisplayOpen.html("Opening: $" + response);
+    });
+}
+
+function updatingClosingPriceDisplay() {
+    $.get("/api/price-close/" + ticker, response => {
+        let priceDisplayClose = $("#closingPriceDisplay");
+        priceDisplayClose.html("Closing: $" + response);
     });
 }
 

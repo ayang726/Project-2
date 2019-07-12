@@ -22,7 +22,6 @@ if (configKeys.enableProd == "Enable Production") {
     iexRequest.parseUrl = function (q) {
         console.log('============================');
         console.log("IEX production query called");
-        // return `${baseUrl}/${q}/?token=${ProdToken}`;
         return `${baseUrl}/${q}/?token=${ProdToken}`;
     }
 } else {
@@ -47,7 +46,9 @@ iexRequest.parseProdUrl = function (q) {
 
 iexRequest['symbols'] = () => { return axios.get(iexRequest.parseUrl("ref-data/symbols")); }
 iexRequest['news'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/news/last/4`)); }
-iexRequest['price'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/price`)); }
+iexRequest['price'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/quote/latestPrice`)); }
+iexRequest['price-open'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/quote/open`)); }
+iexRequest['price-close'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/quote/close`)); }
 // iexRequest['news']("AAPL").then(response => {
 //     console.log(response.data);
 
@@ -61,12 +62,9 @@ iexRequest['cash-flow'] = (symbol) => { return axios.get(iexRequest.parseUrl(`st
 iexRequest['estimates'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/estimates`)); }
 iexRequest['income'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/income/last`)); }
 iexRequest['financials'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/financials/last`)); }
-
+iexRequest['historicalPrices'] = (symbol, timeRange) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/chart/${timeRange}`)); }
+iexRequest['intradayPrices'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/intraday-prices`)); }
 // Chart quote request
-iexRequest.test.historicalPrices = async (timeRange, symbol) => {
-    const historicalPriceResponse = await axios.get(iexRequest.parseTestUrl(`stock/${symbol}/chart/${timeRange}`));
-    return historicalPriceResponse.data;
-}
 
 module.exports = { iexRequest };
 

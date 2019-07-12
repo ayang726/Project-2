@@ -1,10 +1,11 @@
 let ctx = document.getElementById('myChart').getContext('2d');
+
 let myChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: [], //timeRange label
         datasets: [{
-            label: 'Average Price',
+            label: 'Price',
             data: [], //prices
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -22,19 +23,22 @@ let myChart = new Chart(ctx, {
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 1,
+            pointBackgroundColor: ['rgba(0, 0, 0, 0.1)'],
+            pointBorderWidth: 1
         }]
     },
     options: {
         scales: {
             yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
+                id: 'left-y-axis',
+                type: 'linear',
+                position: 'left'
             }]
-        }
+        },
     }
-});
+}
+);
 
 function plotChart(dataSets, dataSetsLabel) {
     myChart.data.labels = dataSetsLabel;

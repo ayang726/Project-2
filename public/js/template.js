@@ -1,22 +1,3 @@
-//attempt at adding validation
-// (function () {
-//     'use strict';
-//     window.addEventListener('load', function () {
-//         // Fetch all the forms we want to apply custom Bootstrap validation styles to
-//         var forms = $(".needs-validation");
-//         // Loop over them and prevent submission
-
-//         var validation = Array.prototype.filter.call(forms, function (form) {
-//             $("#viewCustomTemplate").on("click", function (event) {
-//                 if (form.checkValidity() === false) {
-//                     event.preventDefault();
-//                     event.stopPropagation();
-//                 }
-//                 form.classList.add('was-validated');
-//             }, false);
-//         });
-//     }, false);
-// })();
 
 //api call to get metrics from db to display in UI
 $.get("/api/metric", function (data) {
@@ -68,14 +49,19 @@ $.get("/api/metric", function (data) {
 });
 
 //get all data from templateuser to make the buttons
+var buttonText = [];
 $.get("/api/templateuser", function (data) {
     for (var i = 0; i < data.length; i++) {
         $("#viewTemplatesToEdit").append(`<button onclick="viewExistingTemplate(this)" value="${data[i].id}" type="button" class="list-group-item list-group-item-action lead editingTemplate bg-warning">${data[i].templatename}</button>`);
+        buttonText.push(data[i].templatename);
     }
 });
 
 //update existing template post request
 function viewExistingTemplate(e) {
+    $(".addMetric").removeAttr('checked', '');
+    console.log(customTemplateMetrics);
+    var metricIdToCheck;
     console.log($(e).attr("value"));
     var metricNumber = $(e).attr("value");
     //hide the save button and show the update button (will write a put on click of the update button)
@@ -112,6 +98,8 @@ function validateForm() {
         $("#viewCustomTemplate").attr("data-target", "");
         $("#customTemplateName").addClass("is-invalid");
         $("#error").show();
+        $('.viewMetricChild').remove();
+        customTemplateMetrics = [];
 
     } else {
         $("#viewCustomTemplate").attr("data-target", "#exampleModal");
@@ -124,6 +112,13 @@ function validateForm() {
 //on click view custom template, checked metrics are made into table on modal
 $("#viewCustomTemplate").on("click", function () {
     validateForm();
+
+    if (buttonText.includes($("#customTemplateName").val())) {
+        console.log("itcontains");
+        $("#saveCustomTemplateButton").hide();
+        $("#updateCustomTemplateButton").show();
+    }
+
     console.log($(this).val());
     var metricIsChecked = $(".addMetric").is(":checked");
     console.log(metricIsChecked);
@@ -200,28 +195,28 @@ $("#viewCustomTemplate").on("click", function () {
         $(".addMetric").checked = false;
         location.reload();
     });
+
+
+    //make post request to clear existing template from db
+    $("#deleteCustomTemplateButton").on("click", function () {
+        var templateNameEdit = $(inputTemplateName).html();
+        $.post(`/api/template/delete/${templateNameEdit}`, function (result) {
+            console.log(result);
+        })
+        $('.viewMetricChild').remove();
+        customTemplateMetrics = [];
+        location.reload();
+    });
+
+    //clear template
+    $("#close-x").on("click", function () {
+        console.log("ITHASBEENCLICKED");
+        $('.viewMetricChild').remove();
+        customTemplateMetrics = [];
+        location.reload();
+    });
+
 });
-
-//make post request to clear existing template from db
-$("#deleteCustomTemplateButton").on("click", function () {
-    var templateNameEdit = $(inputTemplateName).html();
-    $.post(`/api/template/delete/${templateNameEdit}`, function (result) {
-        console.log(result);
-    })
-    $('.viewMetricChild').remove();
-    customTemplateMetrics = [];
-    location.reload();
-});
-
-//clear template
-$("#close-x").on("click", function () {
-    console.log("ITHASBEENCLICKED");
-    $('.viewMetricChild').remove();
-    customTemplateMetrics = [];
-    location.reload();
-});
-
-
 //modal
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')

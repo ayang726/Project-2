@@ -102,16 +102,33 @@ dataFetchManager.getMetrics = async function (metricIds, ticker) {
 
 }
 
-dataFetchManager.getQuotes = function (timeRange, symbol) {
+dataFetchManager.getQuotes = async function (timeRange, symbol) {
     // get data from iex server
     if (timeRange !== undefined) {
-        let response = iexRequest.test.historicalPrices(timeRange, symbol)
-        return response;
+        let response;
+        console.log(timeRange);
+        
+        if (timeRange === "1d") {response = await iexRequest["intradayPrices"](symbol);}
+        else {response = await iexRequest["historicalPrices"](symbol, timeRange);}
+        
+        return response.data;
     }
 }
 
 dataFetchManager.getLatestPrice = async function (symbol) {
     let response = await iexRequest['price'](symbol);
+    let result = JSON.stringify(response.data);
+    return result;
+}
+
+dataFetchManager.getLatestPriceOpen = async function (symbol) {
+    let response = await iexRequest['price-open'](symbol);
+    let result = JSON.stringify(response.data);
+    return result;
+}
+
+dataFetchManager.getLatestPriceClose = async function (symbol) {
+    let response = await iexRequest['price-close'](symbol);
     let result = JSON.stringify(response.data);
     return result;
 }

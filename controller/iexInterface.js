@@ -23,7 +23,6 @@ if (configKeys.enableProd == "Enable Production") {
         console.log('============================');
         console.log("IEX production query called");
         return `${baseUrl}/${q}/?token=${ProdToken}`;
-        //return `${baseSanboxUrl}/${q}/?token=${TestToken}`;
     }
 } else {
     iexRequest.parseUrl = function (q) {

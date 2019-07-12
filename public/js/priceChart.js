@@ -5,7 +5,7 @@ let myChart = new Chart(ctx, {
     data: {
         labels: [], //timeRange label
         datasets: [{
-            label: 'Average Price',
+            label: 'Price',
             data: [], //prices
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

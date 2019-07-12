@@ -22,8 +22,8 @@ if (configKeys.enableProd == "Enable Production") {
     iexRequest.parseUrl = function (q) {
         console.log('============================');
         console.log("IEX production query called");
-        // return `${baseUrl}/${q}/?token=${ProdToken}`;
-        return `${baseSanboxUrl}/${q}/?token=${TestToken}`;
+        return `${baseUrl}/${q}/?token=${ProdToken}`;
+        //return `${baseSanboxUrl}/${q}/?token=${TestToken}`;
     }
 } else {
     iexRequest.parseUrl = function (q) {
@@ -63,12 +63,9 @@ iexRequest['cash-flow'] = (symbol) => { return axios.get(iexRequest.parseUrl(`st
 iexRequest['estimates'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/estimates`)); }
 iexRequest['income'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/income/last`)); }
 iexRequest['financials'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/financials/last`)); }
-
+iexRequest['historicalPrices'] = (symbol, timeRange) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/chart/${timeRange}`)); }
+iexRequest['intradayPrices'] = (symbol) => { return axios.get(iexRequest.parseUrl(`stock/${symbol}/intraday-prices`)); }
 // Chart quote request
-iexRequest.test.historicalPrices = async (timeRange, symbol) => {
-    const historicalPriceResponse = await axios.get(iexRequest.parseTestUrl(`stock/${symbol}/chart/${timeRange}`));
-    return historicalPriceResponse.data;
-}
 
 module.exports = { iexRequest };
 

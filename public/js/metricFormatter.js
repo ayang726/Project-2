@@ -2,24 +2,67 @@ function metricFormatter(metricValue, metricName) {
     switch (metricType[metricName]) {
         case "currency":
             return parseCurrency(metricValue);
-            break;
         case "ratio":
+            return +metricValue;
         case "percent":
+            return metricValue * 100 + "%";
         case "number":
+            return parseNumber(metricValue);
         case "price":
+            return "$" + Math.floor(metricValue * 100) / 100;
         case "date":
+            return metricValue;
         default:
-            break;
+            return metricValue;
     }
 }
 
-function parseCurrency(value){
-    
+function parseCurrency(value) {
+    let counter = 0;
+    let divider = value;
+    let suffix = ""
+    while (divider >= 1000) {
+        divider /= 1000;
+        counter++
+    }
+    divider = Math.floor(divider * 100) / 100;
+    switch (counter) {
+        case 1: suffix = "K"; break;
+        case 2: suffix = "M"; break;
+        case 3: suffix = "B"; break;
+        case 4: suffix = "T"; break;
+        case 5: suffix = "Q"; break;
+        default: suffix = ""; break;
+    }
+    const result = "$" + divider + " " + suffix
+    console.log(value + "parsed into " + result);
+    return result;
+}
+function parseNumber(value) {
+    let counter = 0;
+    let divider = value;
+    let suffix = ""
+    while (divider >= 1000) {
+        divider /= 1000;
+        counter++
+    }
+    divider = Math.floor(divider * 100) / 100;
+    switch (counter) {
+        case 1: suffix = "K"; break;
+        case 2: suffix = "M"; break;
+        case 3: suffix = "B"; break;
+        case 4: suffix = "T"; break;
+        case 5: suffix = "Q"; break;
+        default: suffix = ""; break;
+    }
+    const result = divider + " " + suffix
+    console.log(value + "parsed into " + result);
+    return result;
 }
 
 const metricType = {
     currentDebt: "currency",
-    debtToEquity: "currency",
+    debtToEquity: "ratio",
     EBITDA: "ratio",
     enterpriseValue: "currency",
     enterpriseValueToRevenue: "ratio",

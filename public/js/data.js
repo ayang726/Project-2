@@ -65,7 +65,7 @@ function changeTemplate(templateID) {
             const html = `
             <div class="col-lg-6 metricsCell">
                     <p class="metricsName">${metric.description}</p>
-                    <p class="metricsValue" data-id="${metric.id}"></p>
+                    <p class="metricsValue" data-id="${metric.id}" data-name="${metric.name}"></p>
             </div>
             `;
             $(metrics).append(html);
@@ -89,8 +89,10 @@ function updateMetrics() {
     $.post("/api/getMetricValues", { metricIds, ticker }, response => {
         $(metricsValueDisplay).each((index, metric) => {
             const metricId = $(metric).attr("data-id");
-            if (response[metricId])
-                $(metric).text(response[metricId]);
+            const metricName = $(metric).attr("data-name");
+            const metricValue = response[metricId]
+            if (metricValue)
+                $(metric).text(metricFormatter(metricValue, metricName));
             else
                 $(metric).text("-");
         });

@@ -1,4 +1,4 @@
-require("dotenv").config();
+// require("dotenv").config();
 // const keys = require("./app/config/keys");
 const express = require("express");
 const exphbs = require("express-handlebars");

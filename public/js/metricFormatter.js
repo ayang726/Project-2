@@ -1,0 +1,117 @@
+function metricFormatter(metricValue, metricName) {
+    switch (metricType[metricName]) {
+        case "currency":
+            return parseCurrency(metricValue);
+            break;
+        case "ratio":
+        case "percent":
+        case "number":
+        case "price":
+        case "date":
+        default:
+            break;
+    }
+}
+
+function parseCurrency(value){
+    
+}
+
+const metricType = {
+    currentDebt: "currency",
+    debtToEquity: "currency",
+    EBITDA: "ratio",
+    enterpriseValue: "currency",
+    enterpriseValueToRevenue: "ratio",
+    forwardPERatio: "ratio",
+    pegRatio: "ratio",
+    peHigh: "ratio",
+    peLow: "ratio",
+    priceToBook: "ratio",
+    priceToSales: "ratio",
+    profitMargin: "percent",
+    revenue: "currency",
+    revenuePerEmployee: "currency",
+    revenuePerShare: "currency",
+    totalCash: "currency",
+    accountsPayable: "currency",
+    capitalSurplus: "currency",
+    commonStock: "number",
+    currentAssets: "currency",
+    currentCash: "currency",
+    currentLongTermDebt: "currency",
+    goodwill: "currency",
+    intangibleAssets: "currency",
+    inventory: "currency",
+    longTermDebt: "currency",
+    longTermInvestments: "currency",
+    netTangibleAsset: "currency",
+    otherAssets: "currency",
+    otherCurrentAssets: "currency",
+    otherCurrentLiabilities: "currency",
+    otherLiabilities: "currency",
+    propertyPlantEquipment: "currency",
+    receivables: "currency",
+    retainedEarnings: "currency",
+    shareholderEquity: "currency",
+    shortTermInvestments: "currency",
+    totalAssets: "currency",
+    totalCurrentLiabilities: "currency",
+    totalLiabilities: "currency",
+    treasuryStock: "number",
+    capitalExpenditures: "currency",
+    cashChange: "currency",
+    cashFlow: "currency",
+    netBorrowings: "currency",
+    otherFinancingCashFlows: "currency",
+    totalInvestingCashFlows: "currency",
+    consensusEPS: "ratio",
+    operatingRevenue: "currency",
+    shortTermDebt: "currency",
+    totalDebt: "currency",
+    costOfRevenue: "currency",
+    ebit: "ratio",
+    grossProfit: "currency",
+    incomeTax: "currency",
+    minorityInterest: "currency",
+    netIncome: "currency",
+    netIncomeBasic: "currency",
+    operatingExpense: "currency",
+    operatingIncome: "currency",
+    otherIncomeExpenseNet: "currency",
+    pretaxIncome: "currency",
+    researchAndDevelopment: "currency",
+    sellingGeneralAndAdmin: "currency",
+    totalRevenue: "currency",
+    avg10Volume: "number",
+    avg30Volume: "number",
+    beta: "ratio",
+    day200MovingAvg: "price",
+    day30ChangePercent: "price",
+    day50MovingAvg: "price",
+    day5ChangePercent: "price",
+    dividendYield: "percent",
+    employees: "number",
+    float: "ratio",
+    marketcap: "currency",
+    maxChangePercent: "percent",
+    month1ChangePercent: "percent",
+    month3ChangePercent: "percent",
+    month6ChangePercent: "percent",
+    nextDividendDate: "date",
+    nextEarningsDate: "date",
+    peRatio: "ratio",
+    sharesOutstanding: "number",
+    ttmDividendRate: "currency",
+    ttmEPS: "ratio",
+    week52change: "percent",
+    week52high: "price",
+    week52low: "price",
+    year1ChangePercent: "percent",
+    year2ChangePercent: "percent",
+    year5ChangePercent: "percent",
+    ytdChangePercent: "percent",
+    priceTargetAverage: "price",
+    priceTargetHigh: "price",
+    priceTargetLow: "price"
+};

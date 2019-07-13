@@ -111,6 +111,7 @@ module.exports = function (app) {
         const metricIds = req.body.metricIds;
         const ticker = req.body.ticker;
         let response = await dataFetchManager.getMetrics(metricIds, ticker);
+
         res.json(response.data);
     });
 

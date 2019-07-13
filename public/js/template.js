@@ -49,15 +49,14 @@ $.get("/api/metric", function (data) {
 });
 
 //get all data from templateuser to make the buttons
-function getAllTemplatesFromUser() {
+setTimeout(function () {
     $.get(`/api/templateuser/${currentUser}`, function (data) {
         console.log("this is my user id " + currentUser);
         for (var i = 0; i < data.length; i++) {
             $("#viewTemplatesToEdit").append(`<button onclick="viewExistingTemplate(this)" value="${data[i].id}" type="button" class="list-group-item list-group-item-action lead editingTemplate bg-warning">${data[i].templatename}</button>`);
         }
     });
-};
-setTimeout(getAllTemplatesFromUser, 1000);
+}, 1000);
 
 //update existing template post request
 function viewExistingTemplate(e) {

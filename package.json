@@ -27,10 +27,10 @@
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
     "sequelize": "^5.8.12",
+    "dotenv": "^8.0.0",
     "sortablejs": "^1.10.0-rc3"
   },
   "devDependencies": {
-    "dotenv": "^8.0.0",
     "sequelize-cli": "^5.5.0"
   }
 }

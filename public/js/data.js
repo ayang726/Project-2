@@ -108,13 +108,13 @@ function updatingChart(period) {
         plotChart(dataSets, dataSetsLabel); //to clear the graph
         for (var i = 0; i < response.length; i++) {
             const dataObj = response[i];
-            
+
             var volData = dataObj.close;
             const labelValue = dataObj.label;
             if (!dataSetsLabel.includes(labelValue)) {
                 dataSetsLabel.push(labelValue);
             }
-            const volNum = parseInt(volData);
+            const volNum = parseFloat(volData);
             dataSets.push(volNum);
         }
         //calling the plotChart function from the priceChart.js using the response above

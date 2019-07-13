@@ -107,10 +107,9 @@ dataFetchManager.getQuotes = async function (timeRange, symbol) {
     if (timeRange !== undefined) {
         let response;
         console.log(timeRange);
-        
-        if (timeRange === "1d") {response = await iexRequest["intradayPrices"](symbol);}
-        else {response = await iexRequest["historicalPrices"](symbol, timeRange);}
-        
+
+        if (timeRange === "1d") { response = await iexRequest["intradayPrices"](symbol); }
+        else { response = await iexRequest["historicalPrices"](symbol, timeRange); }
         return response.data;
     }
 }

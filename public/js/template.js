@@ -49,6 +49,7 @@ $.get("/api/metric", function (data) {
 });
 
 //get all data from templateuser to make the buttons
+
 function getAllTemplatesFromUser() {
     $.get(`/api/templateuser/${currentUser}`, function (data) {
         console.log("this is my user id " + currentUser);
@@ -59,8 +60,12 @@ function getAllTemplatesFromUser() {
 };
 setTimeout(getAllTemplatesFromUser, 1000);
 
+
 //update existing template post request
 function viewExistingTemplate(e) {
+    $(".addMetric").removeAttr('checked', '');
+    console.log(customTemplateMetrics);
+    var metricIdToCheck;
     console.log($(e).attr("value"));
     var metricNumber = $(e).attr("value");
     //hide the save button and show the update button (will write a put on click of the update button)
@@ -97,6 +102,8 @@ function validateForm() {
         $("#viewCustomTemplate").attr("data-target", "");
         $("#customTemplateName").addClass("is-invalid");
         $("#error").show();
+        $('.viewMetricChild').remove();
+        customTemplateMetrics = [];
 
     } else {
         $("#viewCustomTemplate").attr("data-target", "#exampleModal");
@@ -109,6 +116,13 @@ function validateForm() {
 //on click view custom template, checked metrics are made into table on modal
 $("#viewCustomTemplate").on("click", function () {
     validateForm();
+
+    if (buttonText.includes($("#customTemplateName").val())) {
+        console.log("itcontains");
+        $("#saveCustomTemplateButton").hide();
+        $("#updateCustomTemplateButton").show();
+    }
+
     console.log($(this).val());
     var metricIsChecked = $(".addMetric").is(":checked");
     console.log(metricIsChecked);
@@ -186,28 +200,28 @@ $("#viewCustomTemplate").on("click", function () {
         $(".addMetric").checked = false;
         location.reload();
     });
+
+
+    //make post request to clear existing template from db
+    $("#deleteCustomTemplateButton").on("click", function () {
+        var templateNameEdit = $(inputTemplateName).html();
+        $.post(`/api/template/delete/${templateNameEdit}`, function (result) {
+            console.log(result);
+        })
+        $('.viewMetricChild').remove();
+        customTemplateMetrics = [];
+        location.reload();
+    });
+
+    //clear template
+    $("#close-x").on("click", function () {
+        console.log("ITHASBEENCLICKED");
+        $('.viewMetricChild').remove();
+        customTemplateMetrics = [];
+        location.reload();
+    });
+
 });
-
-//make post request to clear existing template from db
-$("#deleteCustomTemplateButton").on("click", function () {
-    var templateNameEdit = $(inputTemplateName).html();
-    $.post(`/api/template/delete/${templateNameEdit}`, function (result) {
-        console.log(result);
-    })
-    $('.viewMetricChild').remove();
-    customTemplateMetrics = [];
-    location.reload();
-});
-
-//clear template
-$("#close-x").on("click", function () {
-    console.log("ITHASBEENCLICKED");
-    $('.viewMetricChild').remove();
-    customTemplateMetrics = [];
-    location.reload();
-});
-
-
 //modal
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')

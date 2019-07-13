@@ -132,6 +132,9 @@ function updatingPriceDisplay() {
     $.get("/api/price/" + ticker, response => {
         let priceDisplay = $("#priceDisplay");
         priceDisplay.html("$" + response);
+        if ($(".d-inline-block").text() === $(".updated-quote").attr("ticker")) {
+            $(".updated-quote").text("$" + response);
+        }
     });
 }
 

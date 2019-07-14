@@ -1,389 +1,100 @@
-Drop database if exists Stocker;
-create database Stocker;
+USE mjid2fzvqhbka7vg;
 
-Use Stocker;
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('accountsPayable', 'Account Payable', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('currentDebt', 'Current Debt', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('avg10Volume', '10 Day Average Volume', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('debtToEquity', 'Debt To Equity', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('avg30Volume', '30 Day Average Volume', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('EBITDA', 'EBITDA', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('beta', 'Beta', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('capitalExpenditures', 'Capital Expenditures', 'Cash Flow Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('capitalSurplus', 'Capital Surplus', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('cashChange', 'Cash Change', 'Cash Flow Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('cashFlow', 'Cash Flow', 'Cash Flow Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('commonStock', 'Common Stock', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('enterpriseValue', 'Enterprise Value', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('consensusEPS', 'Consensus EPS Estimates', 'Estimates', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('costOfRevenue', 'Cost of Revenu', 'Income Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('currentAssets', 'Current Assets', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('currentCash', 'Current Cash', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('enterpriseValueToRevenue', 'Enterprice Value to Revenu', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('currentLongTermDebt', 'Curernt Long Term Debt', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('forwardPERatio', 'Forward PE Ratio', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('day200MovingAvg', '200 Day Moving Average', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('pegRatio', 'PEG Ratio', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('day30ChangePercent', '30 Day Change Percentage', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('peHigh', 'PE High', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('day50MovingAvg', '50 Day Moving Average', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('peLow', 'PE Low', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('day5ChangePercent', '5 Day Change Percent', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('priceToBook', 'Price to Book Value', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('priceToSales', 'Price to Sales', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('dividendYield', 'Divident Yield', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('ebit', 'EBIT', 'Income Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('profitMargin', 'Profit Margin', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('revenue', 'Revenu', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('employees', 'Number of Employees', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('revenuePerEmployee', 'Revenu Per Exployee', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('revenuePerShare', 'Revenu Per Share', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('totalCash', 'Total Cash', 'Advanced Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('float', 'Float', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('goodwill', 'Good Will', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('grossProfit', 'Gross Profit ', 'Income Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('incomeTax', 'Income Tax', 'Income Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('intangibleAssets', 'Intangible Assets', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('inventory', 'Inventory', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('longTermDebt', 'Long Term Debt', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('longTermInvestments', 'Long Term Investments', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('marketcap', 'Market Cap', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('maxChangePercent', 'Max Change Percent', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('minorityInterest', 'Minority Interest', 'Income Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('month1ChangePercent', '1 Month Change Percent', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('month3ChangePercent', '3 Month Change Percent', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('month6ChangePercent', '6 Month Change Percent', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('netBorrowings', 'Net Borrowings', 'Cash Flow Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('netIncome', 'Net Income', 'Income Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('netIncomeBasic', 'Basic Net Income', 'Income Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('netTangibleAsset', 'Net Tangible Asset', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('nextDividendDate', 'Next Dividend Date', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('nextEarningsDate', 'Next Earnings Date', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('operatingExpense', 'Operating Expense', 'Income Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('operatingIncome', 'Operating Income', 'Income Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('operatingRevenue', 'Operating Revenue', 'Financial Statements', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('otherAssets', 'Other Assets', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('otherCurrentAssets', 'Other Current Assets', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('otherCurrentLiabilities', 'Other Current Liabilities', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('otherFinancingCashFlows', 'Other Financing Cash Flows', 'Cash Flow Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('otherIncomeExpenseNet', 'Other Income Expense Net', 'Income Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('otherLiabilities', 'Other Liabilities', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('peRatio', 'PR Ratio', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('pretaxIncome', 'Pretax Income', 'Income Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('priceTargetAverage', 'Average Price Target', 'Price Target', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('priceTargetHigh', 'Price Target High', 'Price Target', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('priceTargetLow', 'Price Target Low', 'Price Target', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('propertyPlantEquipment', 'Property Plant Equipment', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('receivables', 'Receivables', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('researchAndDevelopment', 'Research And Development', 'Income Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('retainedEarnings', 'Retained Earnings', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('sellingGeneralAndAdmin', 'SG&A', 'Income Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('shareholderEquity', 'Shareholder''s Equity', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('sharesOutstanding', 'Outstanding Shares', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('shortTermDebt', 'Short Term Debt', 'Financial Statements', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('shortTermInvestments', 'Short Term Investments', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('totalAssets', 'Total Assets', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('totalCurrentLiabilities', 'Total Current Liabilities', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('totalDebt', 'Total Debt', 'Financial Statements', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('totalInvestingCashFlows', 'Total Investment Cash Flow', 'Cash Flow Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('totalLiabilities', 'Total Liabilities', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('totalRevenue', 'Total Revenu', 'Income Statement', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('treasuryStock', 'Treasury Stock', 'Balance Sheet', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('ttmDividendRate', 'TTM Dividend Rate', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('ttmEPS', 'TTM EPS', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('week52change', '52 Week Change', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('week52high', '52 Week High', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('week52low', '52 Week Low', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('year1ChangePercent', '1 Year Change Percent', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('year2ChangePercent', '2 Year Change Percent', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('year5ChangePercent', '5 Year Change Percent', 'Key Stats', 'Daily', now(), now());
-INSERT INTO METRICS
-    (Metric, Description, Category, Period, createdAt, updatedAt)
-Values
-    ('ytdChangePercent', 'YTD Year Change Percent', 'Key Stats', 'Daily', now(), now());
-
+INSERT INTO Metrics (name, category, metricDescription, categoryDescription,period, createdAt, updatedAt)
+VALUES
+('accountsPayable','balance-sheet','Account Payable','Balance Sheet','Daily', now(), now()),
+('currentDebt','advanced-stats','Current Debt','Advanced Stats','Daily', now(), now()),
+('avg10Volume','stats','10 Day Average Volume','Key Stats','Daily', now(), now()),
+('debtToEquity','advanced-stats','Debt To Equity','Advanced Stats','Daily', now(), now()),
+('avg30Volume','stats','30 Day Average Volume','Key Stats','Daily', now(), now()),
+('EBITDA','advanced-stats','EBITDA','Advanced Stats','Daily', now(), now()),
+('beta','stats','Beta','Key Stats','Daily', now(), now()),
+('capitalExpenditures','cash-flow','Capital Expenditures','Cash Flow Statement','Daily', now(), now()),
+('capitalSurplus','balance-sheet','Capital Surplus','Balance Sheet','Daily', now(), now()),
+('cashChange','cash-flow','Cash Change','Cash Flow Statement','Daily', now(), now()),
+('cashFlow','cash-flow','Cash Flow','Cash Flow Statement','Daily', now(), now()),
+('commonStock','balance-sheet','Common Stock','Balance Sheet','Daily', now(), now()),
+('enterpriseValue','advanced-stats','Enterprise Value','Advanced Stats','Daily', now(), now()),
+('consensusEPS','estimates','Consensus EPS Estimates','Estimates','Daily', now(), now()),
+('costOfRevenue','income','Cost of Revenu','Income Statement','Daily', now(), now()),
+('currentAssets','balance-sheet','Current Assets','Balance Sheet','Daily', now(), now()),
+('currentCash','balance-sheet','Current Cash','Balance Sheet','Daily', now(), now()),
+('enterpriseValueToRevenue','advanced-stats','Enterprice Value to Revenu','Advanced Stats','Daily', now(), now()),
+('currentLongTermDebt','balance-sheet','Curernt Long Term Debt','Balance Sheet','Daily', now(), now()),
+('forwardPERatio','advanced-stats','Forward PE Ratio','Advanced Stats','Daily', now(), now()),
+('day200MovingAvg','stats','200 Day Moving Average','Key Stats','Daily', now(), now()),
+('pegRatio','advanced-stats','PEG Ratio','Advanced Stats','Daily', now(), now()),
+('day30ChangePercent','stats','30 Day Change Percentage','Key Stats','Daily', now(), now()),
+('peHigh','advanced-stats','PE High','Advanced Stats','Daily', now(), now()),
+('day50MovingAvg','stats','50 Day Moving Average','Key Stats','Daily', now(), now()),
+('peLow','advanced-stats','PE Low','Advanced Stats','Daily', now(), now()),
+('day5ChangePercent','stats','5 Day Change Percent','Key Stats','Daily', now(), now()),
+('priceToBook','advanced-stats','Price to Book Value','Advanced Stats','Daily', now(), now()),
+('priceToSales','advanced-stats','Price to Sales','Advanced Stats','Daily', now(), now()),
+('dividendYield','stats','Divident Yield','Key Stats','Daily', now(), now()),
+('ebit','income','EBIT','Income Statement','Daily', now(), now()),
+('profitMargin','advanced-stats','Profit Margin','Advanced Stats','Daily', now(), now()),
+('revenue','advanced-stats','Revenu','Advanced Stats','Daily', now(), now()),
+('employees','stats','Number of Employees','Key Stats','Daily', now(), now()),
+('revenuePerEmployee','advanced-stats','Revenu Per Exployee','Advanced Stats','Daily', now(), now()),
+('revenuePerShare','advanced-stats','Revenu Per Share','Advanced Stats','Daily', now(), now()),
+('totalCash','advanced-stats','Total Cash','Advanced Stats','Daily', now(), now()),
+('float','stats','Float','Key Stats','Daily', now(), now()),
+('goodwill','balance-sheet','Good Will','Balance Sheet','Daily', now(), now()),
+('grossProfit','income','Gross Profit ','Income Statement','Daily', now(), now()),
+('incomeTax','income','Income Tax','Income Statement','Daily', now(), now()),
+('intangibleAssets','balance-sheet','Intangible Assets','Balance Sheet','Daily', now(), now()),
+('inventory','balance-sheet','Inventory','Balance Sheet','Daily', now(), now()),
+('longTermDebt','balance-sheet','Long Term Debt','Balance Sheet','Daily', now(), now()),
+('longTermInvestments','balance-sheet','Long Term Investments','Balance Sheet','Daily', now(), now()),
+('marketcap','stats','Market Cap','Key Stats','Daily', now(), now()),
+('maxChangePercent','stats','Max Change Percent','Key Stats','Daily', now(), now()),
+('minorityInterest','income','Minority Interest','Income Statement','Daily', now(), now()),
+('month1ChangePercent','stats','1 Month Change Percent','Key Stats','Daily', now(), now()),
+('month3ChangePercent','stats','3 Month Change Percent','Key Stats','Daily', now(), now()),
+('month6ChangePercent','stats','6 Month Change Percent','Key Stats','Daily', now(), now()),
+('netBorrowings','cash-flow','Net Borrowings','Cash Flow Statement','Daily', now(), now()),
+('netIncome','income','Net Income','Income Statement','Daily', now(), now()),
+('netIncomeBasic','income','Basic Net Income','Income Statement','Daily', now(), now()),
+('netTangibleAsset','balance-sheet','Net Tangible Asset','Balance Sheet','Daily', now(), now()),
+('nextDividendDate','stats','Next Dividend Date','Key Stats','Daily', now(), now()),
+('nextEarningsDate','stats','Next Earnings Date','Key Stats','Daily', now(), now()),
+('operatingExpense','income','Operating Expense','Income Statement','Daily', now(), now()),
+('operatingIncome','income','Operating Income','Income Statement','Daily', now(), now()),
+('operatingRevenue','financials','Operating Revenue','Financial Statements','Daily', now(), now()),
+('otherAssets','balance-sheet','Other Assets','Balance Sheet','Daily', now(), now()),
+('otherCurrentAssets','balance-sheet','Other Current Assets','Balance Sheet','Daily', now(), now()),
+('otherCurrentLiabilities','balance-sheet','Other Current Liabilities','Balance Sheet','Daily', now(), now()),
+('otherFinancingCashFlows','cash-flow','Other Financing Cash Flows','Cash Flow Statement','Daily', now(), now()),
+('otherIncomeExpenseNet','income','Other Income Expense Net','Income Statement','Daily', now(), now()),
+('otherLiabilities','balance-sheet','Other Liabilities','Balance Sheet','Daily', now(), now()),
+('peRatio','stats','PR Ratio','Key Stats','Daily', now(), now()),
+('pretaxIncome','income','Pretax Income','Income Statement','Daily', now(), now()),
+('priceTargetAverage','price-target','Average Price Target','Price Target','Daily', now(), now()),
+('priceTargetHigh','price-target','Price Target High','Price Target','Daily', now(), now()),
+('priceTargetLow','price-target','Price Target Low','Price Target','Daily', now(), now()),
+('propertyPlantEquipment','balance-sheet','Property Plant Equipment','Balance Sheet','Daily', now(), now()),
+('receivables','balance-sheet','Receivables','Balance Sheet','Daily', now(), now()),
+('researchAndDevelopment','income','Research And Development','Income Statement','Daily', now(), now()),
+('retainedEarnings','balance-sheet','Retained Earnings','Balance Sheet','Daily', now(), now()),
+('sellingGeneralAndAdmin','income','SG&A','Income Statement','Daily', now(), now()),
+('shareholderEquity','balance-sheet','Shareholder\'s Equity','Balance Sheet','Daily', now(), now()),
+('sharesOutstanding','stats','Outstanding Shares','Key Stats','Daily', now(), now()),
+('shortTermDebt','financials','Short Term Debt','Financial Statements','Daily', now(), now()),
+('shortTermInvestments','balance-sheet','Short Term Investments','Balance Sheet','Daily', now(), now()),
+('totalAssets','balance-sheet','Total Assets','Balance Sheet','Daily', now(), now()),
+('totalCurrentLiabilities','balance-sheet','Total Current Liabilities','Balance Sheet','Daily', now(), now()),
+('totalDebt','financials','Total Debt','Financial Statements','Daily', now(), now()),
+('totalInvestingCashFlows','cash-flow','Total Investment Cash Flow','Cash Flow Statement','Daily', now(), now()),
+('totalLiabilities','balance-sheet','Total Liabilities','Balance Sheet','Daily', now(), now()),
+('totalRevenue','income','Total Revenu','Income Statement','Daily', now(), now()),
+('treasuryStock','balance-sheet','Treasury Stock','Balance Sheet','Daily', now(), now()),
+('ttmDividendRate','stats','TTM Dividend Rate','Key Stats','Daily', now(), now()),
+('ttmEPS','stats','TTM EPS','Key Stats','Daily', now(), now()),
+('week52change','stats','52 Week Change','Key Stats','Daily', now(), now()),
+('week52high','stats','52 Week High','Key Stats','Daily', now(), now()),
+('week52low','stats','52 Week Low','Key Stats','Daily', now(), now()),
+('year1ChangePercent','stats','1 Year Change Percent','Key Stats','Daily', now(), now()),
+('year2ChangePercent','stats','2 Year Change Percent','Key Stats','Daily', now(), now()),
+('year5ChangePercent','stats','5 Year Change Percent','Key Stats','Daily', now(), now()),
+('ytdChangePercent','stats','YTD Year Change Percent','Key Stats','Daily', now(), now());

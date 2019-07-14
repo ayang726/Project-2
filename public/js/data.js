@@ -64,7 +64,7 @@ function changeTemplate(templateID) {
         response.forEach(metric => {
             const html = `
             <div class="col-lg-6 metricsCell">
-                    <p class="metricsName">${metric.description}</p>
+                    <p class="metricsName"><strong>${metric.description}</strong></p>
                     <p class="metricsValue" data-id="${metric.id}"></p>
             </div>
             `;

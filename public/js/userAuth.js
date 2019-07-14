@@ -24,7 +24,9 @@ firebase.auth().onAuthStateChanged(user => {
             if (response) {
                 ticker = response[0].Ticker.symbol;
             }
-            location.href === location.origin + "/home" ? location.href = `/stock/${ticker}` : console.log("On page " + location.href);
+            if (location.href === location.origin + "/" || location.href === location.origin + "/home") {
+                location.href = `/stock/${ticker}`
+            }
         });
 
 

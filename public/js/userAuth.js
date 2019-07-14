@@ -21,7 +21,9 @@ firebase.auth().onAuthStateChanged(user => {
         currentUser = user.uid;
         $.get(`/api/watchlist/${currentUser}`, response => {
             let ticker = "AAPL";
-            if (response) {
+            console.log(response.length);
+
+            if (response && response.length !== 0 && response[0].Ticker && response[0].Ticker.symbol) {
                 ticker = response[0].Ticker.symbol;
             }
             if (location.href === location.origin + "/" || location.href === location.origin + "/home") {

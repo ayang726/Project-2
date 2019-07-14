@@ -49,12 +49,13 @@ $.get("/api/metric", function (data) {
 });
 
 //get all data from templateuser to make the buttons
-
+var buttonText = [];
 setTimeout(function () {
     $.get(`/api/templateuser/${currentUser}`, function (data) {
         console.log("this is my user id " + currentUser);
         for (var i = 0; i < data.length; i++) {
             $("#viewTemplatesToEdit").append(`<button onclick="viewExistingTemplate(this)" value="${data[i].id}" type="button" class="list-group-item list-group-item-action lead editingTemplate bg-warning">${data[i].templatename}</button>`);
+            buttonText.push(data[i].templatename);
         }
     });
 }, 1000);

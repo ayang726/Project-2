@@ -64,8 +64,10 @@ function changeTemplate(templateID) {
         response.forEach(metric => {
             const html = `
             <div class="col-lg-6 metricsCell">
-                    <p class="metricsName">${metric.description}</p>
+
+                    <p class="metricsName"><strong>${metric.description}</strong></p>
                     <p class="metricsValue" data-id="${metric.id}" data-name="${metric.name}"></p>
+
             </div>
             `;
             $(metrics).append(html);
@@ -136,6 +138,12 @@ function updatingChart(period) {
 function updatingPriceDisplay() {
     $.get("/api/price/" + ticker, response => {
         let priceDisplay = $("#priceDisplay");
+
+        priceDisplay.html("$" + response);
+        if ($(".d-inline-block").text() === $(".updated-quote").attr("ticker")) {
+            $(".updated-quote").text("$" + response);
+        }
+
         priceDisplay.html("Today: $" + response);
     });
 }
@@ -151,6 +159,7 @@ function updatingClosingPriceDisplay() {
     $.get("/api/price-close/" + ticker, response => {
         let priceDisplayClose = $("#closingPriceDisplay");
         priceDisplayClose.html("Closing: $" + response);
+
     });
 }
 

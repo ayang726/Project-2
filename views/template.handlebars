@@ -1,3 +1,4 @@
+<script src="/js/userAuth.js"></script>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a class="navbar-brand" href="#"><img src="/images/Stocker-main.png" height="40" width="200" alt="">
     </a>
@@ -6,21 +7,14 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline my-2 my-lg-0" autocomplete="off">
-            <input class="form-control mr-sm-2" type="search" id="searchBar" placeholder="Search" aria-label="Search">
-            {{!-- <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button> --}}
-            <div class="searchResult d-none">
-                <ul class="searchResultList"></ul>
-            </div>
-        </form>
+
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
-                <a class="nav-link" href="/template">Template</a>
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/template">Template<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="logout">Log Out</a>
@@ -257,5 +251,4 @@
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/userAuth.js"></script>
 <script src="/js/template.js"></script>

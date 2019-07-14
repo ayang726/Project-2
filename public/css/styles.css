@@ -50,6 +50,12 @@ nav form{
     margin:0;
 }
 
+.articleSummary {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: "----"; 
+}
+
 .searchResultListItem:hover{
     background: rgba(128, 128, 128, 0.8);
 }
@@ -65,7 +71,19 @@ nav form{
 }
 
 /* Home Page */
+.metricsCell {
+    margin-bottom: 5px;
+    font-size: 15px;
+}
 
+.metricsName {
+    margin: 0px;
+}
+
+.metricsValue {
+    margin: 0px;
+
+}
 .watchList {
     box-sizing: border-box;
     box-shadow: 0 0 30px 1px #aaa;
@@ -74,8 +92,9 @@ nav form{
     margin: 0;
 }
 
-#stockView{
-    border: 1px solid #000;
+
+#stockView {
+    border: 1px solid lightgray;
     margin-top: 0.5em;
 }
 

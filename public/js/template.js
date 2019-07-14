@@ -49,13 +49,15 @@ $.get("/api/metric", function (data) {
 });
 
 //get all data from templateuser to make the buttons
-var buttonText = [];
-$.get("/api/templateuser", function (data) {
-    for (var i = 0; i < data.length; i++) {
-        $("#viewTemplatesToEdit").append(`<button onclick="viewExistingTemplate(this)" value="${data[i].id}" type="button" class="list-group-item list-group-item-action lead editingTemplate bg-warning">${data[i].templatename}</button>`);
-        buttonText.push(data[i].templatename);
-    }
-});
+
+setTimeout(function () {
+    $.get(`/api/templateuser/${currentUser}`, function (data) {
+        console.log("this is my user id " + currentUser);
+        for (var i = 0; i < data.length; i++) {
+            $("#viewTemplatesToEdit").append(`<button onclick="viewExistingTemplate(this)" value="${data[i].id}" type="button" class="list-group-item list-group-item-action lead editingTemplate bg-warning">${data[i].templatename}</button>`);
+        }
+    });
+}, 1000);
 
 //update existing template post request
 function viewExistingTemplate(e) {
@@ -158,6 +160,7 @@ $("#viewCustomTemplate").on("click", function () {
 
     //create an array of objects to be posted into templatemetrics table
     for (var i = 0; i < customTemplateMetrics.length; i++) {
+        console.log(currentUser);
         customTemplate = { UserUid: currentUser, templatename: customTemplateName, MetricId: customTemplateMetricIds[i] }
         templatePostArray.push(customTemplate)
         metricIdArray.push(customTemplateMetricIds[i])

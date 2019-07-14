@@ -2,8 +2,10 @@ const db = require("../models");
 
 module.exports = function (app) {
 
-    app.get("/api/templateuser", function (req, res) {
-        db.TemplateUser.findAll({}).then(function (dbTemplateUsers) {
+    app.get("/api/templateuser/:currentUser", function (req, res) {
+        db.TemplateUser.findAll({
+            where: { UserUid: req.params.currentUser }
+        }).then(function (dbTemplateUsers) {
             res.json(dbTemplateUsers);
         });
     });

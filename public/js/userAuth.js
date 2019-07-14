@@ -19,7 +19,15 @@ firebase.initializeApp(firebaseConfig);
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUser = user.uid;
-        location.href === location.origin + "/" ? location.href = "/stock/AAPL" : console.log("On page " + location.href);
+        $.get(`/api/watchlist/${currentUser}`, response => {
+            let ticker = "AAPL";
+            if (response) {
+                ticker = response[0].Ticker.symbol;
+            }
+            location.href === location.origin + "/home" ? location.href = `/stock/${ticker}` : console.log("On page " + location.href);
+        });
+
+
     }
     else {
         location.href !== location.origin + "/" ? location.href = "/" : console.log("Welcome");

@@ -64,8 +64,10 @@ function changeTemplate(templateID) {
         response.forEach(metric => {
             const html = `
             <div class="col-lg-6 metricsCell">
+
                     <p class="metricsName"><strong>${metric.description}</strong></p>
-                    <p class="metricsValue" data-id="${metric.id}"></p>
+                    <p class="metricsValue" data-id="${metric.id}" data-name="${metric.name}"></p>
+
             </div>
             `;
             $(metrics).append(html);
@@ -89,8 +91,10 @@ function updateMetrics() {
     $.post("/api/getMetricValues", { metricIds, ticker }, response => {
         $(metricsValueDisplay).each((index, metric) => {
             const metricId = $(metric).attr("data-id");
-            if (response[metricId])
-                $(metric).text(response[metricId]);
+            const metricName = $(metric).attr("data-name");
+            const metricValue = response[metricId]
+            if (metricValue)
+                $(metric).text(metricFormatter(metricValue, metricName));
             else
                 $(metric).text("-");
         });
@@ -108,12 +112,13 @@ function updatingChart(period) {
         plotChart(dataSets, dataSetsLabel); //to clear the graph
         for (var i = 0; i < response.length; i++) {
             const dataObj = response[i];
+
             var volData = dataObj.close;
             const labelValue = dataObj.label;
             if (!dataSetsLabel.includes(labelValue)) {
                 dataSetsLabel.push(labelValue);
             }
-            const volNum = parseInt(volData);
+            const volNum = parseFloat(volData);
             dataSets.push(volNum);
         }
         //calling the plotChart function from the priceChart.js using the response above
@@ -125,16 +130,36 @@ function updatingChart(period) {
         }, 5 * 1000);
     }
     updatingPriceDisplay();
+    updatingOpenPriceDisplay();
+    updatingClosingPriceDisplay();
 }
 
 //Displaying the latest Stock Price 
 function updatingPriceDisplay() {
     $.get("/api/price/" + ticker, response => {
         let priceDisplay = $("#priceDisplay");
+
         priceDisplay.html("$" + response);
         if ($(".d-inline-block").text() === $(".updated-quote").attr("ticker")) {
             $(".updated-quote").text("$" + response);
         }
+
+        priceDisplay.html("Today: $" + response);
+    });
+}
+
+function updatingOpenPriceDisplay() {
+    $.get("/api/price-open/" + ticker, response => {
+        let priceDisplayOpen = $("#openPriceDisplay");
+        priceDisplayOpen.html("Opening: $" + response);
+    });
+}
+
+function updatingClosingPriceDisplay() {
+    $.get("/api/price-close/" + ticker, response => {
+        let priceDisplayClose = $("#closingPriceDisplay");
+        priceDisplayClose.html("Closing: $" + response);
+
     });
 }
 

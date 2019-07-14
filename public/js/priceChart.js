@@ -1,3 +1,4 @@
+
 let ctx = document.getElementById('myChart').getContext('2d');
 
 let myChart = new Chart(ctx, {
@@ -5,7 +6,7 @@ let myChart = new Chart(ctx, {
     data: {
         labels: [], //timeRange label
         datasets: [{
-            label: 'Average Price',
+            label: 'Price',
             data: [], //prices
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -29,16 +30,25 @@ let myChart = new Chart(ctx, {
         }]
     },
     options: {
+        animation: {
+            duration: 0 // general animation time
+        },
+        hover: {
+            animationDuration: 0 // duration of animations when hovering an item
+        },
+        responsiveAnimationDuration: 0, // animation duration after a resize
         scales: {
             yAxes: [{
                 id: 'left-y-axis',
                 type: 'linear',
-                position: 'left'
+                position: 'left',
+                ticks: {
+                    precision: 2
+                }
             }]
-        },
+        }
     }
-}
-);
+});
 
 function plotChart(dataSets, dataSetsLabel) {
     myChart.data.labels = dataSetsLabel;

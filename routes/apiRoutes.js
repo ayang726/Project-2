@@ -111,6 +111,7 @@ module.exports = function (app) {
         const metricIds = req.body.metricIds;
         const ticker = req.body.ticker;
         let response = await dataFetchManager.getMetrics(metricIds, ticker);
+
         res.json(response.data);
     });
 
@@ -123,6 +124,18 @@ module.exports = function (app) {
     // getting the latest price data requested for a symbol
     app.get("/api/price/:ticker", async (req, res) => {
         const priceRespObj = await dataFetchManager.getLatestPrice(req.params.ticker);
+        return res.json(priceRespObj);
+    });
+
+    // getting the open price data requested for a symbol
+    app.get("/api/price-open/:ticker", async (req, res) => {
+        const priceRespObj = await dataFetchManager.getLatestPriceOpen(req.params.ticker);
+        return res.json(priceRespObj);
+    });
+
+    // getting the open price data requested for a symbol
+    app.get("/api/price-close/:ticker", async (req, res) => {
+        const priceRespObj = await dataFetchManager.getLatestPriceClose(req.params.ticker);
         return res.json(priceRespObj);
     });
 

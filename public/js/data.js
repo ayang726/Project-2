@@ -11,6 +11,7 @@ setTimeout(() => {
         updatingTemplates();
         updatingWatchlist();
         updatingNews();
+        updatingChart('1d')
     }
 }, 500);
 
@@ -20,20 +21,36 @@ function updatingWatchlist() {
         let watchList = $(".watchList ul")[0];
         $(watchList).html = "";
         response.forEach(ticker => {
-            console.log(ticker);
             const html = `
         <li class="text-center">
             <hr>
             <a href="/stock/${ticker.Ticker.symbol}">
             <h6>${ticker.Ticker.symbol}</h6>
             </a>
-            <h6 class="updated-quote live-data" ticker="${ticker.Ticker.symbol}">-</h6>
+            <h6 class="updated-quote" ticker="${ticker.Ticker.symbol}">-</h6>
         </li>
         `
             $(watchList).append(html);
         });
+        updateLiveQuote();
+        setInterval(function () {
+            updateLiveQuote();
+        }, 1000 * 60 * 5)
     });
 }
+
+function updateLiveQuote() {
+    let liveQuotes = $(".updated-quote");
+    let symbols = [];
+    liveQuotes.each((i, quote) => {
+        let symbol = $(quote).attr("ticker");
+        symbols.push(symbol);
+        $.get(`/api/price/${symbol}`, response => {
+            $(quote).text("$" + response);
+        })
+    });
+}
+
 
 // Update the list of templates
 function updatingTemplates() {
@@ -129,24 +146,24 @@ function updatingChart(period) {
             updatingChart(period)
         }, 5 * 1000);
     }
-    updatingPriceDisplay();
+    // updatingPriceDisplay();
     updatingOpenPriceDisplay();
     updatingClosingPriceDisplay();
 }
 
 //Displaying the latest Stock Price 
-function updatingPriceDisplay() {
-    $.get("/api/price/" + ticker, response => {
-        let priceDisplay = $("#priceDisplay");
+// function updatingPriceDisplay() {
+//     $.get("/api/price/" + ticker, response => {
+//         let priceDisplay = $("#priceDisplay");
 
-        priceDisplay.html("$" + response);
-        if ($(".d-inline-block").text() === $(".updated-quote").attr("ticker")) {
-            $(".updated-quote").text("$" + response);
-        }
+//         priceDisplay.html("$" + response);
+//         if ($(".d-inline-block").text() === $(".updated-quote").attr("ticker")) {
+//             $(".updated-quote").text("$" + response);
+//         }
 
-        priceDisplay.html("Today: $" + response);
-    });
-}
+//         priceDisplay.html("Today: $" + response);
+//     });
+// }
 
 function updatingOpenPriceDisplay() {
     $.get("/api/price-open/" + ticker, response => {

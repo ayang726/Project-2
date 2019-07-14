@@ -49,6 +49,12 @@ nav form{
     margin:0;
 }
 
+.articleSummary {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: "----"; 
+}
+
 .searchResultListItem:hover{
     background: rgba(128, 128, 128, 0.8);
 }

@@ -7,4 +7,5 @@ $("#addToWatchList").on("click", e => {
     $.post(`/api/watchlist/${ticker}/${uid}`, response => {
         console.log("added to watchlist");
     });
+    location.reload();
 });

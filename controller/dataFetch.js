@@ -3,6 +3,16 @@ const db = require("../models");
 
 let dataFetchManager = {};
 
+resetTickerMetricsDatabaseAt(17, 35);
+
+function resetTickerMetricsDatabaseAt(hour, minute) {
+    var now = new Date();
+    var millisTill10 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute, 0, 0) - now;
+    if (millisTill10 < 0) {
+        millisTill10 += 86400000; // it's after 10am, try 10am tomorrow.
+    }
+    setTimeout(function () { console.log("It's Time!") }, millisTill10);
+}
 
 dataFetchManager.getSymbols = async function () {
     // Get data from on the server storage

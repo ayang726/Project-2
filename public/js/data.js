@@ -144,7 +144,7 @@ function updatingChart(period) {
     if (period === "1d") {
         updateChartTimer1D = setTimeout(() => {
             updatingChart(period)
-        }, 5 * 1000);
+        }, 60 * 5 * 1000);
     }
     // updatingPriceDisplay();
     updatingOpenPriceDisplay();

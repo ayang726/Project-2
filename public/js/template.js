@@ -76,6 +76,7 @@ function viewExistingTemplate(e) {
         // console.log(data);
 
         //check all the metric boxes for the template that was clicked to edit
+        
         for (var i = 0; i < data.length; i++) {
             metricIdToCheck = data[i].MetricId;
             $(".addMetric").each(function () {

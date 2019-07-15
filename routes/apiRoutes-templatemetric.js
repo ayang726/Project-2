@@ -12,7 +12,7 @@ module.exports = function (app) {
 
 
     app.get("/api/templatemetric/:TemplateUserId", function (req, res) {
-        db.sequelize.query('SELECT * FROM templateusers tu JOIN templatemetrics tm ON tm.TemplateUserId = tu.id WHERE TemplateUserId = ?',
+        db.sequelize.query('SELECT * FROM TemplateUsers tu JOIN TemplateMetrics tm ON tm.TemplateUserId = tu.id WHERE TemplateUserId = ?',
             {
                 replacements: [req.params.TemplateUserId], type: db.sequelize.QueryTypes.SELECT
 

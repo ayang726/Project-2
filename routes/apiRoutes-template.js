@@ -30,9 +30,9 @@ module.exports = function (app) {
     });
 
     app.post("/api/template/:templatename", (req, res) => {
-        db.sequelize.query(`DELETE templatemetrics, templateusers FROM templatemetrics
-            join templateusers on templatemetrics.TemplateUserId = templateusers.id 
-            WHERE  templateusers.templatename = ?`,
+        db.sequelize.query(`DELETE TemplateMetrics, TemplateUsers FROM TemplateMetrics
+            join TemplateUsers on TemplateMetrics.templateuserId = TemplateUsers.id 
+            WHERE  TemplateUsers.templatename = ?`,
             {
                 replacements: [req.params.templatename], type: db.sequelize.QueryTypes.DELETE
             })

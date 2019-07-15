@@ -36,7 +36,7 @@ function parseCurrency(value) {
     }
     if (value < 0) divider = divider * -1
     const result = "$" + divider + " " + suffix
-    console.log(value + "parsed into " + result);)
+    console.log(value + "parsed into " + result);
     return result;
 }
 function parseNumber(value) {

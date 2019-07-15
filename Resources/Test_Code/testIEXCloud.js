@@ -32,7 +32,7 @@ function parseTestUrl(q) {
 
 let url = parseTestUrl("stock/aapl/intraday-prices")
 
-console.log(url);
+// console.log(url);
 // console.log('-----------------------------------------');
 
 var ctx = document.getElementById('chart').getContext('2d');
@@ -58,9 +58,9 @@ $.get(url).then(data => {
         minute++
     });
     // myChart.data.datasets.data = parsedData;
-    console.log(parsedData);
-    console.log(`min = ${min}`);
-    console.log(`max = ${max}`);
+    // console.log(parsedData);
+    // console.log(`min = ${min}`);
+    // console.log(`max = ${max}`);
 
     var myChart = new Chart(ctx, {
         type: 'line',

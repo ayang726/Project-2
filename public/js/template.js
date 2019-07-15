@@ -1,7 +1,7 @@
 
 //api call to get metrics from db to display in UI
 $.get("/api/metric", function (data) {
-    console.log(data);
+    // console.log(data);
 
     //create the ui, put the metric ids in an attribute
     for (var i = 0; i < data.length; i++) {
@@ -52,7 +52,7 @@ $.get("/api/metric", function (data) {
 var buttonText = [];
 setTimeout(function () {
     $.get(`/api/templateuser/${currentUser}`, function (data) {
-        console.log("this is my user id " + currentUser);
+        // console.log("this is my user id " + currentUser);
         for (var i = 0; i < data.length; i++) {
             $("#viewTemplatesToEdit").append(`<button onclick="viewExistingTemplate(this)" value="${data[i].id}" type="button" class="list-group-item list-group-item-action lead editingTemplate bg-warning">${data[i].templatename}</button>`);
             buttonText.push(data[i].templatename);
@@ -63,9 +63,9 @@ setTimeout(function () {
 //update existing template post request
 function viewExistingTemplate(e) {
     $(".addMetric").removeAttr('checked', '');
-    console.log(customTemplateMetrics);
+    // console.log(customTemplateMetrics);
     var metricIdToCheck;
-    console.log($(e).attr("value"));
+    // console.log($(e).attr("value"));
     var metricNumber = $(e).attr("value");
     //hide the save button and show the update button (will write a put on click of the update button)
     $("#saveCustomTemplateButton").hide();
@@ -73,7 +73,7 @@ function viewExistingTemplate(e) {
 
     //get that templates info from DB and recheck boxes
     $.get(`/api/templatemetric/${metricNumber}`, function (data) {
-        console.log(data);
+        // console.log(data);
 
         //check all the metric boxes for the template that was clicked to edit
         for (var i = 0; i < data.length; i++) {
@@ -85,7 +85,7 @@ function viewExistingTemplate(e) {
             })
         };
         //fill in the name input with that templates name
-        console.log(data[0].templatename);
+        // console.log(data[0].templatename);
         $("#customTemplateName").val(data[0].templatename);
     });
 }
@@ -117,26 +117,26 @@ $("#viewCustomTemplate").on("click", function () {
     validateForm();
 
     if (buttonText.includes($("#customTemplateName").val())) {
-        console.log("itcontains");
+        // console.log("itcontains");
         $("#saveCustomTemplateButton").hide();
         $("#updateCustomTemplateButton").show();
     }
 
-    console.log($(this).val());
+    // console.log($(this).val());
     var metricIsChecked = $(".addMetric").is(":checked");
-    console.log(metricIsChecked);
+    // console.log(metricIsChecked);
 
     //create an array with all of the selected metrics
     $.each($("input[name='metric']:checked"), function () {
         customTemplateMetrics.push($(this).val());
         customTemplateMetricIds.push($(this).attr('metricId'));
     });
-    console.log(customTemplateMetrics)
+    // console.log(customTemplateMetrics)
 
     //retrieving name of the template
     customTemplateName = $('#customTemplateName').val().trim();
     $('#inputTemplateName').html(customTemplateName);
-    console.log(customTemplateName);
+    // console.log(customTemplateName);
 
 
     //creating the demo template to view
@@ -153,7 +153,7 @@ $("#viewCustomTemplate").on("click", function () {
             $('#viewMetricAddedCol5').append(`<td class="viewMetricChild">${customTemplateMetrics[i]}</td>`);
         }
     };
-    console.log(customTemplateMetrics);
+    // console.log(customTemplateMetrics);
 
     templatePostArray = [];
     var customTemplate;
@@ -161,7 +161,7 @@ $("#viewCustomTemplate").on("click", function () {
 
     //create an array of objects to be posted into templatemetrics table
     for (var i = 0; i < customTemplateMetrics.length; i++) {
-        console.log(currentUser);
+        // console.log(currentUser);
         customTemplate = { UserUid: currentUser, templatename: customTemplateName, MetricId: customTemplateMetricIds[i] }
         templatePostArray.push(customTemplate)
         metricIdArray.push(customTemplateMetricIds[i])
@@ -173,7 +173,7 @@ $("#viewCustomTemplate").on("click", function () {
     $("#saveCustomTemplateButton").on("click", function () {
         $.post("/api/template/", templatePostArray)
             .then(function (results) {
-                console.log(results)
+                // console.log(results)
             });
 
         //clear template
@@ -187,10 +187,10 @@ $("#viewCustomTemplate").on("click", function () {
     //make a put call to DB to update existing template
     $("#updateCustomTemplateButton").on("click", function () {
         var templateNameEdit = $(inputTemplateName).html();
-        console.log(templateNameEdit);
+        // console.log(templateNameEdit);
         $.post(`/api/template/${templateNameEdit}`, templatePostArray)
             .then(function (results) {
-                console.log(results)
+                // console.log(results)
             });
 
         //clear template
@@ -205,7 +205,7 @@ $("#viewCustomTemplate").on("click", function () {
     $("#deleteCustomTemplateButton").on("click", function () {
         var templateNameEdit = $(inputTemplateName).html();
         $.post(`/api/template/delete/${templateNameEdit}`, function (result) {
-            console.log(result);
+            // console.log(result);
         })
         $('.viewMetricChild').remove();
         customTemplateMetrics = [];
@@ -214,7 +214,7 @@ $("#viewCustomTemplate").on("click", function () {
 
     //clear template
     $("#close-x").on("click", function () {
-        console.log("ITHASBEENCLICKED");
+        // console.log("ITHASBEENCLICKED");
         $('.viewMetricChild').remove();
         customTemplateMetrics = [];
         location.reload();

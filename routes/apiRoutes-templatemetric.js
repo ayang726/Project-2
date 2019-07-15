@@ -17,9 +17,9 @@ module.exports = function (app) {
                 replacements: [req.params.TemplateUserId], type: db.sequelize.QueryTypes.SELECT
 
             }).then(function (result) {
-                console.log(req.params.TemplateUserId)
+                // console.log(req.params.TemplateUserId)
                 var ID = result[0].TemplateUserId;
-                console.log(result);
+                // console.log(result);
                 return res.json(result);
             });
     });

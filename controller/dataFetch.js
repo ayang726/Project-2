@@ -3,6 +3,31 @@ const db = require("../models");
 
 let dataFetchManager = {};
 
+resetDatabaseAt(7, 0);
+
+function resetDatabaseAt(hour, minute = 0) {
+    var now = new Date();
+    var millisTill10 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute, 0, 0) - now;
+    if (millisTill10 < 0) {
+        millisTill10 += 86400000; // it's after 10am, try 10am tomorrow.
+    }
+    setTimeout(function () {
+        resetDatabaseAt(7)
+        clearTickerMetricsDatabase()
+    }, millisTill10);
+}
+function clearTickerMetricsDatabase() {
+    console.log("=========== Resetting TickerMetrics Table ===========");
+
+    db.TickerMetric.destroy({
+        where: {},
+        truncate: true
+    }).then(response => {
+        console.log("=========== TickerMetrics Table has been reset===========");
+    })
+
+
+}
 
 dataFetchManager.getSymbols = async function () {
     // Get data from on the server storage
@@ -106,7 +131,6 @@ dataFetchManager.getQuotes = async function (timeRange, symbol) {
     // get data from iex server
     if (timeRange !== undefined) {
         let response;
-        console.log(timeRange);
 
         if (timeRange === "1d") { response = await iexRequest["intradayPrices"](symbol); }
         else { response = await iexRequest["historicalPrices"](symbol, timeRange); }

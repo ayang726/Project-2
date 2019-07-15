@@ -36,7 +36,7 @@
                 url: requestURL,
                 type: 'GET',
                 success: function (res) {
-                    console.log(res);
+                    // console.log(res);
                     for (var i = 0; i < res.length; i++) {
                         const dataObj = res[i];
                         const volData = dataObj.average;
@@ -45,7 +45,7 @@
                             dataSetsLabel.push(labelValue);
                         }
                         const volNum = parseInt(volData);
-                        console.log("volData:[" + i + "]: " + volNum);
+                        // console.log("volData:[" + i + "]: " + volNum);
                         if (!isNaN(volNum)) {
                             dataSets.push(volNum);
                             //myChart.data.datasets[0].data.push(volNum);
@@ -119,7 +119,7 @@
                 url: requestURL,
                 type: 'GET',
                 success: function (res) {
-                    console.log(res);
+                    // console.log(res);
                     for (var i = 0; i < res.length; i++) {
                         const dataObj = res[i];
                         const volData = dataObj.close;
@@ -128,7 +128,7 @@
                             dataSetsLabel.push(labelValue);
                         }
                         const volNum = parseInt(volData);
-                        console.log("volData:[" + i + "]: " + volNum);
+                        // console.log("volData:[" + i + "]: " + volNum);
                         if (!isNaN(volNum)) {
                             dataSets.push(volNum);
                         }
@@ -199,7 +199,7 @@
                 url: requestURL,
                 type: 'GET',
                 success: function (res) {
-                    console.log(res);
+                    // console.log(res);
                     for (var i = 0; i < res.length; i++) {
                         const dataObj = res[i];
                         const volData = dataObj.close;
@@ -208,7 +208,7 @@
                             dataSetsLabel.push(labelValue);
                         }
                         const volNum = parseInt(volData);
-                        console.log("volData:[" + i + "]: " + volNum);
+                        // console.log("volData:[" + i + "]: " + volNum);
                         if (!isNaN(volNum)) {
                             dataSets.push(volNum);
                         }
@@ -279,7 +279,7 @@
                 url: requestURL,
                 type: 'GET',
                 success: function (res) {
-                    console.log(res);
+                    // console.log(res);
                     for (var i = 0; i < res.length; i++) {
                         const dataObj = res[i];
                         const volData = dataObj.close;
@@ -288,7 +288,7 @@
                             dataSetsLabel.push(labelValue);
                         }
                         const volNum = parseInt(volData);
-                        console.log("volData:[" + i + "]: " + volNum);
+                        // console.log("volData:[" + i + "]: " + volNum);
                         if (!isNaN(volNum)) {
                             dataSets.push(volNum);
                         }
@@ -359,7 +359,7 @@
                 url: requestURL,
                 type: 'GET',
                 success: function (res) {
-                    console.log(res);
+                    // console.log(res);
                     for (var i = 0; i < res.length; i++) {
                         const dataObj = res[i];
                         const volData = dataObj.close;
@@ -368,7 +368,7 @@
                             dataSetsLabel.push(labelValue);
                         }
                         const volNum = parseInt(volData);
-                        console.log("volData:[" + i + "]: " + volNum);
+                        // console.log("volData:[" + i + "]: " + volNum);
                         if (!isNaN(volNum)) {
                             dataSets.push(volNum);
                         }

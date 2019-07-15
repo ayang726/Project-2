@@ -5,7 +5,7 @@ function metricFormatter(metricValue, metricName) {
         case "ratio":
             return +metricValue;
         case "percent":
-            return metricValue * 100 + "%";
+            return Math.floor(metricValue * 1000) / 10 + "%";
         case "number":
             return parseNumber(metricValue);
         case "price":
@@ -19,7 +19,7 @@ function metricFormatter(metricValue, metricName) {
 
 function parseCurrency(value) {
     let counter = 0;
-    let divider = value;
+    let divider = Math.abs(value);
     let suffix = ""
     while (divider >= 1000) {
         divider /= 1000;
@@ -34,13 +34,14 @@ function parseCurrency(value) {
         case 5: suffix = "Q"; break;
         default: suffix = ""; break;
     }
+    if (value < 0) divider = divider * -1
     const result = "$" + divider + " " + suffix
-    console.log(value + "parsed into " + result);
+    // console.log(value + "parsed into " + result);
     return result;
 }
 function parseNumber(value) {
     let counter = 0;
-    let divider = value;
+    let divider = Math.abs(value);
     let suffix = ""
     while (divider >= 1000) {
         divider /= 1000;
@@ -55,8 +56,10 @@ function parseNumber(value) {
         case 5: suffix = "Q"; break;
         default: suffix = ""; break;
     }
+
+    if (value < 0) divider = divider * -1
     const result = divider + " " + suffix
-    console.log(value + "parsed into " + result);
+    // console.log(value + "parsed into " + result);
     return result;
 }
 

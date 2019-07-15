@@ -1,4 +1,4 @@
-console.log("Symbol Search loaded");
+// console.log("Symbol Search loaded");
 
 // $(document).ready(() => {
 const searchResult = $(".searchResult");
@@ -43,7 +43,7 @@ function loadRecentSearchData() {
     $.get(`/api/recentSearches/${currentUser}`, response => {
         searchSymbols.recentSearches = [];
         response.forEach(ticker => {
-            console.log("============\n" + JSON.stringify(ticker.Ticker.tickername));
+            // console.log("============\n" + JSON.stringify(ticker.Ticker.tickername));
             searchSymbols.recentSearches.push({ symbol: ticker.Ticker.symbol, tickername: ticker.Ticker.tickername });
             populateSearchList();
         })

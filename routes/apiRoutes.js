@@ -2,11 +2,6 @@ const dataFetchManager = require("../controller/dataFetch").dataFetchManager;
 const db = require("../models");
 
 module.exports = function (app) {
-    // THIS IS TEMPORARY
-    // TEST CODE
-
-
-
     //========================================//
     // Database API calls //
     //========================================//

@@ -82,8 +82,8 @@ function changeTemplate(templateID) {
             const html = `
             <div class="col-lg-6 metricsCell">
 
-                    <p class="metricsName"><strong>${metric.description}</strong></p>
-                    <p class="metricsValue" data-id="${metric.id}" data-name="${metric.name}"></p>
+                    <p class="metricsName text-center"><strong>${metric.description}</strong></p>
+                    <p class="metricsValue text-center" data-id="${metric.id}" data-name="${metric.name}"></p>
 
             </div>
             `;
@@ -122,6 +122,7 @@ function updateMetrics() {
 //updating the Price Chart 
 let updateChartTimer1D;
 function updatingChart(period) {
+    // console.log("I'm called msg202")
     if (updateChartTimer1D) clearTimeout(updateChartTimer1D)
     $.get("/api/chart/" + period + "/" + ticker, response => {
         var dataSetsLabel = [];
@@ -144,7 +145,7 @@ function updatingChart(period) {
     if (period === "1d") {
         updateChartTimer1D = setTimeout(() => {
             updatingChart(period)
-        }, 5 * 1000);
+        }, 60 * 5 * 1000);
     }
     // updatingPriceDisplay();
     updatingOpenPriceDisplay();

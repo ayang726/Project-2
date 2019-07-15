@@ -10,13 +10,13 @@ module.exports = function (app) {
             templatename: req.body[0].templatename,
             UserUid: req.body[0].UserUid,
         }).then(response => {
-            console.log(response);
+            // console.log(response);
 
             //retrieving the templateUserId from the response
             var templateId = response.dataValues.id;
             var bulkCreateArray = [];
             var bodyArray = Object.values(req.body)
-            console.log(bodyArray)
+            // console.log(bodyArray)
 
             //creating an array with the MetricId's from the req.body plus the TemplateUserId 
             for (var i = 0; i < bodyArray.length; i++) {
@@ -24,7 +24,7 @@ module.exports = function (app) {
             }
             db.TemplateMetric.bulkCreate(bulkCreateArray
             ).then(response => {
-                console.log(response);
+                // console.log(response);
             })
         });
     });
@@ -40,7 +40,7 @@ module.exports = function (app) {
             templatename: req.body[0].templatename,
             UserUid: req.body[0].UserUid
         }).then(response => {
-            console.log(response);
+            // console.log(response);
 
             //retrieving the templateUserId from the response
             var templateId = response.dataValues.id;
@@ -53,7 +53,7 @@ module.exports = function (app) {
             }
             db.TemplateMetric.bulkCreate(bulkCreateArray
             ).then(response => {
-                console.log(response);
+                // console.log(response);
             })
         });
     });

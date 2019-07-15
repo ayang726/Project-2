@@ -20,26 +20,26 @@ if (configKeys.enableProd == "Enable Production") {
     console.log("Warning, Production API Key Loaded");
     console.log('============================');
     iexRequest.parseUrl = function (q) {
-        console.log('============================');
-        console.log("IEX production query called");
+        // console.log('============================');
+        // console.log("IEX production query called");
         return `${baseUrl}/${q}/?token=${ProdToken}`;
     }
 } else {
     iexRequest.parseUrl = function (q) {
-        console.log('============================');
-        console.log("IEX test query called");
+        // console.log('============================');
+        // console.log("IEX test query called");
         return `${baseSanboxUrl}/${q}/?token=${TestToken}`;
     }
 }
 
 iexRequest.parseTestUrl = function (q) {
-    console.log('parseTestUrl q============================>' + q);
-    console.log("IEX test query called");
+    // console.log('parseTestUrl q============================>' + q);
+    // console.log("IEX test query called");
     return `${baseSanboxUrl}/${q}/?token=${TestToken}`;
 }
 iexRequest.parseProdUrl = function (q) {
-    console.log('============================');
-    console.log("IEX production query called");
+    // console.log('============================');
+    // console.log("IEX production query called");
     return `${baseUrl}/${q}/?token=${ProdToken}`;
 }
 

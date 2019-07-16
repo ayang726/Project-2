@@ -193,7 +193,6 @@ function updatingNews() {
                         <a class="articleUrl" href="${response[i].url}">
                             <h5 class="card-title articleTitle">${response[i].headline}</h5>
                         </a>
-                        <div class="card-text articleSummary">${response[i].summary}</div>
                     </div>
                 </div>
             </div>

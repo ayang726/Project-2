@@ -131,7 +131,7 @@ const metricType = {
     totalRevenue: "currency",
     avg10Volume: "number",
     avg30Volume: "number",
-    beta: "ratio",
+    beta: "number",
     day200MovingAvg: "price",
     day30ChangePercent: "price",
     day50MovingAvg: "price",
